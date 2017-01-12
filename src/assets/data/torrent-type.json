@@ -1,0 +1,18 @@
+[
+    {
+        "type": "chi",
+        "label": "华语"
+    },
+    {
+        "type": "eng",
+        "label": "欧美"
+    },
+    {
+        "type": "mac",
+        "label": "Mac"
+    },
+    {
+        "type": "game",
+        "label": "游戏"
+    }
+]

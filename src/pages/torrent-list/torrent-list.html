@@ -1,0 +1,57 @@
+<!--
+  Generated template for the TorrentList page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Torents</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngFor="let torrent of torrents">
+
+    <ion-item>
+      <ion-avatar item-left>
+      </ion-avatar>
+      <h2>{{torrent.name}}</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="primary"  clear small icon-left>
+          <ion-icon name="arrow-round-up"></ion-icon>
+          12
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="primary" clear small icon-left (click)="presentPopover($event)">
+          <ion-icon name="arrow-round-down"></ion-icon>
+          4
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          <ion-icon name="checkmark-circle"></ion-icon> 12
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>
