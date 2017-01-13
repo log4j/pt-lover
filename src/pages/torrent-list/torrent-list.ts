@@ -4,6 +4,7 @@ import { NavController, PopoverController, ModalController, NavParams, List } fr
 
 import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
+import { TorrentList } from '../../models/torrent'
 
 import { PeerListPopOverPage } from '../peer-list-pop-over/peer-list-pop-over';
 import { TorrentFilterPage } from '../torrent-filter/torrent-filter';
@@ -25,9 +26,11 @@ export class TorrentListPage {
   // the List and not a reference to the element
   @ViewChild('torrentList', { read: List }) torrentList: List;
 
-  torrents = []; 
+  torrents:TorrentList = new TorrentList(); 
 
   torrentFilter: TorrentFilter;
+
+
 
 
   constructor(
@@ -46,6 +49,8 @@ export class TorrentListPage {
 
       });
 
+      
+
     }
 
   ionViewDidLoad() {
@@ -57,10 +62,11 @@ export class TorrentListPage {
     // Close any open sliding items when the schedule updates
     this.torrentList && this.torrentList.closeSlidingItems();
 
-    this.torrentData.load().subscribe(data=>{
-      console.log(data);
-      this.torrents = data;
-    });
+    this.torrentData.loadTorrentPage().then(data=>{
+        this.torrents = data;
+        console.log(this.torrents);
+      });
+      
   }
 
   presentPopover(ev) {

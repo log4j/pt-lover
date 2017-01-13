@@ -19,7 +19,12 @@ export class ProfilePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public torrentData: TorrentData) {}
+    public torrentData: TorrentData) {
+
+      // this.torrentData.login().subscribe(data=>{
+        // console.log(data);
+      // });
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');

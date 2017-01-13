@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script src="/jquery-1.3.2.min.js" type="text/javascript"></script>
+<link href="/facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="/facebox/facebox.js" type="text/javascript"></script>
+<link href="/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+<script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="/jquery.cookie.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="jquery.form.js"></script>
+<link type="application/opensearchdescription+xml" href="opensearch.xml" title="PT Search" rel="search" />
+<title>葡萄 :: 种子</title>
+<link rel="stylesheet" href="styles/mediumfont.css" type="text/css" />
+<link rel="stylesheet" href="styles/NewUI/theme.css" type="text/css" />
+<link rel="stylesheet" href="styles/curtain_imageresizer.css" type="text/css" />
+<link rel="stylesheet" href="styles/sprites.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="Latest Torrents" href="rss.php" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33062507-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://ssl.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script type='text/javascript' src='/js/java_klappe_packed.js'></script>
+<script type='text/javascript' src='/js/curtain_imageresizer_packed.js'></script>
+<script type='text/javascript' src='/js/all_packed.js'></script>
+<script type='text/javascript' src='/js/bookmark_packed.js'></script>
+<script type='text/javascript' src='/js/searchbox_packed.js'></script>
+<script type='text/javascript' src='/js/torrents_packed.js'></script>
+<script type='text/javascript' src='/js/shoutboxother_packed.js'></script>
+</head>
+
+<body>
+<script type="text/javascript" src="styles/NewUI/addi.js"></script>
+<table class="head" cellspacing="0" width="982" cellpadding="0" align="center" >
+	<tr>
+<!--		<td class=clear>
+			<div class=logo><a href='http://pt.sjtu.edu.cn/index.php'>葡萄</a></div>
+			<div class=slogan>Free Share, Join us! 人人为我，我为人人</div>
+		</td> -->
+		<td class="clear" align="right">
+
+<!--			<a href=donate.php><img src="pic/x-click-but04.gif" border="0" alt="Make a donation" style='margin-top: 5px'></a> -->
+
+		</td>
+	</tr>
+</table>
+<table id="userbar"><tr>
+	<td class="bottom" align="left">
+	<span class="medium" id="usermsglink"><span class='nobr'><a  href='userdetails.php?id=1179'  class='VeteranUser_Name'><b>yangmang</b></a></span>		<span>
+			<img alt="Torrents seeding" title="" src="pic/trans.gif" class="arrowup" />17.785 TB			<img alt="Torrents seeding" title="" src="pic/trans.gif" class="arrowdown" />5.220 TB			<img alt="Torrents seeding" title="" src="pic/trans.gif" class="star" />3.407		</span>
+		<ul class="hoverlist">
+			<li><span>等级：Veteran User</span></li>
+			<li><span>分享率：3.407</span></li>
+			<li><span>上传量：17.785 TB</span></li>
+			<li><span>下载量：5.220 TB</span></li>
+			<li id="peersStatus">Loading...</li>
+		</ul>
+	</span>
+	</td>
+	<td class="bottom" align="right" id="userbarPanel">
+		<span class="medium"><a href='/usercp.php'>控制面板</a></span>
+		<span class="medium"><a href='/torrents.php?inclbookmarked=1&amp;allsec=1'>收藏</a></span>
+		<span class="medium"><a href='/friends.php'>好友</a></span>
+		<span class="medium"><a href='/messages.php' style=''>收件箱</a></span>
+		<span class="medium"><a href='/invite.php?id=1179'>邀请 (1)</a></span>
+		<span class="medium"><a href='/picbucket-upload.php' rel='facebox'>图床</a></span>
+		<span class="medium"><a href='/mybonus.php'>魔力值 (62454)</a></span>
+		<span class="medium"><a href='/games.php' rel='fancybox' data-fancybox-type="ajax">游戏</a></span>
+		<span class="medium"><a href='/getrss.php'>RSS</a></span>
+				<span class='medium'><a class="logoutlink" href="logout.php?hash=e6e0e671b8214d38833477e1869da2d6" rel="facebox">退出</a></span>
+	</td>
+</tr></table>
+
+<table class="mainouter" width="982" cellspacing="0" cellpadding="5" align="center">
+	<tr><td class="text" align="center">
+<table class='main' width='940' border='0' cellspacing='0' cellpadding='0'><tr><td class='embedded' ><div class="shadetabs"><span class='nobr'><ul><b name="menu"><a href="index.php">首&nbsp;&nbsp;页</a></b><b name="menu"><a href="forums.php">葡&nbsp;萄&nbsp;园</a></b><b name="menu"><a href="torrents.php">种&nbsp;&nbsp;子</a></b><b name="menu"><a href="pin.php">&nbsp;PIN&nbsp;</a></b><b name="menu"><a href="offers.php">候&nbsp;&nbsp;选</a></b><b name="menu"><a href="upload.php">上&nbsp;&nbsp;传</a></b><b name="menu"><a href="subtitles.php">字&nbsp;&nbsp;幕</a></b><b name="menu"><a href="users.php">会&nbsp;&nbsp;员</a></b><b name="menu"><a href="topten.php">排行榜</a></b><b name="menu"><a href="log.php">日&nbsp;&nbsp;志</a></b><b name="menu"><a href="rules.php">规&nbsp;&nbsp;则</a></b><b name="menu"><a href="faq.php">常见问题</a></b><b name="menu"><a href="staff.php">葡萄园丁</a></b><b name="menu"><a href="helper.php">客服部</a></b></ul></span></div></td></tr></table>
+
+
+</td></tr>
+
+<tr><td align="center" class="outer" style="padding-top: 20px; padding-bottom: 20px">
+<table width=940 class=main border=0 cellspacing=0 cellpadding=0><tr><td class=embedded><!--
+<link rel="stylesheet" href=styles/NewUI/DomTT.css type="text/css">
+<script type="text/javascript" language="javascript" src="domLib.js"></script>
+<script type="text/javascript" language="javascript" src="domTT.js"></script>
+<script type="text/javascript" language="javascript" src="fadomatic.js"></script>
+<script type="text/javascript" language="javascript">
+var domTT_styleClass = 'domTTOverlib';
+</script>
+-->
+<script language="JavaScript" src="ajaxbasic.js" type="text/javascript"></script>
+
+<style type="text/css">
+td.pad
+{
+	padding-bottom: 4px;
+	padding-left: 5px;
+}
+</style>
+<form method="get" name="searchbox" action=?>
+	<table border="1" class="searchbox" cellspacing="0" cellpadding="5" width="100%">
+		<tr>
+		<td class="colhead" align="center" colspan="2"><a href="#" onclick='javascript:klappe_news("Advsearch");'><img border="0" src="pic/minus.gif" id="picAdvsearch" alt="Show/Hide" title="Show/Hide">搜索箱</a></td>
+		</tr>
+	
+		<tr id='kAdvsearch' style=''>
+			<td class=rowfollow align=left>
+				<table>
+					<tr><td class=embedded colspan=9 align=left><b>类型:</b></td><tr><td align=left class="bottom pad"><input  type="checkbox" name="cat401"checked value=1><a title="华语电影" href=?cat=401><img src=pic/category/chd/ijoypt/chs/movies_chinese.png border='0' alt="华语电影"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat402"checked value=1><a title="欧美电影" href=?cat=402><img src=pic/category/chd/ijoypt/chs/movies_western.png border='0' alt="欧美电影"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat403"checked value=1><a title="亚洲电影" href=?cat=403><img src=pic/category/chd/ijoypt/chs/movies_asian.png border='0' alt="亚洲电影"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat406"checked value=1><a title="纪录片" href=?cat=406><img src=pic/category/chd/ijoypt/chs/doc.png border='0' alt="纪录片"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat407"checked value=1><a title="港台电视剧" href=?cat=407><img src=pic/category/chd/ijoypt/chs/tv_ht.png border='0' alt="港台电视剧"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat408"checked value=1><a title="亚洲电视剧" href=?cat=408><img src=pic/category/chd/ijoypt/chs/tv_asian.png border='0' alt="亚洲电视剧"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat409"checked value=1><a title="大陆电视剧" href=?cat=409><img src=pic/category/chd/ijoypt/chs/tv_mainland.png border='0' alt="大陆电视剧"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat410"checked value=1><a title="欧美电视剧" href=?cat=410><img src=pic/category/chd/ijoypt/chs/tv_western.png border='0' alt="欧美电视剧"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat411"checked value=1><a title="大陆综艺节目" href=?cat=411><img src=pic/category/chd/ijoypt/chs/tvshows_mainland.png border='0' alt="大陆综艺节目"></a></td>
+</tr><tr><td align=left class="bottom pad"><input  type="checkbox" name="cat412"checked value=1><a title="港台综艺节目" href=?cat=412><img src=pic/category/chd/ijoypt/chs/tvshows_hktw.png border='0' alt="港台综艺节目"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat413"checked value=1><a title="欧美综艺节目" href=?cat=413><img src=pic/category/chd/ijoypt/chs/tvshows_western.png border='0' alt="欧美综艺节目"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat414"checked value=1><a title="日韩综艺节目" href=?cat=414><img src=pic/category/chd/ijoypt/chs/tvshows_jpkr.png border='0' alt="日韩综艺节目"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat420"checked value=1><a title="华语音乐" href=?cat=420><img src=pic/category/chd/ijoypt/chs/huayumusic.png border='0' alt="华语音乐"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat421"checked value=1><a title="日韩音乐" href=?cat=421><img src=pic/category/chd/ijoypt/chs/rihanmusic.png border='0' alt="日韩音乐"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat422"checked value=1><a title="欧美音乐" href=?cat=422><img src=pic/category/chd/ijoypt/chs/oumeimusic.png border='0' alt="欧美音乐"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat423"checked value=1><a title="原声音乐" href=?cat=423><img src=pic/category/chd/ijoypt/chs/yuanshengmusic.png border='0' alt="原声音乐"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat425"checked value=1><a title="古典音乐" href=?cat=425><img src=pic/category/chd/ijoypt/chs/gudianmusic.png border='0' alt="古典音乐"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat426"checked value=1><a title="mp3合辑" href=?cat=426><img src=pic/category/chd/ijoypt/chs/mp3.png border='0' alt="mp3合辑"></a></td>
+</tr><tr><td align=left class="bottom pad"><input  type="checkbox" name="cat427"checked value=1><a title="Music Videos" href=?cat=427><img src=pic/category/chd/ijoypt/chs/mv.png border='0' alt="Music Videos"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat429"checked value=1><a title="游戏" href=?cat=429><img src=pic/category/chd/ijoypt/chs/game.png border='0' alt="游戏"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat431"checked value=1><a title="动漫" href=?cat=431><img src=pic/category/chd/ijoypt/chs/anime.png border='0' alt="动漫"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat432"checked value=1><a title="体育" href=?cat=432><img src=pic/category/chd/ijoypt/chs/sports.png border='0' alt="体育"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat434"checked value=1><a title="软件" href=?cat=434><img src=pic/category/chd/ijoypt/chs/soft.png border='0' alt="软件"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat435"checked value=1><a title="学习" href=?cat=435><img src=pic/category/chd/ijoypt/chs/study.png border='0' alt="学习"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat440"checked value=1><a title="mac" href=?cat=440><img src=pic/category/chd/ijoypt/chs/mac.png border='0' alt="mac"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat451"value=1><a title="校园原创" href=?cat=451><img src=pic/category/chd/ijoypt/chs/campus.png border='0' alt="校园原创"></a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="cat450"checked value=1><a title="其他" href=?cat=450><img src=pic/category/chd/ijoypt/chs/misc.png border='0' alt="其他"></a></td>
+<td colspan=2 class=bottom align=left style="padding-left: 15px"><input name=cat_check value='全选' class="btn medium" type=button onclick="javascript:SetChecked('cat','cat_check','全选','全不选',-1,10)"></td>
+</tr><tr><td class=embedded colspan=9 align=left><b>编码:</b></td><tr><td align=left class="bottom pad"><input  type="checkbox" name="codec1"checked value=1><a title="H.264" href=?codec=1>H.264</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec2"checked value=1><a title="VC-1" href=?codec=2>VC-1</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec3"checked value=1><a title="Xvid" href=?codec=3>Xvid</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec4"checked value=1><a title="MPEG-2" href=?codec=4>MPEG-2</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec5"checked value=1><a title="FLAC" href=?codec=5>FLAC</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec6"checked value=1><a title="APE" href=?codec=6>APE</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec7"checked value=1><a title="DTS" href=?codec=7>DTS</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec8"checked value=1><a title="AC-3" href=?codec=8>AC-3</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="codec9"checked value=1><a title="其他" href=?codec=9>其他</a></td>
+<td colspan=2 class=bottom align=left style="padding-left: 15px"><input name=codec_check value='全选' class="btn medium" type=button onclick="javascript:SetChecked('codec','codec_check','全选','全不选',-1,10)"></td>
+</tr><tr><td class=embedded colspan=9 align=left><b>分辨率:</b></td><tr><td align=left class="bottom pad"><input  type="checkbox" name="standard1"checked value=1><a title="1080p" href=?standard=1>1080p</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="standard2"checked value=1><a title="1080i" href=?standard=2>1080i</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="standard3"checked value=1><a title="720p" href=?standard=3>720p</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="standard4"checked value=1><a title="SD" href=?standard=4>SD</a></td>
+<td align=left class="bottom pad"><input  type="checkbox" name="standard5"checked value=1><a title="其他" href=?standard=5>其他</a></td>
+<td colspan=2 class=bottom align=left style="padding-left: 15px"><input name=standard_check value='全选' class="btn medium" type=button onclick="javascript:SetChecked('standard','standard_check','全选','全不选',-1,10)"></td>
+</tr>				</table>
+			</td>
+			
+			<td class=rowfollow valign=center>
+				<table>
+					<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<font class=medium>显示断种/活种？</font>
+						</td>
+				 	</tr>				
+					<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<select class=med name="incldead" style="width: 100px;">
+								<option value="0">包括断种</option>
+								<option value="1">活种 </option>
+								<option value="2">断种</option>
+							</select>
+						</td>
+				 	</tr>
+				 	<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<br>
+						</td>
+				 	</tr>
+					<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<font class=medium>显示促销种子？</font>
+						</td>
+				 	</tr>
+				 	<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<select class=med name="spstate" style="width: 100px;">
+								<option value="0">全部</option>
+								<option value="1" >普通</option>
+								<option value="2" >免费</option>
+								<option value="3" >2x上传</option>
+								<option value="4" >免费&2x上传</option>
+								<option value="5" >50%下载</option>
+								<option value="6" >30%下载</option>
+								<option value="7" >70%下载</option>
+							</select>
+						</td>
+					</tr>
+				 	<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<br>
+						</td>
+				 	</tr>
+					<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<font class=medium>显示收藏？</font>
+						</td>
+				 	</tr>
+				 	<tr>
+						<td class=bottom style="padding: 1px;padding-left: 10px">
+							<select class=med name="inclbookmarked" style="width: 100px;">
+								<option value="0">全部</option>
+								<option value="1" >仅收藏</option>
+								<option value="2" >仅未收藏</option>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+                                                <td class=bottom style="padding: 1px;padding-left: 10px">
+                                                        <br>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class=bottom style="padding: 1px;padding-left: 10px">
+                                                        <font class=medium>挑选种子</font>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td class=bottom style="padding: 1px;padding-left: 10px">
+                                                        <select class=med name="picktype" style="width: 100px;">
+                                                                <option value="0">全部</option>
+                                                                <option value="1" >热门</option>
+                                                                <option value="2" >经典</option>
+								<option value="3" >推荐</option>
+                                                                <option value="4" >普通</option>
+                                                                 <option value="5" >保种中</option>
+                                                        </select>
+                                                </td>
+                                        </tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr>
+			<td class=rowfollow ALIGN="center">
+				<table>
+					<tr>
+						<td class="embedded">
+							搜索:&nbsp;&nbsp;
+						</td>			
+						<td class="embedded">	
+							<table>
+								<tr>
+									<td class="embedded">
+	<input id="searchinput" name="search" type="text" autocomplete="off" value="" style="width: 300px" />
+							</td>
+								</tr>
+							</table>
+						</td>
+						<td class="embedded">
+							&nbsp; 范围：
+							<select name="search_area" style="width: 110px;">
+								<option value="0">标题</option>
+								<option value="1" >简介</option>
+																<option value="3" >上传者</option>
+								<option value="4" >IMDb链接</option>
+							</select>
+
+							 关键字匹配模式：							
+							<select name="search_mode" style="width: 60px;">
+								<option value="0">与</option>
+								<option value="1" >或</option>
+								<option value="2" >准确</option>
+							</select>
+							
+													</td>
+					</tr>
+				</table>
+			</td>
+			<td class=rowfollow align="center">
+				<input type="submit" class="btn" value=搜索 >
+			</td>
+		</tr>
+	</table>
+	</form>
+<!-- SELECT torrents.sp_limit,torrents.id, torrents.isoday, torrents.sp_state, torrents.banned, torrents.picktype, torrents.pos_state, torrents.category, torrents.leechers, torrents.seeders, torrents.name, torrents.small_descr, torrents.times_completed, torrents.size, torrents.added, torrents.comments,torrents.filename,torrents.anonymous,torrents.owner,torrents.url,torrents.cache_stamp,douban_url,douban_cache_stamp,snatched.finished,snatched.seeder FROM torrents LEFT JOIN snatched ON snatched.torrentid = torrents.id AND snatched.userid = 1179 WHERE banned != 'yes' AND category IN(401,402,403,406,407,408,409,410,411,412,413,414,420,421,422,423,425,426,427,429,431,432,434,435,440,450) AND codec IN(1,2,3,4,5,6,7,8,9) AND standard IN(1,2,3,4,5)  ORDER BY pos_state desc, torrents.id DESC LIMIT 0,50 --><p align="center"><font class=gray><b>&lt;&lt;&nbsp;上一页</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=255&hitfrom=randompage"><b>随便看看</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1"><b>下一页&nbsp;&gt;&gt;</b></a><br /><font class=gray><b>1&nbsp;-&nbsp;50</b></font> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1"><b>51&nbsp;-&nbsp;100</b></a> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=2"><b>101&nbsp;-&nbsp;150</b></a> | ... | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1005"><b>50251&nbsp;-&nbsp;50300</b></a> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1006"><b>50301&nbsp;-&nbsp;50350</b></a> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1007"><b>50351&nbsp;-&nbsp;50398</b></a></p>
+	<script type="text/javascript" language="javascript">
+	function changebookmark(id, counter)
+	{
+		bookmark(id,counter,false,"加入收藏","取消收藏");
+	}
+	</script>
+
+<table class=torrents border="1" cellspacing="0" cellpadding="5" width="100%">
+<tr>
+
+<td class="colhead"><nobr>类型</nobr></td>
+<td class="colhead"><a href="?sort=1&type=asc"><nobr>标题</nobr></a></td>
+<!--<td class="colhead"><a title=Number&nbsp;of&nbsp;files href="?sort=2&type=desc"><img src=pic/files.gif border='0' alt=files></a></td>-->
+<td class="colhead"><a href="?sort=3&type=desc"><img src=pic/trans.gif class=comments border='0' alt=comments title="评论数"></a></td>
+
+<td class="colhead"><a href="?sort=4&type=desc"><img src=pic/trans.gif class=time border='0' alt=time title="存活时间"></a></td>
+<td class="colhead"><a href="?sort=5&type=desc"><img src=pic/trans.gif class=size border='0' alt=size title="大小"></a></td>
+<td class="colhead"><a href="?sort=7&type=desc"><img src=pic/trans.gif class=seeders border='0' alt=seeders title="种子数"></a></td>
+<td class="colhead"><a href="?sort=8&type=desc"><img src=pic/trans.gif class=leechers border='0' alt=leechers title="下载数"></a></td>
+<td class="colhead"><a href="?sort=6&type=desc"><img src=pic/trans.gif class=snatched border='0' alt=snatched title="完成数"></a></td>
+<!--
+<td class="colhead"><font color=black>Av.Progress</font></td>-->
+<td class="colhead"><a href="?sort=9&type=desc"><nobr>发布者</nobr></a></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[诛仙青云志2 全18集] Noble Aspirations S02 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=142002&hit=1&hitfrom=sticky"><b>[诛仙青云志2 全18集] Noble Aspirations S02 WEB-DL 1080p H264 AAC-PuTao</b></a><br />青云志 第二季 全18集 无水印版</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=142002"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark0  href="javascript: changebookmark(142002,0);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=142002&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>5时<br />4分</span></td><td class=rowfollow>16.95<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=142002&hit=1&toseeders=1><font color=>48</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=142002&hit=1&todlers=1>11</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=142002><b>60</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[诛仙青云志2 第16-18集] Noble Aspirations S02 E16-18 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=142001&hit=1&hitfrom=sticky"><b>[诛仙青云志2 第16-18集] Noble Aspirations S02 E16-18 WEB-DL 1080p H264 AAC-..</b></a> <b>[<font class='hot'>热门</font>]</b> <b>(<font style="color:#38ACEC">限时:18小时36分</font>)</b><br />青云志 第二季 第16-18集 无水印版</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=142001"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark1  href="javascript: changebookmark(142001,1);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=142001&hit=1&tocomm=1" >2</a></b></td><td class=rowfollow><span class='nobr'>5时<br />28分</span></td><td class=rowfollow>2.87<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=142001&hit=1&toseeders=1><font color=>77</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=142001&hit=1&todlers=1>7</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=142001><b>177</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[神探夏洛克 第四季 第2集] Sherlock S04E02 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141617&hit=1&hitfrom=sticky"><b>[神探夏洛克 第四季 第2集] Sherlock S04E02 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />神探夏洛克 第四季 第2集 *撒谎的侦探* 中英字幕</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141617"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark2  href="javascript: changebookmark(141617,2);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141617&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>9时<br />51分</span></td><td class=rowfollow>1.95<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141617&hit=1&toseeders=1><font color=>529</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141617&hit=1&todlers=1>7</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141617><b>272</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[鬼吹灯之精绝古城 第13-15集] Candle In The Tomb E13-15 REPACK WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141616&hit=1&hitfrom=sticky"><b>[鬼吹灯之精绝古城 第13-15集] Candle In The Tomb E13-15 REPACK WEB-DL 1080p H26..</b></a> <b>[<font class='hot'>热门</font>]</b><br />鬼吹灯之精绝古城 第13-15集 *禁转* *无水印版* *大家来辅种就好了*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141616"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark3  href="javascript: changebookmark(141616,3);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141616&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>9时<br />56分</span></td><td class=rowfollow>2.21<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141616&hit=1&toseeders=1><font color=>383</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141616&hit=1&todlers=1>7</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141616><b>228</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[鬼吹灯之精绝古城 第10-12集]  Candle In The Tomb EP10-12 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141543&hit=1&hitfrom=sticky"><b>[鬼吹灯之精绝古城 第10-12集]  Candle In The Tomb EP10-12 WEB-DL 1080p H264 AAC..</b></a> <b>[<font class='hot'>热门</font>]</b><br />鬼吹灯之精绝古城 第10-12集 *禁转* *无水印版* *有点急事，没空切广告了，见谅*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141543"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark4  href="javascript: changebookmark(141543,4);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141543&hit=1&tocomm=1" >22</a></b></td><td class=rowfollow><span class='nobr'>10天<br />6时</span></td><td class=rowfollow>2.24<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141543&hit=1&toseeders=1><font color=>426</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141543&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141543><b>3,364</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[神探夏洛克 第四季 第1集] Sherlock S04E01 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141535&hit=1&hitfrom=sticky"><b>[神探夏洛克 第四季 第1集] Sherlock S04E01 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />神探夏洛克 第四季 第1集 *六座撒切尔夫人像* 中英字幕</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141535"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark5  href="javascript: changebookmark(141535,5);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141535&hit=1&tocomm=1" >8</a></b></td><td class=rowfollow><span class='nobr'>10天<br />12时</span></td><td class=rowfollow>1.93<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141535&hit=1&toseeders=1><font color=>419</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141535&hit=1&todlers=1>2</a></b></td>
+<td class='rowfollow snatched_yes_yes' title='已完成在做种'><a href=viewsnatches.php?id=141535><b>3,859</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[鬼吹灯之精绝古城 第07-09集] Candle In The Tomb EP07-09 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141452&hit=1&hitfrom=sticky"><b>[鬼吹灯之精绝古城 第07-09集] Candle In The Tomb EP07-09 WEB-DL 1080p H264 AAC-..</b></a> <b>[<font class='hot'>热门</font>]</b><br />鬼吹灯之精绝古城 第07-09集 *禁转* *无水印版* *开头广告，还有中间脑残的广告都剪了，心累*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141452"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark6  href="javascript: changebookmark(141452,6);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141452&hit=1&tocomm=1" >36</a></b></td><td class=rowfollow><span class='nobr'>17天<br />4时</span></td><td class=rowfollow>2.20<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141452&hit=1&toseeders=1><font color=>398</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141452&hit=1&todlers=1>4</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141452><b>3,433</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[鬼吹灯之精绝古城 第01-06集] Candle In The Tomb EP01-06 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141350&hit=1&hitfrom=sticky"><b>[鬼吹灯之精绝古城 第01-06集] Candle In The Tomb EP01-06 WEB-DL 1080p H264 AAC-..</b></a> <b>[<font class='hot'>热门</font>]</b><br />鬼吹灯之精绝古城 第01-06集 *禁转* *无水印版 开头广告已剪*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141350"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark7  href="javascript: changebookmark(141350,7);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141350&hit=1&tocomm=1" >25</a></b></td><td class=rowfollow><span class='nobr'>23天<br />10时</span></td><td class=rowfollow>4.47<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141350&hit=1&toseeders=1><font color=>421</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141350&hit=1&todlers=1>12</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141350><b>3,814</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[萨利机长] Sully 2016 720p BluRay DD5.1 x264-PuTao"   href="details.php?id=141139&hit=1&hitfrom=sticky"><b>[萨利机长] Sully 2016 720p BluRay DD5.1 x264-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />萨利机长/萨利机长：迫降奇迹(港)/萨利机长：哈德逊奇迹(台) *内封简繁双语字幕* *国内本周上映 豆瓣评分8.2*</td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141139 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141139"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark8  href="javascript: changebookmark(141139,8);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141139&hit=1&tocomm=1" >18</a></b></td><td class=rowfollow><span class='nobr'>1月<br />6天</span></td><td class=rowfollow>3.93<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141139&hit=1&toseeders=1><font color=>348</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141139&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141139><b>3,944</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=406" title="纪录片"><img border="0" src="pic/category/chd/ijoypt/chs/doc.png" alt="纪录片" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[地球脉动/行星地球 第二季 全6集] Planet Earth II 2016 1080p BluRay DTS x264-PuTao"   href="details.php?id=141123&hit=1&hitfrom=sticky"><b>[地球脉动/行星地球 第二季 全6集] Planet Earth II 2016 1080p BluRay DTS x264-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />地球脉动 Ⅱ *IMDB/豆瓣 9.9分*</td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141123 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141123"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark9  href="javascript: changebookmark(141123,9);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141123&hit=1&tocomm=1" >9</a></b></td><td class=rowfollow><span class='nobr'>1月<br />7天</span></td><td class=rowfollow>41.42<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141123&hit=1&toseeders=1><font color=>160</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141123&hit=1&todlers=1>3</a></b></td>
+<td class='rowfollow snatched_yes_no' title='已完成未做种'><a href=viewsnatches.php?id=141123><b>1,051</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=42951'  class='Uploader_Name'><b>PuTaoSeed</b></a></span></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=406" title="纪录片"><img border="0" src="pic/category/chd/ijoypt/chs/doc.png" alt="纪录片" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><img src=pic/sticky.gif alt=Sticky title="置顶">&nbsp;<a title="[地球脉动/行星地球 第二季 全6集] Planet Earth II 2016 720p BluRay DTS x264-PuTao"   href="details.php?id=141090&hit=1&hitfrom=sticky"><b>[地球脉动/行星地球 第二季 全6集] Planet Earth II 2016 720p BluRay DTS x264-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />地球脉动 Ⅱ *IMDB/豆瓣 9.9分*</td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141090 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141090"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark10  href="javascript: changebookmark(141090,10);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141090&hit=1&tocomm=1" >12</a></b></td><td class=rowfollow><span class='nobr'>1月<br />9天</span></td><td class=rowfollow>20.07<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141090&hit=1&toseeders=1><font color=>227</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141090&hit=1&todlers=1>5</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141090><b>2,120</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=97845'  class='Administrator_Name'><b>eac3to</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=431" title="动漫"><img border="0" src="pic/category/chd/ijoypt/chs/anime.png" alt="动漫" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[动漫][机动战士高达The Origin 漫画全集]Kidou Senshi Gundam The Origin Vol.1~Vol.23 FIN 角川官方繁体中文mobi版"   href="details.php?id=142000&hit=1&hitfrom=firstpage"><b>[动漫][机动战士高达The Origin 漫画全集]Kidou Senshi Gundam The Origin Vol.1~Vol...</b></a><br />官方繁体中文/高达0079起源/这都没看过你也好意思说是高达迷？/安彦良和/OVA热门连载中/mobi格式亲测适用kindle</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=142000"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark11  href="javascript: changebookmark(142000,11);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=142000&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>8时<br />39分</span></td><td class=rowfollow>1.43<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=142000&hit=1&toseeders=1><font color=>17</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=142000&hit=1&todlers=1>3</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=142000><b>5</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=68395'  class='InsaneUser_Name'><b>BeddFive</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[生死狙击 第一季 第9集] Shooter S01E09 720p HDTV x264-AVS"   href="details.php?id=141621&hit=1&hitfrom=firstpage"><b>[生死狙击 第一季 第9集] Shooter S01E09 720p HDTV x264-AVS</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141621"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark12  href="javascript: changebookmark(141621,12);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141621&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>9时<br />45分</span></td><td class=rowfollow>811.29<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141621&hit=1&toseeders=1><font color=>12</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141621><b>29</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[我们这一天 第一季 第11集] This Is Us S01E11 720p HDTV x264-AVS"   href="details.php?id=141620&hit=1&hitfrom=firstpage"><b>[我们这一天 第一季 第11集] This Is Us S01E11 720p HDTV x264-AVS</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141620"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark13  href="javascript: changebookmark(141620,13);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141620&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>9时<br />46分</span></td><td class=rowfollow>793.02<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141620&hit=1&toseeders=1><font color=>13</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141620><b>22</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[摩登家庭 第八季 第11集] Modern Family S08E11 720p HDTV x264-AVS"   href="details.php?id=141619&hit=1&hitfrom=firstpage"><b>[摩登家庭 第八季 第11集] Modern Family S08E11 720p HDTV x264-AVS</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141619"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark14  href="javascript: changebookmark(141619,14);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141619&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>9时<br />47分</span></td><td class=rowfollow>592.16<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141619&hit=1&toseeders=1><font color=>14</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141619><b>38</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[犯罪心理 第十二季 第10集] Criminal Minds S12E10 720p HDTV x264-AVS"   href="details.php?id=141618&hit=1&hitfrom=firstpage"><b>[犯罪心理 第十二季 第10集] Criminal Minds S12E10 720p HDTV x264-AVS</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141618"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark15  href="javascript: changebookmark(141618,15);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141618&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>9时<br />48分</span></td><td class=rowfollow>923.01<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141618&hit=1&toseeders=1><font color=>9</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141618&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141618><b>7</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[神盾局特工 第四季 第9集] Marvels Agents of S H I E L D S04E09 720p HDTV X264-DIMENSION"   href="details.php?id=141615&hit=1&hitfrom=firstpage"><b>[神盾局特工 第四季 第9集] Marvels Agents of S H I E L D S04E09 720p HDTV X264-..</b></a><b> (<font color="purple">0DAY</font>)</b> <b>[<font class='hot'>热门</font>]</b></td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141615 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141615"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark16  href="javascript: changebookmark(141615,16);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141615&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>9时<br />56分</span></td><td class=rowfollow>0.99<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141615&hit=1&toseeders=1><font color=>66</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141615&hit=1&todlers=1>4</a></b></td>
+<td class='rowfollow snatched_yes_yes' title='已完成在做种'><a href=viewsnatches.php?id=141615><b>178</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[神探夏洛克 第四季 第2集] Sherlock S04E02 720p HDTV x264-BRISK"   href="details.php?id=141614&hit=1&hitfrom=firstpage"><b>[神探夏洛克 第四季 第2集] Sherlock S04E02 720p HDTV x264-BRISK</b></a><b> (<font color="purple">0DAY</font>)</b> <b>[<font class='hot'>热门</font>]</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141614"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark17  href="javascript: changebookmark(141614,17);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141614&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />0分</span></td><td class=rowfollow>1.39<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141614&hit=1&toseeders=1><font color=>41</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class='rowfollow snatched_no_yes' title='未完成在做种'><a href=viewsnatches.php?id=141614><b>9</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=408" title="亚洲电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_asian.png" alt="亚洲电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第12-13集] General and I E12-13 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141613&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第12-13集] General and I E12-13 WEB-DL 1080p H264 AAC-PuTao</b></a></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141613"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark18  href="javascript: changebookmark(141613,18);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141613&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />3分</span></td><td class=rowfollow>3.35<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141613&hit=1&toseeders=1><font color=>35</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141613><b>8</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=408" title="亚洲电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_asian.png" alt="亚洲电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第8集] General and I E08 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141612&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第8集] General and I E08 WEB-DL 1080p H264 AAC-PuTao</b></a></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141612"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark19  href="javascript: changebookmark(141612,19);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141612&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />8分</span></td><td class=rowfollow>1.68<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141612&hit=1&toseeders=1><font color=>27</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141612><b>4</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=411" title="大陆综艺节目"><img border="0" src="pic/category/chd/ijoypt/chs/tvshows_mainland.png" alt="大陆综艺节目" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[见字如面] Letters Alive S01E02 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141611&hit=1&hitfrom=firstpage"><b>[见字如面] Letters Alive S01E02 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>(<font style="color:#38ACEC">限时:1小时50分</font>)</b><br />见字如面 第一季 第02期：《三体》刘慈欣变慈父给女儿写信 脑洞200年后的世界</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141611"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark20  href="javascript: changebookmark(141611,20);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141611&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />10分</span></td><td class=rowfollow>1.18<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141611&hit=1&toseeders=1><font color=>29</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141611><b>45</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=411" title="大陆综艺节目"><img border="0" src="pic/category/chd/ijoypt/chs/tvshows_mainland.png" alt="大陆综艺节目" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[见字如面] Letters Alive S01E01 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141610&hit=1&hitfrom=firstpage"><b>[见字如面] Letters Alive S01E01 WEB-DL 1080p H264 AAC-PuTao</b></a><br />见字如面 第一季 第01期：“琼瑶女”归亚蕾读信重现蔡琴催泪爱情 *新节目，评价还不错*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141610"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark21  href="javascript: changebookmark(141610,21);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141610&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />13分</span></td><td class=rowfollow>1.21<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141610&hit=1&toseeders=1><font color=>29</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141610><b>41</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[梅格雷的陷阱] Maigret Sets A Trap 2016 720p BluRay x264-SHORTBREHD"   href="details.php?id=141609&hit=1&hitfrom=firstpage"><b>[梅格雷的陷阱] Maigret Sets A Trap 2016 720p BluRay x264-SHORTBREHD</b></a><br />英国 悬疑/犯罪</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141609"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark22  href="javascript: changebookmark(141609,22);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141609&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />19分</span></td><td class=rowfollow>4.37<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141609&hit=1&toseeders=1><font color=>21</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141609&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141609><b>32</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=127086'  class='EliteUser_Name'><b>xpc19960921</b></a></span></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第16-17集] General and I E16-17 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141608&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第16-17集] General and I E16-17 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>(<font style="color:#38ACEC">限时:1小时28分</font>)</b><br />孤芳不自赏 第16-17集 *无台标 未删减版*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141608"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark23  href="javascript: changebookmark(141608,23);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141608&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>10时<br />31分</span></td><td class=rowfollow>3.16<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141608&hit=1&toseeders=1><font color=>35</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141608&hit=1&todlers=1>2</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141608><b>55</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第14-15集] General and I E14-15 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141607&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第14-15集] General and I E14-15 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>(<font style="color:#38ACEC">限时:1小时28分</font>)</b><br />孤芳不自赏 第14-15集 *无台标 未删减版*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141607"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark24  href="javascript: changebookmark(141607,24);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141607&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>10时<br />33分</span></td><td class=rowfollow>3.23<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141607&hit=1&toseeders=1><font color=>32</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141607&hit=1&todlers=1>2</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141607><b>44</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=413" title="欧美综艺节目"><img border="0" src="pic/category/chd/ijoypt/chs/tvshows_western.png" alt="欧美综艺节目" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[大世界之旅 第一季 第9集] The Grand Tour S01E09 1080p WEBRip X264-DEFLATE"   href="details.php?id=141606&hit=1&hitfrom=firstpage"><b>[大世界之旅 第一季 第9集] The Grand Tour S01E09 1080p WEBRip X264-DEFLATE</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141606"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark25  href="javascript: changebookmark(141606,25);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141606&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />1时</span></td><td class=rowfollow>6.54<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141606&hit=1&toseeders=1><font color=>6</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141606><b>18</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=133272'  class='User_Name'><b>morancunter</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=408" title="亚洲电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_asian.png" alt="亚洲电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤单又灿烂的神：鬼怪 第11集] The Lonely and Great God E11 2016 720p HDTV AC3-TSKS   "   href="details.php?id=141605&hit=1&hitfrom=firstpage"><b>[孤单又灿烂的神：鬼怪 第11集] The Lonely and Great God E11 2016 720p HDTV AC3-TS..</b></a> <b>[<font class='hot'>热门</font>]</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141605"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark26  href="javascript: changebookmark(141605,26);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141605&hit=1&tocomm=1" >2</a></b></td><td class=rowfollow><span class='nobr'>6天<br />1时</span></td><td class=rowfollow>1.02<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141605&hit=1&toseeders=1><font color=>41</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141605><b>220</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=411" title="大陆综艺节目"><img border="0" src="pic/category/chd/ijoypt/chs/tvshows_mainland.png" alt="大陆综艺节目" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[梦想的声音] ZJTV Sound of My Dream 20170106 1080i HDTV H264-BYRTV"   href="details.php?id=141604&hit=1&hitfrom=firstpage"><b>[梦想的声音] ZJTV Sound of My Dream 20170106 1080i HDTV H264-BYRTV</b></a><br />浙江卫视 梦想的声音 第11期 田喜碧。。</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141604"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark27  href="javascript: changebookmark(141604,27);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141604&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />2时</span></td><td class=rowfollow>5.34<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141604&hit=1&toseeders=1><font color=>7</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141604><b>28</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=120281'  class='EliteUser_Name'><b>LeeIan</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[大洋之间的灯光] The Light Between Oceans 2016 720p BluRay x264-GECKOS"   href="details.php?id=141602&hit=1&hitfrom=firstpage"><b>[大洋之间的灯光] The Light Between Oceans 2016 720p BluRay x264-GECKOS</b></a><b> (<font color="purple">0DAY</font>)</b><br />爱在海的边缘(港)/为你说的谎(台) *迈克尔·法斯宾德 艾丽西亚·维坎德*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141602"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark28  href="javascript: changebookmark(141602,28);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141602&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>6天<br />8时</span></td><td class=rowfollow>6.56<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141602&hit=1&toseeders=1><font color=>16</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141602><b>59</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=97751'  class='Administrator_Name'><b>TonyHwang</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=413" title="欧美综艺节目"><img border="0" src="pic/category/chd/ijoypt/chs/tvshows_western.png" alt="欧美综艺节目" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[大世界之旅 第一季 第9集] The Grand Tour S01E09 720p WEBRip X264-DEFLATE"   href="details.php?id=141601&hit=1&hitfrom=firstpage"><b>[大世界之旅 第一季 第9集] The Grand Tour S01E09 720p WEBRip X264-DEFLATE</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141601"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark29  href="javascript: changebookmark(141601,29);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141601&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />9时</span></td><td class=rowfollow>3.36<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141601&hit=1&toseeders=1><font color=>11</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141601><b>47</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第06-07集] General and I E06-07 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141600&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第06-07集] General and I E06-07 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />孤芳不自赏 第06-07集 *无台标 未删减版*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141600"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark30  href="javascript: changebookmark(141600,30);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141600&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />10时</span></td><td class=rowfollow>3.29<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141600&hit=1&toseeders=1><font color=>46</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141600><b>226</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第01-05集] General and I E01-05 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141599&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第01-05集] General and I E01-05 WEB-DL 1080p H264 AAC-PuTao</b></a> <b>[<font class='hot'>热门</font>]</b><br />孤芳不自赏 第01-05集 *无台标 未删减版*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141599"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark31  href="javascript: changebookmark(141599,31);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141599&hit=1&tocomm=1" >5</a></b></td><td class=rowfollow><span class='nobr'>6天<br />10时</span></td><td class=rowfollow>8.36<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141599&hit=1&toseeders=1><font color=>50</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141599&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141599><b>243</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[但丁密码] Inferno 2016 720p BluRay x264-SPARKS"   href="details.php?id=141596&hit=1&hitfrom=firstpage"><b>[但丁密码] Inferno 2016 720p BluRay x264-SPARKS</b></a><b> (<font color="purple">0DAY</font>)</b><br />但丁密码/地狱(台)/地狱解码(港)</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141596"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark32  href="javascript: changebookmark(141596,32);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141596&hit=1&tocomm=1" >2</a></b></td><td class=rowfollow><span class='nobr'>6天<br />14时</span></td><td class=rowfollow>5.46<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141596&hit=1&toseeders=1><font color=>40</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141596&hit=1&todlers=1>2</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141596><b>198</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[生活大爆炸 第十季 第12集] The Big Bang Theory S10E12 720p HDTV X264-DIMENSION"   href="details.php?id=141595&hit=1&hitfrom=firstpage"><b>[生活大爆炸 第十季 第12集] The Big Bang Theory S10E12 720p HDTV X264-DIMENSION</b></a><b> (<font color="purple">0DAY</font>)</b> <b>[<font class='hot'>热门</font>]</b></td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141595 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141595"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark33  href="javascript: changebookmark(141595,33);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141595&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />14时</span></td><td class=rowfollow>402.34<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141595&hit=1&toseeders=1><font color=>118</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141595&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141595><b>630</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[罪恶黑名单 第四季 第9集] The Blacklist S04E09 720p HDTV x264-KILLERS"   href="details.php?id=141594&hit=1&hitfrom=firstpage"><b>[罪恶黑名单 第四季 第9集] The Blacklist S04E09 720p HDTV x264-KILLERS</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141594"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark34  href="javascript: changebookmark(141594,34);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141594&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>6天<br />15时</span></td><td class=rowfollow>912.19<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141594&hit=1&toseeders=1><font color=>7</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141594><b>39</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[生活大爆炸 第十季 第12集] The Big Bang Theory S10E12 1080p HDTV X264-DIMENSION"   href="details.php?id=141593&hit=1&hitfrom=firstpage"><b>[生活大爆炸 第十季 第12集] The Big Bang Theory S10E12 1080p HDTV X264-DIMENSION</b></a><b> (<font color="purple">0DAY</font>)</b> <b>[<font class='hot'>热门</font>]</b></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141593"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark35  href="javascript: changebookmark(141593,35);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141593&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />16时</span></td><td class=rowfollow>1.12<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141593&hit=1&toseeders=1><font color=>33</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class='rowfollow snatched_yes_no' title='已完成未做种'><a href=viewsnatches.php?id=141593><b>216</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[死亡占卜2：恶灵始源] Ouija Origin of Evil 2016 720p BluRay x264 DTS-HDChina"   href="details.php?id=141591&hit=1&hitfrom=firstpage"><b>[死亡占卜2：恶灵始源] Ouija Origin of Evil 2016 720p BluRay x264 DTS-HDChina</b></a><br />碟仙：恶灵始源(台)</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141591"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark36  href="javascript: changebookmark(141591,36);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141591&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />18时</span></td><td class=rowfollow>4.85<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141591&hit=1&toseeders=1><font color=>12</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class='rowfollow snatched_yes_yes' title='已完成在做种'><a href=viewsnatches.php?id=141591><b>32</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=408" title="亚洲电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_asian.png" alt="亚洲电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[蓝色大海的传说 第15集] The Legend of The Blue Sea E15 2016 720p AC3-TSKS"   href="details.php?id=141590&hit=1&hitfrom=firstpage"><b>[蓝色大海的传说 第15集] The Legend of The Blue Sea E15 2016 720p AC3-TSKS</b></a> <b>[<font class='hot'>热门</font>]</b><br />蓝色大海的传说 E15 韩语中字 全智贤/李敏镐/李熙俊/申惠善</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141590"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark37  href="javascript: changebookmark(141590,37);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141590&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>6天<br />22时</span></td><td class=rowfollow>826.18<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141590&hit=1&toseeders=1><font color=>35</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141590><b>215</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=131787'  class='User_Name'><b>teddy</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=408" title="亚洲电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_asian.png" alt="亚洲电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[初吻有七次 第8集] First Kiss E08 720p H264 AC3-TSKS"   href="details.php?id=141589&hit=1&hitfrom=firstpage"><b>[初吻有七次 第8集] First Kiss E08 720p H264 AC3-TSKS</b></a><br />初吻有七次 网剧 *李准基/李敏镐/朴海镇/KAI/池昌旭/李钟硕/玉泽演*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141589"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark38  href="javascript: changebookmark(141589,38);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141589&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />0时</span></td><td class=rowfollow>131.21<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141589&hit=1&toseeders=1><font color=>4</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141589><b>14</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=131787'  class='User_Name'><b>teddy</b></a></span></td>
+</tr>
+<tr  class='halfdown_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[火车上的女孩] The Girl on the Train 2016 1080p BluRay x264 DTS-HD MA7 1-HDChina"   href="details.php?id=141588&hit=1&hitfrom=firstpage"><b>[火车上的女孩] The Girl on the Train 2016 1080p BluRay x264 DTS-HD MA7 1-H..</b></a><br />火车上的女孩/列车上的女孩(台) *畅销惊悚小说改编*</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141588"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark39  href="javascript: changebookmark(141588,39);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141588&hit=1&tocomm=1" >2</a></b></td><td class=rowfollow><span class='nobr'>7天<br />2时</span></td><td class=rowfollow>12.89<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141588&hit=1&toseeders=1><font color=>11</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141588><b>41</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[女神们] Divines 2016 BluRay 720p x264 DTS-HDChina"   href="details.php?id=141587&hit=1&hitfrom=firstpage"><b>[女神们] Divines 2016 BluRay 720p x264 DTS-HDChina</b></a><br />剧情/犯罪 [第69届戛纳电影节金摄影机奖(导演处女作奖)]  imdb评分7.5/豆瓣7.7</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141587"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark40  href="javascript: changebookmark(141587,40);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141587&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />3时</span></td><td class=rowfollow>4.29<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141587&hit=1&toseeders=1><font color=>15</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141587><b>67</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=120281'  class='EliteUser_Name'><b>LeeIan</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[佩小姐的奇幻城堡] Miss Peregrine's Home for Peculiar Children 2016 720p BluRay x264-WiKi"   href="details.php?id=141586&hit=1&hitfrom=firstpage"><b>[佩小姐的奇幻城堡] Miss Peregrine's Home for Peculiar Children 2016 720p Blu..</b></a><br />剧情/奇幻/冒险</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141586"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark41  href="javascript: changebookmark(141586,41);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141586&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />5时</span></td><td class=rowfollow>6.62<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141586&hit=1&toseeders=1><font color=>25</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141586&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141586><b>85</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=120346'  class='VeteranUser_Name'><b>Llorente</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第04-05集] General and I 2017 EP04-EP05 WEB-DL 1080p H264 AAC-BiTV"   href="details.php?id=141585&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第04-05集] General and I 2017 EP04-EP05 WEB-DL 1080p H264 AAC-B..</b></a><br />极速WEB组作品，转载请注明出处 无台标未删版 （转自BYR）</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141585"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark42  href="javascript: changebookmark(141585,42);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141585&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />6时</span></td><td class=rowfollow>3.36<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141585&hit=1&toseeders=1><font color=>3</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141585><b>11</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=120281'  class='EliteUser_Name'><b>LeeIan</b></a></span></td>
+</tr>
+<tr  class='d30down_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[诛仙青云志2 第13-15集] Noble Aspirations S02 E13-15 WEB-DL 1080p H264 AAC-PuTao"   href="details.php?id=141584&hit=1&hitfrom=firstpage"><b>[诛仙青云志2 第13-15集] Noble Aspirations S02 E13-15 WEB-DL 1080p H264 AAC-..</b></a> <b>[<font class='hot'>热门</font>]</b><br />青云志 第二季 第13-15集 无水印版</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141584"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark43  href="javascript: changebookmark(141584,43);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141584&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />6时</span></td><td class=rowfollow>2.83<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141584&hit=1&toseeders=1><font color=>87</font></a></b></td>
+<td class=rowfollow><b><a href=details.php?id=141584&hit=1&todlers=1>1</a></b></td>
+<td class=rowfollow><a href=viewsnatches.php?id=141584><b>559</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第02-03集] General and I 2017 EP02-EP03 WEB-DL 1080p H264 AAC-BiTV"   href="details.php?id=141583&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第02-03集] General and I 2017 EP02-EP03 WEB-DL 1080p H264 AAC-B..</b></a><br />极速WEB组作品，转载请注明出处 无台标未删版 （转自BYR）</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141583"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark44  href="javascript: changebookmark(141583,44);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141583&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />6时</span></td><td class=rowfollow>3.35<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141583&hit=1&toseeders=1><font color=>2</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141583><b>10</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=120281'  class='EliteUser_Name'><b>LeeIan</b></a></span></td>
+</tr>
+<tr  class='free_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=409" title="大陆电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_mainland.png" alt="大陆电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[孤芳不自赏 第01集] General and I 2017 EP01 REPACK WEB-DL 1080p H264 AAC-BiTV"   href="details.php?id=141580&hit=1&hitfrom=firstpage"><b>[孤芳不自赏 第01集] General and I 2017 EP01 REPACK WEB-DL 1080p H264 AAC-BiTV</b></a><br />极速WEB组作品，转载请注明出处 无台标未删版 （转自BYR）</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141580"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark45  href="javascript: changebookmark(141580,45);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141580&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />7时</span></td><td class=rowfollow>1.65<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141580&hit=1&toseeders=1><font color=>6</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141580><b>40</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=120281'  class='EliteUser_Name'><b>LeeIan</b></a></span></td>
+</tr>
+<tr  class='halfdown_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=408" title="亚洲电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_asian.png" alt="亚洲电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[W-两个世界 全16集] W 2016 Complete WEB-DL 1080p H264 AAC2.0-PureTV"   href="details.php?id=141579&hit=1&hitfrom=firstpage"><b>[W-两个世界 全16集] W 2016 Complete WEB-DL 1080p H264 AAC2.0-PureTV</b></a></td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141579"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark46  href="javascript: changebookmark(141579,46);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141579&hit=1&tocomm=1" >1</a></b></td><td class=rowfollow><span class='nobr'>7天<br />8时</span></td><td class=rowfollow>19.36<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141579&hit=1&toseeders=1><font color=>6</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141579><b>31</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=133383'  class='User_Name'><b>MMing</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[犯罪心理 第十二季 第9集] Criminal Minds S12E09 720p HDTV x264-FLEET"   href="details.php?id=141578&hit=1&hitfrom=firstpage"><b>[犯罪心理 第十二季 第9集] Criminal Minds S12E09 720p HDTV x264-FLEET</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141578 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141578"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark47  href="javascript: changebookmark(141578,47);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141578&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />10时</span></td><td class=rowfollow>732.40<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141578&hit=1&toseeders=1><font color=>14</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class=rowfollow><a href=viewsnatches.php?id=141578><b>31</b></a></td>
+<td class=rowfollow><span class='nobr'><a  href='userdetails.php?id=95826'  class='InsaneUser_Name'><b>freetimeboy</b></a></span></td>
+</tr>
+<tr  >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=410" title="欧美电视剧"><img border="0" src="pic/category/chd/ijoypt/chs/tv_western.png" alt="欧美电视剧" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[摩登家庭 第八季 第10集] Modern Family S08E10 720p HDTV x264-AVS"   href="details.php?id=141577&hit=1&hitfrom=firstpage"><b>[摩登家庭 第八季 第10集] Modern Family S08E10 720p HDTV x264-AVS</b></a><b> (<font color="purple">0DAY</font>)</b></td><td width=30 valign="middle" align="right" style="border:0px;"><img src=pic/sub.png border="0" style="padding-bottom:2px;" name=subicon_141577 class="subicon" /></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141577"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark48  href="javascript: changebookmark(141577,48);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><a href="comment.php?action=add&pid=141577&type=torrent" title="添加评论">0</a></td><td class=rowfollow><span class='nobr'>7天<br />14时</span></td><td class=rowfollow>700.04<br/>MB</td><td class=rowfollow align=center><b><a href=details.php?id=141577&hit=1&toseeders=1><font color=>19</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class='rowfollow snatched_yes_no' title='已完成未做种'><a href=viewsnatches.php?id=141577><b>84</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+<tr  class='halfdown_bg' >
+<td class=rowfollow valign=middle width=16 height=16 style='padding: 0px'><span class='nobr'><a href="?cat=402" title="欧美电影"><img border="0" src="pic/category/chd/ijoypt/chs/movies_western.png" alt="欧美电影" ></a></span></td>
+<td class=rowfollow width=100% align=left><table class=torrentname width=100%><tr><td class='embedded'><a title="[钢铁骑士] Max Steel 2016 1080p BluRay x264 DTS-HD MA 5 1 2Audio-CHD"   href="details.php?id=141576&hit=1&hitfrom=firstpage"><b>[钢铁骑士] Max Steel 2016 1080p BluRay x264 DTS-HD MA 5 1 2Audio-CHD</b></a><br />国英双语</td><td width=30 valign="middle" align="right" style="border:0px;"></td>
+<td width=16 valign="middle" align="right" style="border:0px;"><a target="_blank" href="download.php?id=141576"><img src=pic/trans.gif class=download border='0' style='padding-bottom: 2px;' alt=download title="下载本种"></a><br /><a id=bookmark49  href="javascript: changebookmark(141576,49);" ><img src='pic/trans.gif' class='delbookmark' border='0' alt='Bookmark' title="加入收藏" /></a></td>
+</tr></table></td><td class=rowfollow><b><a  href="details.php?id=141576&hit=1&tocomm=1" >2</a></b></td><td class=rowfollow><span class='nobr'>7天<br />16时</span></td><td class=rowfollow>9.44<br/>GB</td><td class=rowfollow align=center><b><a href=details.php?id=141576&hit=1&toseeders=1><font color=>16</font></a></b></td>
+<td class=rowfollow>0</td>
+<td class='rowfollow snatched_yes_yes' title='已完成在做种'><a href=viewsnatches.php?id=141576><b>63</b></a></td>
+<td class=rowfollow><i>匿名</i></td>
+</tr>
+</table><p align=center> <b>高亮的种子是：&nbsp;&nbsp;</b> <a href="?spstate=2" target="_self" title="查看免费种子"><font class='free'><b>免费</b></font></a> | <a href="?spstate=3" target="_self" title="查看两倍上传量种子"><font class='twoup'><b>2x上传</b></font></a> <!--| <a href="?spstate=4" target="_self" title="查看免费且两倍上传种子"><font class='twoupfree'><b>免费&2x上传</b></font></a> -->| <a href="?spstate=5" target="_self" title="查看50%下载种子"><font class='halfdown'><b>50%下载</b></font></a> | <a href="?spstate=6" target="_self" title="查看30%下载种子"><font class='d30down'><b>30%下载</b></font></a> | <a href="?spstate=7" target="_self" title="查看70%下载种子"><font class='d70down'><b>70%下载</b></font></a><br>下载它们是提高分享率的好方式！</p>
+<p align="center"><font class=gray><b>1&nbsp;-&nbsp;50</b></font> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1"><b>51&nbsp;-&nbsp;100</b></a> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=2"><b>101&nbsp;-&nbsp;150</b></a> | ... | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1005"><b>50251&nbsp;-&nbsp;50300</b></a> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1006"><b>50301&nbsp;-&nbsp;50350</b></a> | <a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1007"><b>50351&nbsp;-&nbsp;50398</b></a><br /><font class=gray><b>&lt;&lt;&nbsp;上一页</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=255&hitfrom=randompage"><b>随便看看</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?inclbookmarked=0&incldead=0&spstate=0&cat401=1&cat402=1&cat403=1&cat406=1&cat407=1&cat408=1&cat409=1&cat410=1&cat411=1&cat412=1&cat413=1&cat414=1&cat420=1&cat421=1&cat422=1&cat423=1&cat425=1&cat426=1&cat427=1&cat429=1&cat431=1&cat432=1&cat434=1&cat435=1&cat440=1&cat450=1&codec1=1&codec2=1&codec3=1&codec4=1&codec5=1&codec6=1&codec7=1&codec8=1&codec9=1&standard1=1&standard2=1&standard3=1&standard4=1&standard5=1&page=1"><b>下一页&nbsp;&gt;&gt;</b></a></p>
+</td></tr></table></td></tr></table><br /><div align='center' id='footer'>
+ (c)  <a href='https://pt.sjtu.edu.cn' target='_self'>葡萄</a> 2009-2017 Powered by <a href='aboutnexus.php'>Nexus Project</a><br /><a href='http://cert.sjtu.edu.cn/beian_user/show.asp?number=1096'>沪交ICP备20111096</a><br /><br /></div><br /><br /><br />
+<div style="display: none;" id="lightbox" class="lightbox"></div><div style="display: none;" id="curtain" class="curtain"></div><div id="scrollbar">
+	<a id="scrollbartop" class="top" href="#header" ></a>
+	<a id="scrollbarbottom" class="bottom" href="#footer"></a>
+</div>
+</body></html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
