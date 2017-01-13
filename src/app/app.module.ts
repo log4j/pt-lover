@@ -14,6 +14,8 @@ import { PeerListPopOverPage } from '../pages/peer-list-pop-over/peer-list-pop-o
 import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
 
 import { TorrentData } from '../providers/torrent-data';
+import { UserData } from '../providers/user-data';
+import { WebHttp } from '../providers/web-http';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,6 @@ import { TorrentData } from '../providers/torrent-data';
     PeerListPopOverPage,
     TorrentFilterPage
   ],
-  providers: [Storage,TorrentData, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [Storage, WebHttp, TorrentData,UserData, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
-export class AppModule {}
+export class AppModule { }

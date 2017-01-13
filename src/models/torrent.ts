@@ -36,7 +36,6 @@ export class Torrent{
     date: string;
 
     constructor(data:any){
-        console.log(data);
         if(data){
             //special
             if(data.class){
@@ -95,7 +94,7 @@ export class Torrent{
             //downloader
             if(data.children[6].text=='0'){
                 //no downloaders
-                this.downloadedsNumber = 0;
+                this.downloadersNumber = 0;
             }else{
                 this.downloadersUrl = data.children[6].children["0"].children["0"].href;
                 this.downloadersNumber = parseInt(data.children[6].children["0"].children["0"].text);
@@ -132,7 +131,7 @@ export class TorrentList{
             //the first line is title, ignore
             for(let i=1;i<listData.length;i++){
                 let torrent = new Torrent(listData[i]);
-                console.log(torrent);
+                // console.log(torrent);
                 this.list.push(torrent);
             }
         }

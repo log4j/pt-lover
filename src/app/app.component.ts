@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, Events, MenuController } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { Platform, Nav, Events, MenuController, AlertController } from 'ionic-angular';
+import { StatusBar, Splashscreen, Device } from 'ionic-native';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
+
+
 
 export interface PageInterface {
   title: string;
@@ -49,16 +51,16 @@ export class MyApp {
     public events: Events,
     // public userData: UserData,
     public menu: MenuController,
+    public alertCtrl: AlertController,
     public platform: Platform,
     // public confData: ConferenceData,
     public storage: Storage) {
-
 
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         console.log(hasSeenTutorial);
-        if (hasSeenTutorial) {
+        if (hasSeenTutorial == true || hasSeenTutorial =='true') {
           this.rootPage = TabsPage;
         } else {
           this.rootPage = WelcomePage;
@@ -82,7 +84,11 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      Splashscreen.hide();
+
+      // if (Device.platform == 'android') {
+        StatusBar.backgroundColorByHexString("#333");
+      // }
+      console.log(Device.platform);
     });
   }
 }

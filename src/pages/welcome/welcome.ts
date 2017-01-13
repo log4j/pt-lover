@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController,MenuController } from 'ionic-angular';
+
+
+import { Storage } from '@ionic/storage';
+import { TabsPage } from '../tabs/tabs';
 
 /*
   Generated class for the Welcome page.
@@ -12,11 +16,33 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
+  showSkip = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public menu: MenuController,
+    public storage: Storage
+  ) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomePage');
+
+  startApp() {
+    this.navCtrl.push(TabsPage).then(() => {
+      this.storage.set('hasSeenTutorial', 'true');
+    })
+  }
+
+  onSlideChangeStart(slider) {
+    this.showSkip = !slider.isEnd;
+  }
+
+ ionViewDidEnter() {
+    // the root left menu should be disabled on the tutorial page
+    this.menu.enable(false);
+  }
+
+  ionViewDidLeave() {
+    // enable the root left menu when leaving the tutorial page
+    this.menu.enable(true);
   }
 
 }
