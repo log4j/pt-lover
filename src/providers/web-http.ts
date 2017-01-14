@@ -23,8 +23,6 @@ export class WebHttp {
 		let root: any = {};
 		let current: any = root;
 		let parent = root;
-		let inParent = false;
-
 		let parser = new Parser.Parser({
 			onopentag: function (tagName, attribs) {
 				current = {

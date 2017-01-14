@@ -5,7 +5,7 @@ import { NavController, LoadingController, ModalController } from 'ionic-angular
 
 import {LoginPage} from '../login/login';
 
-import {Notice, NoticeList} from '../../models/notice';
+import {Notice} from '../../models/notice';
 
 @Component({
 	selector: 'page-home',
@@ -13,6 +13,7 @@ import {Notice, NoticeList} from '../../models/notice';
 })
 export class HomePage {
 
+	segment = 'notice';
 	notices: Notice[] = [];
 	constructor(
 		public navCtrl: NavController,
@@ -48,6 +49,10 @@ export class HomePage {
 			}
 		})
 
+	}
+
+	updateSegment(){
+		console.log('update', this.segment);
 	}
 
 }

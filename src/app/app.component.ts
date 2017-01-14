@@ -83,10 +83,12 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      // StatusBar.styleDefault();
+
+      Splashscreen.hide();
 
       // if (Device.platform == 'android') {
-        StatusBar.backgroundColorByHexString("#333");
+        // StatusBar.backgroundColorByHexString("#333");
       // }
       console.log(Device.platform);
     });

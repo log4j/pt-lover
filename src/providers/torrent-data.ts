@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 
-import * as Parser from "htmlparser2";
+// import * as Parser from "htmlparser2";
 
-import { Torrent, TorrentList } from '../models/torrent';
+import { TorrentList } from '../models/torrent';
 
 import { WebHttp } from './web-http';
 

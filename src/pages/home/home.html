@@ -3,32 +3,46 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      PuTao
-    </ion-title>
+
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateSegment()">
+      <ion-segment-button value="notice">
+        公告
+      </ion-segment-button>
+      <ion-segment-button value="chat">
+        群聊
+      </ion-segment-button>
+    </ion-segment>
+
+
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content [ngSwitch]="segment">
 
+  <ion-list *ngSwitchCase="'notice'">
+    <ion-card *ngFor="let notice of notices">
+      <ion-card-header>
+        {{notice.title}}
+      </ion-card-header>
+      <ion-card-content>
+        {{notice.content}}
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            {{notice.date}}
+          </ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
 
-  <ion-card *ngFor="let notice of notices">
-    <ion-card-header>
-      {{notice.title}}
-    </ion-card-header>
-    <ion-card-content>
-      {{notice.content}}
-    </ion-card-content>
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          {{notice.date}}
-        </ion-note>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+  <ion-list *ngSwitchCase="'chat'">
+    hello
+  </ion-list>
+
 </ion-content>
