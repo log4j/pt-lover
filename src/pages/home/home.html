@@ -17,32 +17,42 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content [ngSwitch]="segment">
+<ion-content>
 
-  <ion-list *ngSwitchCase="'notice'" (tap)="tapEvent($event)">
-    <ion-card *ngFor="let notice of notices" (tap)="tapEvent($event)">
-      <ion-card-header>
-        {{notice.title}}
-      </ion-card-header>
-      <ion-card-content>
-        {{notice.content}}
-      </ion-card-content>
-      <ion-row>
-        <ion-col>
-        </ion-col>
-        <ion-col>
-        </ion-col>
-        <ion-col center text-center>
-          <ion-note>
-            {{notice.date}}
-          </ion-note>
-        </ion-col>
-      </ion-row>
-    </ion-card>
-  </ion-list>
+  <ion-slides>
+    <ion-slide>
+      <ion-list (tap)="tapEvent($event)">
+        <ion-card *ngFor="let notice of notices" (tap)="tapEvent($event)">
+          <ion-card-header>
+            {{notice.title}}
+          </ion-card-header>
+          <ion-card-content>
+            {{notice.content}}
+          </ion-card-content>
+          <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+            <ion-col center text-center>
+              <ion-note>
+                {{notice.date}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+        
+      </ion-list>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 2</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+    </ion-slide>
+  </ion-slides>
 
-  <ion-list *ngSwitchCase="'chat'">
-    hello
-  </ion-list>
+
+
 
 </ion-content>
