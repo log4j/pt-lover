@@ -5,7 +5,8 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
 import { WebHttp } from './web-http';
-import {User} from '../models/user';
+import { User } from '../models/user';
+import { NoticeList } from '../models/notice';
 
 /*
   Generated class for the UserData provider.
@@ -84,25 +85,30 @@ export class UserData {
 		})
 	};
 
-	loadHomeData():Promise<User>{
-		if(this.user){
-			return new Promise<User>(resolve=>resolve(this.user));
-		}else{
+	loadHomeData(): Promise<{user:User,notices:NoticeList}> {
+		if (this.user) {
+			return new Promise<User>(resolve => resolve(this.user));
+		} else {
 			// return this.webHttp.get('http://pt.test/index.php').then(data=>{
-			return this.webHttp.get('assets/data/pages/index.html').then(data=>{
-
-
-				
+			return this.webHttp.get('assets/data/pages/index.html').then(data => {
 
 
 
-				if(data){
+
+
+
+				if (data) {
 					//already in
-					let body = this.webHttp.fintElement(data, item=>{
-						return item.tagName==='table' && item.id==="userbar";
+					let body = this.webHttp.fintElement(data, item => {
+						return item.tagName === 'table' && item.id === "userbar";
 					});
-					return new User(body);
-				}else{
+
+					let noticeData = this.webHttp.fintElement(data, item => {
+						return item.tagName === 'td' && item.children && item.children.length>=2 && item.children[0].text==='最新公告';
+					});
+
+					return {user:new User(body),notices:new NoticeList(noticeData)} ;
+				} else {
 					//require login!!
 					//pop login page
 
@@ -110,7 +116,7 @@ export class UserData {
 					return null;
 				}
 
-				
+
 			})
 		}
 	}

@@ -9,6 +9,26 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
+
+  <ion-card *ngFor="let notice of notices">
+    <ion-card-header>
+      {{notice.title}}
+    </ion-card-header>
+    <ion-card-content>
+      {{notice.content}}
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{notice.date}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>

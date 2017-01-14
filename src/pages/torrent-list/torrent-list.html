@@ -26,29 +26,34 @@
 
 <ion-content>
   <ion-card *ngFor="let torrent of torrents.list">
-
-    <ion-item>
-      <ion-avatar item-left>
-      </ion-avatar>
-      <h2>{{torrent.name}}</h2>
-      <p>{{torrent.date}}</p>
-    </ion-item>
+    <ion-card-header>
+      <ion-badge item-left color="secondary">{{torrent.typeLabel}}</ion-badge>{{torrent.name}} <ion-badge item-right>{{torrent.size}}</ion-badge>
+    </ion-card-header>
+    <ion-card-content>
+      {{torrent.subName}}
+    </ion-card-content>
     <ion-row>
       <ion-col>
-        <button ion-button color="primary"  clear small icon-left>
+        <button ion-button color="primary" round small icon-left>
           <ion-icon name="arrow-round-up"></ion-icon>
           {{torrent.seedersNumber}}
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button color="primary" clear small icon-left (click)="presentPopover($event)">
+        <button ion-button color="danger" round small icon-left (click)="presentPopover($event)">
           <ion-icon name="arrow-round-down"></ion-icon>
           {{torrent.downloadersNumber}}
         </button>
       </ion-col>
+      <ion-col>
+        <button ion-button color="secondary" round small icon-left (click)="presentPopover($event)">
+          <ion-icon name="checkmark"></ion-icon>
+          {{torrent.downloadedsNumber}}
+        </button>
+      </ion-col>
       <ion-col center text-center>
         <ion-note>
-          <ion-icon name="checkmark-circle"></ion-icon> {{torrent.commentsNumber}}
+          <ion-icon name="chatboxes"></ion-icon> {{torrent.commentsNumber}}
         </ion-note>
       </ion-col>
     </ion-row>

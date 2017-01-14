@@ -5,12 +5,15 @@ import { NavController, LoadingController, ModalController } from 'ionic-angular
 
 import {LoginPage} from '../login/login';
 
+import {Notice, NoticeList} from '../../models/notice';
+
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'
 })
 export class HomePage {
 
+	notices: Notice[] = [];
 	constructor(
 		public navCtrl: NavController,
 		public loadingCtrl: LoadingController,
@@ -37,7 +40,7 @@ export class HomePage {
 			loader.dismiss();
 			console.log(data);
 			if (data) {
-
+				this.notices = data.notices.notices;
 			} else {
 				//show login modal
 				let modal = this.modalCtrl.create(LoginPage);

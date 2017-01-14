@@ -37,6 +37,9 @@ export class Torrent{
 
     constructor(data:any){
         if(data){
+
+            console.log(data);
+
             //special
             if(data.class){
                 this.special = data.class.substring(0,data.class.length-3);
@@ -54,6 +57,9 @@ export class Torrent{
                 }
                 else if(child.tagName=='a' && child.title && child.href){
                     this.name = child.title;
+                }
+                else if(child.tagName=='text'){
+                    this.subName = child.value;
                 }
             }
 
@@ -118,6 +124,9 @@ export class Torrent{
                 this.uploader = data.children[8].children["0"].children["0"].children["0"].text;
                 this.uploaderUrl = data.children[8].children["0"].children["0"].href;
             }
+
+
+            
         }
     }
 }
@@ -131,7 +140,7 @@ export class TorrentList{
             //the first line is title, ignore
             for(let i=1;i<listData.length;i++){
                 let torrent = new Torrent(listData[i]);
-                // console.log(torrent);
+                console.log(torrent);
                 this.list.push(torrent);
             }
         }

@@ -47,6 +47,13 @@ export class WebHttp {
 					current.text = text;
 				else
 					current.text += ' ' + text;
+					
+				if(!current.children)
+					current.children = [];
+				current.children.push({
+					tagName: 'text',
+					value: text
+				});
 			},
 			onclosetag: function (tagname) {
 				parent = current.parent;
