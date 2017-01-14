@@ -55,4 +55,8 @@ export class HomePage {
 		console.log('update', this.segment);
 	}
 
+	tapEvent(event){
+		alert(event);
+		console.log(event);
+	}
 }

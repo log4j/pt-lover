@@ -19,8 +19,8 @@
 
 <ion-content [ngSwitch]="segment">
 
-  <ion-list *ngSwitchCase="'notice'">
-    <ion-card *ngFor="let notice of notices">
+  <ion-list *ngSwitchCase="'notice'" (tap)="tapEvent($event)">
+    <ion-card *ngFor="let notice of notices" (tap)="tapEvent($event)">
       <ion-card-header>
         {{notice.title}}
       </ion-card-header>
