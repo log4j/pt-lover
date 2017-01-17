@@ -49,7 +49,7 @@
 			<ion-list>
 				<ion-item *ngFor="let message of messages">
 					<ion-avatar item-left>
-						<img src="img/avatar-cher.png">
+						<p>{{message.name| slice:0:1 | uppercase}}</p>
 					</ion-avatar>
 					<h2>{{message.name}} <ion-note item-right>{{message.date}}</ion-note></h2>
 					<p [innerHTML]="message.content"></p>

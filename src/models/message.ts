@@ -15,7 +15,7 @@ export class Message{
 
     constructor(data?:any){
         if(data){
-            // console.log(data);
+            console.log(data);
             this.date = data.date;
             this.userId = data.userid;
             this.id = data.id;
@@ -23,6 +23,16 @@ export class Message{
             this.content = data.text;
             this.type = data.type;
             this.name = data.username;
+
+            let classes = this.name.match(/class=\'(\w|-)*\'/g);
+            // console.log(classes);
+            if(classes){
+                classes.forEach(item=>{
+                    if(/Name/g.test(item)){
+                        console.log(item);
+                    }
+                });
+            }
 
             //use reg match to get username
             let test = /<u>([\w\d\u4e00-\u9fa5])+<\/u>/g
@@ -37,14 +47,14 @@ export class Message{
 
 
             if(this.replyTo!='no'){
-                console.log(this.content);
+                // console.log(this.content);
 
                 let replyPart = this.content.match(/回复 <span class=(\w|\d|\s|\'|=|_|<|>|\/|\.|\?)+span>(\s)*/g);
                 if(replyPart && replyPart.length){
                     //get the reply title
                     this.content = this.content.substring(replyPart[0].length);
                 }
-                console.log(replyPart);
+                // console.log(replyPart);
             }
 
             this.content = this.content.replace(/pic/g,'assets');

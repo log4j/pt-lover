@@ -15,7 +15,7 @@ import {Message} from '../../models/message';
 export class HomePage {
 	@ViewChild(Slides) slides: Slides;
 
-	segment = 'chat';
+	segment = 'notice';
 	notices: Notice[] = [];
 	messages: Message[] = [];
 	constructor(
