@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { WebHttp } from './web-http';
 import { User } from '../models/user';
 import { NoticeList } from '../models/notice';
+import { MessageList } from '../models/message';
 
 /*
   Generated class for the UserData provider.
@@ -21,6 +22,8 @@ export class UserData {
 	HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
 	user: User;
+	noticeList: NoticeList;
+	messageList: MessageList;
 
 	constructor(
 		public events: Events,
@@ -85,18 +88,12 @@ export class UserData {
 		})
 	};
 
-	loadHomeData(): Promise<{user:User,notices:NoticeList}> {
+	loadHomeData(): Promise<{ user: User, notices: NoticeList }> {
 		if (this.user) {
-			return new Promise<User>(resolve => resolve(this.user));
+			return new Promise<{ user: User, notices: NoticeList }>(resolve => resolve({ user: this.user, notices: this.noticeList }));
 		} else {
 			// return this.webHttp.get('http://pt.test/index.php').then(data=>{
 			return this.webHttp.get('assets/data/pages/index.html').then(data => {
-
-
-
-
-
-
 				if (data) {
 					//already in
 					let body = this.webHttp.fintElement(data, item => {
@@ -104,10 +101,13 @@ export class UserData {
 					});
 
 					let noticeData = this.webHttp.fintElement(data, item => {
-						return item.tagName === 'td' && item.children && item.children.length>=2 && item.children[0].text==='最新公告';
+						return item.tagName === 'td' && item.children && item.children.length >= 2 && item.children[0].text === '最新公告';
 					});
 
-					return {user:new User(body),notices:new NoticeList(noticeData)} ;
+					this.user = new User(body);
+					this.noticeList = new NoticeList(noticeData);
+
+					return { user: this.user, notices: this.noticeList };
 				} else {
 					//require login!!
 					//pop login page
@@ -117,6 +117,19 @@ export class UserData {
 				}
 
 
+			})
+		}
+	}
+
+	loadMessages(): Promise<MessageList> {
+		if (this.messageList) {
+			return new Promise<MessageList>(resolve => resolve(this.messageList));
+		} else {
+			// return this.webHttp.getJson('http://pt.test/shoutboxnew.php?action=show&mid=0').then(data=>{
+			return this.webHttp.getJson('assets/data/pages/shoutboxnew.json').then(data=>{
+				// console.log(data);
+				let list = new MessageList(data);
+				return list;
 			})
 		}
 	}

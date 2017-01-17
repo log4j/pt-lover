@@ -17,9 +17,9 @@ export class WebHttp {
 		console.log('Hello WebHttp Provider');
 	}
 
-	parseHtml(response: any, callback: Function): any {
+	parseHtml(text: any, callback: Function): any {
 
-		let html = response.text().replace(/>(\s|\r|\n)+</g, '><');
+		let html = text.replace(/>(\s|\r|\n)+</g, '><');
 		let root: any = {};
 		let current: any = root;
 		let parent = root;
@@ -118,11 +118,21 @@ export class WebHttp {
 		return new Promise<any>(resolve => {
 			this.http.get(url, {withCredentials: true})
 				.subscribe(
-					response => this.parseHtml(response, resolve),
+					response => this.parseHtml(response.text(), resolve),
 					error => resolve(null)
 				);
 		});
 
+	}
+
+	getJson(url): Promise<any>{
+		return new Promise<any>(resolve => {
+			this.http.get(url, {withCredentials: true})
+				.subscribe(
+					response => resolve(response.json()),
+					error => resolve(null)
+				);
+		});
 	}
 
 }

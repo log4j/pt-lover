@@ -17,7 +17,6 @@ export class User {
 
     constructor(data?:any){
         if(data && data.tagName=='table'){
-            console.log(data);
 
             this.name = data.children["0"].children["0"].children["0"].children["0"].children["0"].children["0"].text;
 

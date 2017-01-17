@@ -5,7 +5,6 @@ export class Notice{
 
     constructor(part1?:any,part2?:any){
         if(part1 && part2){
-            console.log(part1, part2);
 
             this.date = part1.text;
             if(this.date)
@@ -29,7 +28,6 @@ export class NoticeList{
             if(list && list.length){
                 for(let i=0;i<list.length-1;i+=2){
                     this.notices.push(new Notice(list[i],list[i+1]));
-                    console.log(this.notices[this.notices.length-1]);
                 }
             }
         }

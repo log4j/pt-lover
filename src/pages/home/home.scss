@@ -3,5 +3,13 @@ page-home {
     .slide-zoom{
         height: 100%;
         overflow: auto;
+        text-align: left;
+    }
+
+    ion-label{
+        p{
+            text-overflow: inherit;
+            white-space: normal;
+        }
     }
 }

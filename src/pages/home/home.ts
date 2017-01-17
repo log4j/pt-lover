@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TorrentData } from '../../providers/torrent-data';
 import { UserData } from '../../providers/user-data';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController, Slides } from 'ionic-angular';
 
 import {LoginPage} from '../login/login';
 
 import {Notice} from '../../models/notice';
+import {Message} from '../../models/message';
 
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'
 })
 export class HomePage {
+	@ViewChild(Slides) slides: Slides;
 
-	segment = 'notice';
+	segment = 'chat';
 	notices: Notice[] = [];
+	messages: Message[] = [];
 	constructor(
 		public navCtrl: NavController,
 		public loadingCtrl: LoadingController,
@@ -24,6 +27,8 @@ export class HomePage {
 	) {
 
 		this.loadHomePageData();
+
+		this.loadChatData();
 
 	}
 
@@ -39,7 +44,7 @@ export class HomePage {
 		this.userData.loadHomeData().then(data => {
 
 			loader.dismiss();
-			console.log(data);
+			
 			if (data) {
 				this.notices = data.notices.notices;
 			} else {
@@ -51,8 +56,31 @@ export class HomePage {
 
 	}
 
+	loadChatData() {
+		this.userData.loadMessages().then(data=>{
+			console.log(data);
+			this.messages = data.messages;
+		});
+	}
+
 	updateSegment(){
 		console.log('update', this.segment);
+		if(this.segment==='notice')
+			this.slides.slideTo(0);
+		else
+			this.slides.slideTo(1);
+	}
+
+	slideChanged(){
+		// console.log('change@@@@@');
+
+		let index = this.slides.getActiveIndex();
+		console.log(index);
+		if(index==0){
+			this.segment === 'notice';
+		}else{
+			this.segment === 'chat';
+		}
 	}
 
 	tapEvent(event){
