@@ -15,14 +15,13 @@ export class User {
 
     bonus: number;
 
+    logOutLink: string;
+
     constructor(data?:any){
         if(data && data.tagName=='table'){
-
             this.name = data.children["0"].children["0"].children["0"].children["0"].children["0"].children["0"].text;
-
             this.url = data.children["0"].children["0"].children["0"].children["0"].children["0"].href;
             this.id = this.url.substring(19);
-
 
             this.level = data.children["0"].children["0"].children["0"].children[2].children["0"].children["0"].text;
             if(this.level)
@@ -40,6 +39,12 @@ export class User {
             this.downloaded = data.children["0"].children["0"].children["0"].children[2].children[3].children["0"].text;
             if(this.downloaded)
                 this.downloaded = this.downloaded.match(/(\d|\.|\s|\w)+/g)[0];
+
+
+            let titles = data.children["0"].children[1].children;
+            if(titles.length){
+                this.logOutLink = titles[titles.length-1].children[0].href;
+            }
 
         }
     }

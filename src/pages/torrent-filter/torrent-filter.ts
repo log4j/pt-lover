@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ViewController, NavParams } from 'ionic-angular';
 
 
+import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
 
 /*
@@ -18,22 +19,34 @@ export class TorrentFilterPage {
 
   torrentFilter: TorrentFilter;
 
+  enableTop:boolean = true;
+  enableHot:boolean = true;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public torrentData: TorrentData
   ) {
     this.torrentFilter = navParams.data;
+
+    this.enableHot = this.torrentData.enableHot;
+    this.enableTop = this.torrentData.enableTop;
   }
 
   resetFilters(){
     this.torrentFilter.types.forEach(filter=>{
       filter.checked = true;
     })
+    this.enableHot = true;
+    this.enableTop = true;
   }
 
   applyFilters() {
-  
+    this.viewCtrl.dismiss({
+      enableHot: this.enableHot,
+      enableTop: this.enableTop
+    });
   }
 
   dismiss(data?: any) {

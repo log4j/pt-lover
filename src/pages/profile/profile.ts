@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 
+import { User } from '../../models/user';
+
 import { TorrentData } from '../../providers/torrent-data';
+import { UserData } from '../../providers/user-data';
 
 /*
   Generated class for the Profile page.
@@ -11,23 +14,34 @@ import { TorrentData } from '../../providers/torrent-data';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html'
+	selector: 'page-profile',
+	templateUrl: 'profile.html'
 })
 export class ProfilePage {
+	user:User = null;
 
-  constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    public torrentData: TorrentData) {
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public torrentData: TorrentData,
+		public userData: UserData
+	) {
 
-      // this.torrentData.login().subscribe(data=>{
-        // console.log(data);
-      // });
-    }
+		// this.torrentData.login().subscribe(data=>{
+		// console.log(data);
+		// });
+		this.loadUserInformation();
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
-  }
+	loadUserInformation() {
+		this.userData.loadHomeData().then(data=>{
+			if(data){
+				this.user = data.user;
+			}
+		});
+	}
+
+	ionViewDidLoad() {
+	}
 
 }

@@ -6,13 +6,48 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>torrentDetail</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
 
+
+    <ion-title>
+      {{torrent.typeLabel}}
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()" strong>返回</button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-title class="multple-line">{{torrent.name}}</ion-title>
+
+  <ion-list>
+    <ion-list-header>
+      基本信息
+    </ion-list-header>
+    <ion-item *ngFor='let basic of torrent.basicInfos'>
+      {{basic.key}}
+      <ion-note item-right>{{basic.value}}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      简介
+    </ion-list-header>
+    <ion-item class="torrent-descriptions">
+      <!--<div >-->
+        <div *ngFor='let item of torrent.descriptions'>
+          {{item.text}}
+          <img *ngIf='item.img' [attr.src]='item.img'/>
+          <a *ngIf='item.link' [attr.href]='item.link'>{{item.link}}</a>
+        </div>
+        <!--<ion-label *ngIf='item.img'><img [attr.src]='item.img'/></ion-label>-->
+      <!--</div>-->
+    </ion-item>
+  </ion-list>
 
 </ion-content>

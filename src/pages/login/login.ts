@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController,ViewController, NavParams,LoadingController } from 'ionic-angular';
+
+
+import { UserData } from '../../providers/user-data';
 
 /*
   Generated class for the Login page.
@@ -8,19 +11,38 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+	selector: 'page-login',
+	templateUrl: 'login.html'
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public userData: UserData,
+		public viewCtrl: ViewController,
+		public loadingCtrl: LoadingController
+	) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad LoginPage');
+	}
 
-  login(){
-    
-  }
+	login() {
+
+
+		let loader = this.loadingCtrl.create({
+			content: "正在验证, 请稍等..."
+		});
+		loader.present();
+
+		this.userData.login().then(data=>{
+
+			loader.dismiss();
+
+			// console.log(data);
+			this.viewCtrl.dismiss(data);
+		});
+	}
 
 }

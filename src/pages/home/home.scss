@@ -12,4 +12,23 @@ page-home {
             white-space: normal;
         }
     }
+
+    .message-list{
+        padding-bottom: 50px;
+    }
+
+    ion-avatar{
+        p{
+            font-size:3.5rem !important;
+        text-align: center;
+        }
+    }
+
+    ion-card{
+        img{
+            display: inline-block;
+            width:auto;
+            max-width: 100%;
+        }
+    }
 }

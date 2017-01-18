@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import * as Parser from "htmlparser2";
@@ -13,12 +13,18 @@ import * as Parser from "htmlparser2";
 @Injectable()
 export class WebHttp {
 
+
+	isLocal: boolean = false;
+
+	host: string = this.isLocal ? 'assets/data/pages/' : 'https://pt.sjtu.edu.cn/';
+
 	constructor(public http: Http) {
 		console.log('Hello WebHttp Provider');
 	}
 
 	parseHtml(text: any, callback: Function): any {
 
+		
 		let html = text.replace(/>(\s|\r|\n)+</g, '><');
 		let root: any = {};
 		let current: any = root;
@@ -45,8 +51,8 @@ export class WebHttp {
 					current.text = text;
 				else
 					current.text += ' ' + text;
-					
-				if(!current.children)
+
+				if (!current.children)
 					current.children = [];
 				current.children.push({
 					tagName: 'text',
@@ -93,21 +99,21 @@ export class WebHttp {
 
 	}
 
-	fintElement(node:any, isThatOne: Function):any {
-		if(node){
-			let list:any[] = [];
+	fintElement(node: any, isThatOne: Function): any {
+		if (node) {
+			let list: any[] = [];
 			list.push(node);
 
-			while(list.length){
+			while (list.length) {
 				let item = list.pop();
-				if(isThatOne(item)){
+				if (isThatOne(item)) {
 					return item;
 				}
 				//push every child into list
-				if(item.children){
-					item.children.forEach(child=>list.push(child));
+				if (item.children) {
+					item.children.forEach(child => list.push(child));
 				}
-					
+
 			}
 			return null;
 		}
@@ -115,22 +121,53 @@ export class WebHttp {
 	}
 
 	get(url): Promise<any> {
+		if (this.isLocal) {
+			url = url.replace('php', 'html')
+		}
 		return new Promise<any>(resolve => {
-			this.http.get(url, {withCredentials: true})
+			this.http.get(this.host + url, { withCredentials: true })
 				.subscribe(
-					response => this.parseHtml(response.text(), resolve),
-					error => resolve(null)
+				response => this.parseHtml(response.text(), resolve),
+				error => resolve(null)
 				);
 		});
 
 	}
 
-	getJson(url): Promise<any>{
+	post(url, postBody): Promise<any> {
+		if (this.isLocal) {
+			url = url.replace('php', 'html')
+		}
+
+		const body = new URLSearchParams();
+		for (let key in postBody)
+			body.set(key, postBody[key]);
+
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		// return this.http.post(url, body.toString(), { headers: headers, withCredentials: true })
+		// 	.subscribe(res => {
+		// 		console.log(res)
+		// 	});
+
 		return new Promise<any>(resolve => {
-			this.http.get(url, {withCredentials: true})
+			this.http.post(this.host + url, body.toString(), { headers: headers, withCredentials: true })
 				.subscribe(
-					response => resolve(response.json()),
-					error => resolve(null)
+				response => this.parseHtml(response.text(), resolve),
+				error => resolve(null)
+				);
+		});
+	};
+
+	getJson(url): Promise<any> {
+		if (this.isLocal) {
+			url = url.replace('php', 'html')
+		}
+		return new Promise<any>(resolve => {
+			this.http.get(this.host + url, { withCredentials: true })
+				.subscribe(
+				response => resolve(response.json()),
+				error => resolve(null)
 				);
 		});
 	}

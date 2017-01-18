@@ -1,15 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">Cancel</button>
+      <button ion-button (click)="dismiss()">取消</button>
     </ion-buttons>
 
     <ion-title>
-      Filter Sessions
+      设置
     </ion-title>
 
     <ion-buttons end>
-      <button ion-button (click)="applyFilters()" strong>Done</button>
+      <button ion-button (click)="applyFilters()" strong>确定</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,19 +17,29 @@
 <ion-content class="outer-content">
 
   <ion-list>
-    <ion-list-header>Tracks</ion-list-header>
+    <ion-list-header>显示设置</ion-list-header>
 
-    <ion-item *ngFor="let type of torrentFilter.types" [attr.track]="type.label | lowercase">
+    <!--<ion-item *ngFor="let type of torrentFilter.types" [attr.track]="type.label | lowercase">
       <span item-left class="dot"></span>
       <ion-label>{{type.label}}</ion-label>
       <ion-toggle [(ngModel)]="type.checked" color="secondary"></ion-toggle>
+    </ion-item>-->
+    <ion-item track='显示置顶'>
+      <span item-left class="dot"></span>
+      <ion-label>显示置顶</ion-label>
+      <ion-toggle [(ngModel)]="enableTop" color="secondary"></ion-toggle>
+    </ion-item>
+    <ion-item track='显示热门'>
+      <span item-left class="dot"></span>
+      <ion-label>显示热门</ion-label>
+      <ion-toggle [(ngModel)]="enableHot" color="secondary"></ion-toggle>
     </ion-item>
 
   </ion-list>
 
   <ion-list>
     <button ion-item (click)="resetFilters()" detail-none class="reset-filters">
-      Reset All Filters
+      重置
     </button>
   </ion-list>
 

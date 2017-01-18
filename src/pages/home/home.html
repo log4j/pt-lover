@@ -19,46 +19,60 @@
 
 <ion-content>
 
-	<ion-slides (ionDidChange)="slideChanged()">
-		<ion-slide>
-			<ion-list>
-				<ion-card *ngFor="let notice of notices">
-					<ion-card-header>
-						{{notice.title}}
-					</ion-card-header>
-					<ion-card-content>
-						{{notice.content}}
-					</ion-card-content>
-					<ion-row>
-						<ion-col>
-						</ion-col>
-						<ion-col>
-						</ion-col>
-						<ion-col center text-center>
-							<ion-note>
-								{{notice.date}}
-							</ion-note>
-						</ion-col>
-					</ion-row>
-				</ion-card>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
 
-			</ion-list>
-		</ion-slide>
-		<ion-slide>
+	<div [ngSwitch]="segment">
+		<ion-list *ngSwitchCase="'notice'">
+			<ion-card *ngFor="let notice of notices">
+				<ion-card-header>
+					{{notice.title}}
+				</ion-card-header>
+				<ion-card-content>
+					<span *ngFor='let item of notice.paragraphs'>
+						{{item.text}}
+						<img *ngIf='item.img' [attr.src]='item.img'/>
+          				<a *ngIf='item.link' [attr.href]='item.link'>{{item.link}}</a>
+						  <br *ngIf='item.br'>
+					</span>
+				</ion-card-content>
+				<ion-row>
+					<ion-col>
+					</ion-col>
+					<ion-col>
+					</ion-col>
+					<ion-col center text-center>
+						<ion-note>
+							{{notice.date}}
+						</ion-note>
+					</ion-col>
+				</ion-row>
+			</ion-card>
 
-			<ion-list>
-				<ion-item *ngFor="let message of messages">
-					<ion-avatar item-left>
-						<p>{{message.name| slice:0:1 | uppercase}}</p>
-					</ion-avatar>
-					<h2>{{message.name}} <ion-note item-right>{{message.date}}</ion-note></h2>
-					<p [innerHTML]="message.content"></p>
-					
-				</ion-item>
-			</ion-list>
+		</ion-list>
 
-		</ion-slide>
-	</ion-slides>
+
+		<ion-list *ngSwitchCase="'chat'" class="message-list">
+			<ion-item *ngFor="let message of messages" (click)="showMessagePrompt(message.name)">
+				<ion-avatar item-left>
+					<p>{{message.name| slice:0:1 | uppercase}}</p>
+				</ion-avatar>
+				<h2>{{message.name}}<img src='assets/smilies/star.gif'>
+					<ion-note item-right>{{message.date}}</ion-note>
+				</h2>
+				<p [innerHTML]="message.content"></p>
+
+			</ion-item>
+
+
+			
+		</ion-list>
+	</div>
+
+	<ion-fab right bottom *ngIf="segment=='chat'">
+		<button ion-fab color="secondary" (click)="showMessagePrompt()"><ion-icon name="chatbubbles"></ion-icon></button>
+	</ion-fab>
 
 
 
