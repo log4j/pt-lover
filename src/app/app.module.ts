@@ -13,6 +13,9 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { PeerListPopOverPage } from '../pages/peer-list-pop-over/peer-list-pop-over';
 import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
 import { TorrentDetailPage } from '../pages/torrent-detail/torrent-detail';
+import { FaqPage } from '../pages/faq/faq';
+import { AboutPage } from '../pages/about/about';
+
 
 import { TorrentData } from '../providers/torrent-data';
 import { UserData } from '../providers/user-data';
@@ -29,7 +32,9 @@ import { WebHttp } from '../providers/web-http';
     WelcomePage,
     PeerListPopOverPage,
     TorrentFilterPage,
-    TorrentDetailPage
+    TorrentDetailPage,
+    FaqPage,
+    AboutPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -45,7 +50,9 @@ import { WebHttp } from '../providers/web-http';
     WelcomePage,
     PeerListPopOverPage,
     TorrentFilterPage,
-    TorrentDetailPage
+    TorrentDetailPage,
+    FaqPage,
+    AboutPage
   ],
   providers: [Storage, WebHttp, TorrentData,UserData, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })

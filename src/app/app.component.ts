@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, Events, MenuController, AlertController, LoadingController } from 'ionic-angular';
+import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController } from 'ionic-angular';
 import { StatusBar, Splashscreen, Device } from 'ionic-native';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { FaqPage } from '../pages/faq/faq';
+import { AboutPage } from '../pages/about/about';
 
 import { User } from '../models/user';
 
@@ -57,6 +59,7 @@ export class MyApp {
 		public menu: MenuController,
 		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
+		public modalCtrl: ModalController,
 		public platform: Platform,
 		// public confData: ConferenceData,
 		public storage: Storage
@@ -138,6 +141,23 @@ export class MyApp {
 		//     this.userData.logout();
 		//   }, 1000);
 		// }
+
+
+	}
+
+	openTutorial() {
+		// this.nav.setRoot(TutorialPage);
+	}
+
+	openAbout() {
+		let modal = this.modalCtrl.create(AboutPage);
+		modal.present();
+	}
+
+	openFaq() {
+
+		let modal = this.modalCtrl.create(FaqPage);
+		modal.present();
 	}
 
 }

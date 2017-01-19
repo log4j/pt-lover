@@ -1,5 +1,3 @@
-
-
 <!-- logged out menu -->
 <ion-menu id="loggedOutMenu" [content]="content">
 
@@ -49,7 +47,7 @@
 
   <ion-header *ngIf='user'>
     <ion-toolbar>
-      <ion-title >{{user.name}}</ion-title>
+      <ion-title>{{user.name}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -63,8 +61,13 @@
         <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
-    </ion-list>
 
+      <!--<ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
+        <ion-icon  [name]="p.icon" item-left></ion-icon>
+        {{p.title}}
+      </ion-item>-->
+    </ion-list>
+    <br>
     <ion-list>
       <ion-list-header>
         帐号
@@ -79,8 +82,12 @@
       <ion-list-header>
         关于
       </ion-list-header>
-      <button ion-item menuClose (click)="openTutorial()">
-        <ion-icon item-left name="hammer"></ion-icon>
+      <button ion-item menuClose (click)="openFaq()">
+        <ion-icon item-left name="bulb"></ion-icon>
+        常见问题
+      </button>
+      <button ion-item menuClose (click)="openAbout()">
+        <ion-icon item-left name="information-circle"></ion-icon>
         关于
       </button>
     </ion-list>
