@@ -32,7 +32,7 @@ export class Notice{
                     if(this.paragraphs.length==0 || this.paragraphs[this.paragraphs.length-1].br!=true)
                         this.paragraphs.push({br:true});
                 }else{
-                    console.log(item);
+                    // console.log(item);
                 }
             })
 

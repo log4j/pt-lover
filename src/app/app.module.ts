@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
+import { Device } from 'ionic-native';
 
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -54,6 +54,12 @@ import { WebHttp } from '../providers/web-http';
     FaqPage,
     AboutPage
   ],
-  providers: [Storage, WebHttp, TorrentData,UserData, { provide: ErrorHandler, useClass: IonicErrorHandler }]
+  providers: [
+    Storage, 
+    Device,
+    WebHttp, 
+    TorrentData,
+    UserData, 
+    { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

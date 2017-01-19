@@ -14,7 +14,33 @@ page-home {
     }
 
     .message-list{
-        padding-bottom: 50px;
+        ion-item{
+            h2{
+                ion-note{
+                    float:right;
+                }
+            }
+            p{
+                padding-left: 0px;
+                padding-top: 5px;
+            }
+        
+            .item-inner{
+                border-bottom: none !important;
+            }
+            border-bottom: 2px solid #ECF1F5;
+        }
+
+        ion-item:last-child{
+            border-bottom: none;
+        }
+
+        
+    }
+
+    ion-card.card-notice{
+        margin:10px 0;
+        width: 100%;
     }
 
     ion-avatar{

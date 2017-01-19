@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-
 import * as Parser from "htmlparser2";
+
+import { Device, Transfer } from 'ionic-native';
+declare var cordova: any;
 
 /*
   Generated class for the WebHttp provider.
@@ -14,17 +16,26 @@ import * as Parser from "htmlparser2";
 export class WebHttp {
 
 
-	isLocal: boolean = false;
+	isLocal: boolean = true;
+	useProxy: boolean = false;
+	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.test/' : 'https://pt.sjtu.edu.cn/');
 
-	host: string = this.isLocal ? 'assets/data/pages/' : 'https://pt.sjtu.edu.cn/';
 
-	constructor(public http: Http) {
+
+	constructor(
+		public http: Http,
+		public device: Device
+	) {
+
+
+
 		console.log('Hello WebHttp Provider');
+		console.log(Device.platform);
 	}
 
 	parseHtml(text: any, callback: Function): any {
 
-		
+
 		let html = text.replace(/>(\s|\r|\n)+</g, '><');
 		let root: any = {};
 		let current: any = root;
@@ -166,10 +177,29 @@ export class WebHttp {
 		return new Promise<any>(resolve => {
 			this.http.get(this.host + url, { withCredentials: true })
 				.subscribe(
-				response => resolve(response.json()),
+				response => {
+					try {
+						resolve(response.json());
+					}
+					catch (exception) {
+						console.log(exception);
+						resolve(null);
+					}
+				},
 				error => resolve(null)
 				);
 		});
+	};
+
+// Cordova
+	
+
+	download(url: string, name:string) {
+		
+		let fileTransfer = new Transfer();
+		// let url = 'http://www.example.com/file.pdf';
+		return fileTransfer.download(this.host +url, cordova.file.externalRootDirectory + 'Download/'+name);
 	}
+
 
 }

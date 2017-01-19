@@ -89,9 +89,7 @@ export class HomePage {
 
 	loadChatData() {
 		return this.userData.loadMessages().then(data => {
-			console.log(data);
 			this.messages = data.messages;
-
 			return data;
 		});
 	}
@@ -119,6 +117,12 @@ export class HomePage {
 			content: "正在载入, 请稍等..."
 		});
 		this.loader.present();
+	}
+
+	hideLoading(){
+		if(this.loader){
+			this.loader.dismiss();
+		}
 	}
 
 	slideChanged() {
@@ -158,14 +162,14 @@ export class HomePage {
 	}
 
 
-	showMessagePrompt(name?: string) {
+	showMessagePrompt(message?: Message) {
 		let prompt = this.alertCtrl.create({
 			title: 'Message',
 			message: "",
 			inputs: [
 				{
 					name: 'message',
-					placeholder: name ? '回复' + name + ':' : ''
+					placeholder: message ? '回复' + message.name + ':' : ''
 				},
 			],
 			buttons: [
@@ -178,7 +182,16 @@ export class HomePage {
 				{
 					text: 'Send',
 					handler: data => {
-						console.log('Saved clicked');
+						console.log('Saved clicked',data);
+
+						this.showLoading();
+						this.userData.shout(data.message,message?message.userId:null).then(res=>{
+							console.log(res);
+							this.loadChatData().then(loadData=>{
+								this.hideLoading()
+							});
+						})
+
 					}
 				}
 			]

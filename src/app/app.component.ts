@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController } from 'ionic-angular';
 import { StatusBar, Splashscreen, Device } from 'ionic-native';
+
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
 

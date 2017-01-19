@@ -17,7 +17,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
 	<ion-refresher (ionRefresh)="doRefresh($event)">
 		<ion-refresher-content></ion-refresher-content>
@@ -25,7 +25,7 @@
 
 	<div [ngSwitch]="segment">
 		<ion-list *ngSwitchCase="'notice'">
-			<ion-card *ngFor="let notice of notices">
+			<ion-card *ngFor="let notice of notices" class="card-notice">
 				<ion-card-header>
 					{{notice.title}}
 				</ion-card-header>
@@ -54,12 +54,11 @@
 
 
 		<ion-list *ngSwitchCase="'chat'" class="message-list">
-			<ion-item *ngFor="let message of messages" (click)="showMessagePrompt(message.name)">
-				<ion-avatar item-left>
-					<p>{{message.name| slice:0:1 | uppercase}}</p>
-				</ion-avatar>
-				<h2>{{message.name}}<img src='assets/smilies/star.gif'>
-					<ion-note item-right>{{message.date}}</ion-note>
+			<ion-item *ngFor="let message of messages" (click)="showMessagePrompt(message)">
+				
+				<h2 [ngClass]='message.userClass'><b>{{message.name}}</b>
+					<img *ngIf='message.hasStar' src='assets/smilies/star.gif'>
+					<ion-note>{{message.date}}</ion-note>
 				</h2>
 				<p [innerHTML]="message.content"></p>
 
@@ -71,7 +70,7 @@
 	</div>
 
 	<ion-fab right bottom *ngIf="segment=='chat'">
-		<button ion-fab color="secondary" (click)="showMessagePrompt()"><ion-icon name="chatbubbles"></ion-icon></button>
+		<button ion-fab color="primary" (click)="showMessagePrompt()"><ion-icon name="chatbubbles"></ion-icon></button>
 	</ion-fab>
 
 

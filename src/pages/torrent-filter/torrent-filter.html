@@ -17,7 +17,7 @@
 <ion-content class="outer-content">
 
   <ion-list>
-    <ion-list-header>显示设置</ion-list-header>
+    <ion-list-header>排序设置</ion-list-header>
 
     <!--<ion-item *ngFor="let type of torrentFilter.types" [attr.track]="type.label | lowercase">
       <span item-left class="dot"></span>
@@ -26,12 +26,12 @@
     </ion-item>-->
     <ion-item track='显示置顶'>
       <span item-left class="dot"></span>
-      <ion-label>显示置顶</ion-label>
+      <ion-label>置顶优先</ion-label>
       <ion-toggle [(ngModel)]="enableTop" color="secondary"></ion-toggle>
     </ion-item>
     <ion-item track='显示热门'>
       <span item-left class="dot"></span>
-      <ion-label>显示热门</ion-label>
+      <ion-label>热门优先</ion-label>
       <ion-toggle [(ngModel)]="enableHot" color="secondary"></ion-toggle>
     </ion-item>
 

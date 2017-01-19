@@ -41,13 +41,13 @@
       <ion-label>
         <ion-badge item-left color="gray">{{torrent.typeLabel}}</ion-badge>
         <ion-badge item-right color="gray">{{torrent.size}}</ion-badge>
-        <ion-badge item-right *ngIf="torrent.isHot">热门</ion-badge>
         <ion-badge item-right *ngIf="torrent.isTop">置顶</ion-badge>
+        <ion-badge item-right *ngIf="torrent.isHot">热门</ion-badge>
         <ion-badge style="float:right" color="orange" *ngIf="torrent.special">{{specialLabels[torrent.special]}}</ion-badge>
 </ion-label>
 {{torrent.subName}}
 
-<ion-row >
+<ion-row>
   <ion-col text-left no-padding>
     <ion-label>
       <ion-badge item-right color="gray">
@@ -65,11 +65,21 @@
     </ion-label>
 
   </ion-col>
-  <ion-col center text-right >
-    <button ion-button color="primary" round small icon-left>
+  <ion-col center text-right>
+    <button ion-button (click)="presentCommentPage(torrent)" color="primary" round small icon-left>
           <ion-icon name="chatboxes"></ion-icon>
           {{torrent.commentsNumber}}
         </button>
+
+    <!--<ion-fab right bottom>
+      <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>-->
   </ion-col>
 </ion-row>
 

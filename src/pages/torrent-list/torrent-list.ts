@@ -4,7 +4,7 @@ import { NavController, PopoverController, ModalController, NavParams, List, Loa
 
 import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
-import { Torrent,TorrentList } from '../../models/torrent'
+import { Torrent, TorrentList } from '../../models/torrent'
 
 import { PeerListPopOverPage } from '../peer-list-pop-over/peer-list-pop-over';
 import { TorrentFilterPage } from '../torrent-filter/torrent-filter';
@@ -36,11 +36,11 @@ export class TorrentListPage {
 	loader: Loading;
 
 	specialLabels = {
-		'free':'免费',
-		'halfdown':'50%下载',
-		'd30down':'30%下载',
-		'twoup':'2x上传',
-		'd70down':'70%下载'
+		'free': '免费',
+		'halfdown': '50%下载',
+		'd30down': '30%下载',
+		'twoup': '2x上传',
+		'd70down': '70%下载'
 	};
 
 
@@ -77,7 +77,7 @@ export class TorrentListPage {
 	}
 
 
-	updateTorrentList(force?:boolean) {
+	updateTorrentList(force?: boolean) {
 		// Close any open sliding items when the schedule updates
 		this.torrentList && this.torrentList.closeSlidingItems();
 
@@ -108,7 +108,7 @@ export class TorrentListPage {
 	}
 
 	hideLoading() {
-		if(this.loader){
+		if (this.loader) {
 			this.loader.dismiss();
 		}
 	}
@@ -122,23 +122,34 @@ export class TorrentListPage {
 				console.log(data);
 				// this.torrentData.enableHot = data.enableHot;
 				// this.torrentData.enableTop = data.enableTop;
-				this.torrents.sortByRules(data.enableHot,data.enableTop);
-				this.torrentData.saveFilterData(data.enableHot,data.enableTop)
+				this.torrents.sortByRules(data.enableHot, data.enableTop);
+				this.torrentData.saveFilterData(data.enableHot, data.enableTop)
 			}
 		});
 
 	}
 
-	presentDetailPage(torrent:Torrent) {
+	presentDetailPage(torrent: Torrent) {
 
 		this.showLoading();
 
-		this.torrentData.loadTorrentDatail(torrent).then(data=>{
+		this.torrentData.loadTorrentDatail(torrent).then(data => {
 			this.hideLoading();
 			let modal = this.modalCtrl.create(TorrentDetailPage, data);
 			modal.present();
 		});;
-		
+
+	}
+
+	presentCommentPage(torrent: Torrent) {
+
+		this.showLoading();
+
+		this.torrentData.loadTorrentComments(torrent).then(data => {
+			this.hideLoading();
+			let modal = this.modalCtrl.create(TorrentDetailPage, data);
+			modal.present();
+		});;
 
 	}
 

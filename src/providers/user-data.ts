@@ -86,13 +86,16 @@ export class UserData {
 		})
 	};
 
-	shout(text:string){
+	shout(text:string,userId?:string){
 		let body = {
-			'shbox_text': text,
+			'shbox_text':(userId?('[reply:'+userId+']:'):'')+ text,
 			'shout': '我喊',
 			'action': 'add'
 		};
 
+		// if(userId){
+			// body.shbox_text = +text;
+		// }
 		return this.webHttp.post('shoutboxnew.php', body).then(data => {
 
 			console.log(data);
@@ -161,16 +164,26 @@ export class UserData {
 	}
 
 	loadMessages(): Promise<MessageList> {
-		if (this.messageList) {
-			return new Promise<MessageList>(resolve => resolve(this.messageList));
-		} else {
-			return this.webHttp.getJson('shoutboxnew.php?action=show&mid=0').then(data => {
+
+			let mid = '0';
+			if(this.messageList && this.messageList.messages.length>0){
+				mid = this.messageList.messages[0].id;
+			}
+
+			return this.webHttp.getJson('shoutboxnew.php?action=show&mid='+mid).then(data => {
 				// return this.webHttp.getJson('assets/data/pages/shoutboxnew.json').then(data=>{
 				// console.log(data);
 				let list = new MessageList(data);
-				return list;
+				if(this.messageList){
+					//append to front
+					list.append(this.messageList.messages);
+				}
+
+				this.messageList = list;
+				
+				return this.messageList;
 			})
 		}
-	}
+	
 
 }

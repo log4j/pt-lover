@@ -132,6 +132,13 @@ export class TorrentData {
 		}
 	}
 
+	loadTorrentComments(torrent:Torrent){
+		return this.webHttp.get('detail_comment.php?id='+torrent.id).then(data=>{
+			torrent.loadComments(data, this.webHttp);
+			return torrent;
+		})
+	}
+
 	processTorrentPage(data: any) {
 
 	}

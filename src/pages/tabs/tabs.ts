@@ -34,4 +34,8 @@ export class TabsPage {
     console.log('ionViewDidLoad TabsPage');
   }
 
+  doubleClick(index){
+    console.log(index);
+  }
+
 }

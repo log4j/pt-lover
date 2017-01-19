@@ -14,6 +14,7 @@ export class Message {
     // replyName: string;
     type: string;
     hasStar: boolean = false;
+    userClass: string;
 
     constructor(data?: any) {
         if (data) {
@@ -31,11 +32,10 @@ export class Message {
             }
 
             let classes = this.name.match(/class=\'(\w|-)*\'/g);
-            // console.log(classes);
             if (classes) {
                 classes.forEach(item => {
                     if (/Name/g.test(item)) {
-                        // console.log(item);
+                        this.userClass = item.substring(7, item.length-1);
                     }
                 });
             }
@@ -104,6 +104,18 @@ export class MessageList {
                     this.messages.push(new Message(item));
                 });
             }
+        }
+    }
+
+    append(msgs:Message[]){
+        if(msgs){
+            msgs.forEach(item=>this.messages.push(item));
+        }
+    }
+
+    appendInFront(msgs:Message[]){
+        if(msgs){
+            this.messages = msgs.concat(this.messages);
         }
     }
 

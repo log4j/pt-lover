@@ -11,12 +11,13 @@ export class Torrent {
     isTop: boolean = false;
 
     url: string;
+    fullUrl: string;
     type: string;
     typeLabel: string;
     special: string;
     size: string;
 
-    comments: any[];
+    comments: Comment[];
     commentsUrl: string;
     commentsNumber: number;
 
@@ -41,7 +42,12 @@ export class Torrent {
     basicInfos: { key: string, value: string }[] = [];
     descriptions: any[] = [];
 
+
     detail: string;
+
+    fileName: string;
+
+ 
 
     constructor(data: any) {
         if (data) {
@@ -60,8 +66,12 @@ export class Torrent {
                 if (child.alt == 'Sticky') {
                     this.isTop = true;
                 }
-                else if (child.tagName == 'b' && child.children[0].class == 'hot') {
-                    this.isHot = true;
+                else if (child.tagName == 'b' && child.children && child.children.length) {
+                    child.children.forEach(item=>{
+                        if(item.class==='hot')
+                            this.isHot = true;
+                    });
+                    // this.isHot = true;
                 }
                 else if (child.tagName == 'a' && child.title && child.href) {
                     this.name = child.title;
@@ -70,6 +80,7 @@ export class Torrent {
                     this.subName = child.value;
                 }
             }
+            // console.log(infor, this.isTop, this.isHot);
 
             //url
             this.url = data.children[1].children["0"].children["0"].children[2].children["0"].href;
@@ -222,11 +233,43 @@ export class Torrent {
                 });              
             }
 
+            let downloadLink = webHttp.fintElement(data, item=>{
+                return item.tagName==='a' && !item.title && item.href===this.url;
+            })
+            if(downloadLink){
+                // console.log(downloadLink);
+                this.fileName = downloadLink.text;
+            }
+
             // console.log(this.descriptions);
 
-            // console.log(basicInfos);
+            // console.log(this);
         }
 
+        this.fullUrl = webHttp.host+this.url;
+
+    }
+
+    loadComments(data:any, webHttp:WebHttp){
+        this.comments = [];
+        if(data){
+            // console.log(data);
+            let div = webHttp.fintElement(data, item=>{
+                return item.tagName==='div' && item.id==='hiddencomment';
+            });
+            // console.log(div);
+            if(div && div.children && div.children.length){
+                div.children.forEach(item=>{
+                    this.comments.push(new Comment(item));
+                });
+            }
+        }
+    }
+
+    getFileName():string{
+        if(this.fileName)
+            return this.fileName
+        return '[PT]['+this.typeLabel+']'+this.id+'.torrent';
     }
 }
 
@@ -274,5 +317,20 @@ export class TorrentList {
 
 
         })
+    }
+}
+
+export class Comment{
+    id: string;
+    userId: string;
+    userName: string;
+    content: string;
+    date: string;
+
+    constructor(data?:any){
+        if(data){
+            console.log(data);
+            this.date = data.children["0"].children[7].value;
+        }
     }
 }
