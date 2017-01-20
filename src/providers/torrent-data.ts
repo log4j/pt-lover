@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 
 // import * as Parser from "htmlparser2";
 
-import { Torrent,TorrentList } from '../models/torrent';
+import { Torrent, TorrentList } from '../models/torrent';
 
 import { WebHttp } from './web-http';
 
@@ -38,10 +38,8 @@ export class TorrentData {
 		public webHttp: WebHttp,
 		public storage: Storage
 	) {
-		console.log('Hello TorrentData Provider');
 
 		this.getTypes();
-
 		this.loadSettingsFromStorage();
 		// this.loadTorrentPage();
 	}
@@ -70,12 +68,12 @@ export class TorrentData {
 
 	}
 
-	saveSettingFromStorage(){
-		this.storage.set(this.SETTING_ENABLE_HOT,this.enableHot);
-		this.storage.set(this.SETTING_ENABLE_TOP,this.enableTop);
+	saveSettingFromStorage() {
+		this.storage.set(this.SETTING_ENABLE_HOT, this.enableHot);
+		this.storage.set(this.SETTING_ENABLE_TOP, this.enableTop);
 	}
 
-	saveFilterData(enableHot:boolean, enableTop:boolean){
+	saveFilterData(enableHot: boolean, enableTop: boolean) {
 		this.enableHot = enableHot;
 		this.enableTop = enableTop;
 		this.saveSettingFromStorage();
@@ -100,19 +98,42 @@ export class TorrentData {
 	}
 
 
-	loadTorrentPage(force?: boolean): Promise<TorrentList> {
+	loadTorrentPage(force?: boolean, options?: { next?: boolean, keyword?: string }): Promise<TorrentList> {
 		if (this.torrentList && (!force)) {
 			return new Promise<TorrentList>(resolve => resolve(this.torrentList));
 		}
 		else {
 			// return this.webHttp.get('http://pt.test/torrents.php').then(data => {
-			return this.webHttp.get('torrents.php').then(data => {
+
+			let paras = '';
+			if (options) {
+				if (options.next) {
+					paras += '&page=' + (this.torrentList ? (this.torrentList.page + 1) : 0);
+				}
+				if (options.keyword) {
+					paras += '&search=' + options.keyword;
+				}
+			}
+			return this.webHttp.get('torrents.php' + (paras ? "?" + paras : paras)).then(data => {
 				//find table.torrents
-				let table = this.webHttp.fintElement(data, item=>{
-					return (item.tagName == 'table' && item.class=='torrents');
+				let table = this.webHttp.fintElement(data, item => {
+					return (item.tagName == 'table' && item.class == 'torrents');
 				});
-				this.torrentList = new TorrentList(table.children);
-				this.torrentList.sortByRules(this.enableHot, this.enableTop);
+				let torrent = new TorrentList(table.children);
+				let keyword = (options && options.keyword) ? options.keyword : '';
+
+
+				//determin when to append!!: only when options.next
+				if(this.torrentList && options && options.next){
+					torrent.list.forEach(item=>this.torrentList.list.push(item));
+					this.torrentList.page++;
+				}else{
+					torrent.page = 0;
+					torrent.keyword = keyword;
+					this.torrentList = torrent;
+					this.torrentList.sortByRules(this.enableHot, this.enableTop);
+				}
+
 				return this.torrentList;
 			});
 		}
@@ -120,11 +141,11 @@ export class TorrentData {
 	}
 
 
-	loadTorrentDatail(torrent:Torrent){
-		if(torrent.basicInfos.length){
+	loadTorrentDatail(torrent: Torrent) {
+		if (torrent.basicInfos.length) {
 			return new Promise<Torrent>(resolve => resolve(torrent));
-		}else{
-			return this.webHttp.get('details.php?id='+torrent.id).then(data =>{
+		} else {
+			return this.webHttp.get('details.php?id=' + torrent.id).then(data => {
 				// console.log(data);
 				torrent.loadDetail(data, this.webHttp);
 				return torrent;
@@ -132,8 +153,8 @@ export class TorrentData {
 		}
 	}
 
-	loadTorrentComments(torrent:Torrent){
-		return this.webHttp.get('detail_comment.php?id='+torrent.id).then(data=>{
+	loadTorrentComments(torrent: Torrent) {
+		return this.webHttp.get('detail_comment.php?id=' + torrent.id).then(data => {
 			torrent.loadComments(data, this.webHttp);
 			return torrent;
 		})

@@ -83,7 +83,6 @@ export class TorrentListPage {
 
 		return this.torrentData.loadTorrentPage(force).then(data => {
 			this.torrents = data;
-			console.log(data);
 			return data;
 		});
 
@@ -131,25 +130,25 @@ export class TorrentListPage {
 
 	presentDetailPage(torrent: Torrent) {
 
-		this.showLoading();
+		// this.showLoading();
 
-		this.torrentData.loadTorrentDatail(torrent).then(data => {
-			this.hideLoading();
-			let modal = this.modalCtrl.create(TorrentDetailPage, data);
+		// this.torrentData.loadTorrentDatail(torrent).then(data => {
+			// this.hideLoading();
+			let modal = this.modalCtrl.create(TorrentDetailPage, {torrent:torrent,load:'detail'});
 			modal.present();
-		});;
+		// });;
 
 	}
 
 	presentCommentPage(torrent: Torrent) {
 
-		this.showLoading();
+		// this.showLoading();
 
-		this.torrentData.loadTorrentComments(torrent).then(data => {
-			this.hideLoading();
-			let modal = this.modalCtrl.create(TorrentDetailPage, data);
+		// this.torrentData.loadTorrentComments(torrent).then(data => {
+			// this.hideLoading();
+			let modal = this.modalCtrl.create(TorrentDetailPage, {torrent:torrent,load:'comments'});
 			modal.present();
-		});;
+		// });;
 
 	}
 
@@ -162,6 +161,18 @@ export class TorrentListPage {
 			refresher.complete();
 		})
 
+
+	}
+
+	doInfinite(infiniteScroll) {
+
+		this.torrentData.loadTorrentPage(true,{next:true}).then(data=>{
+			if(data){
+				infiniteScroll.complete();
+			}else{
+				infiniteScroll.enable(false);
+			}
+		});
 
 	}
 

@@ -47,7 +47,7 @@ export class Torrent {
 
     fileName: string;
 
- 
+
 
     constructor(data: any) {
         if (data) {
@@ -67,8 +67,8 @@ export class Torrent {
                     this.isTop = true;
                 }
                 else if (child.tagName == 'b' && child.children && child.children.length) {
-                    child.children.forEach(item=>{
-                        if(item.class==='hot')
+                    child.children.forEach(item => {
+                        if (item.class === 'hot')
                             this.isHot = true;
                     });
                     // this.isHot = true;
@@ -193,7 +193,7 @@ export class Torrent {
                     else {
                         if (item.tagName == 'text' && item.value && item.value.trim()) {
                             // console.log('value', item.value);
-                            this.basicInfos[this.basicInfos.length-1].value = item.value.trim();
+                            this.basicInfos[this.basicInfos.length - 1].value = item.value.trim();
                             nextTitle = true;
                         }
                     }
@@ -204,39 +204,39 @@ export class Torrent {
 
 
             this.descriptions = [];
-            let desciption = webHttp.fintElement(data, item=>{
-                return item.tagName==='div' && item.id==='kdescr';
+            let desciption = webHttp.fintElement(data, item => {
+                return item.tagName === 'div' && item.id === 'kdescr';
             });
-            if(desciption){
+            if (desciption) {
                 // console.log(desciption);
-                desciption.children.forEach(item=>{
-                    if(item.tagName === 'text'){
-                        this.descriptions.push({text:item.value});
-                    }else if(item.tagName === 'br'){
+                desciption.children.forEach(item => {
+                    if (item.tagName === 'text') {
+                        this.descriptions.push({ text: item.value });
+                    } else if (item.tagName === 'br') {
                         //do nothing   
                     }
-                    else if(item.tagName === 'img'){
-                        this.descriptions.push({img:item.src});
+                    else if (item.tagName === 'img') {
+                        this.descriptions.push({ img: item.src });
                     }
 
-                    else if(item.tagName === 'a'){
-                        this.descriptions.push({link:item.href});
+                    else if (item.tagName === 'a') {
+                        this.descriptions.push({ link: item.href });
                     }
 
-                    else if(item.tagName === 'fieldset'){
+                    else if (item.tagName === 'fieldset') {
 
                     }
-                    
-                    else{
+
+                    else {
                         console.log(item);
                     }
-                });              
+                });
             }
 
-            let downloadLink = webHttp.fintElement(data, item=>{
-                return item.tagName==='a' && !item.title && item.href===this.url;
+            let downloadLink = webHttp.fintElement(data, item => {
+                return item.tagName === 'a' && !item.title && item.href === this.url;
             })
-            if(downloadLink){
+            if (downloadLink) {
                 // console.log(downloadLink);
                 this.fileName = downloadLink.text;
             }
@@ -246,35 +246,47 @@ export class Torrent {
             // console.log(this);
         }
 
-        this.fullUrl = webHttp.host+this.url;
+        this.fullUrl = webHttp.host + this.url;
 
     }
 
-    loadComments(data:any, webHttp:WebHttp){
+    loadComments(data: any, webHttp: WebHttp) {
         this.comments = [];
-        if(data){
+        if (data) {
             // console.log(data);
-            let div = webHttp.fintElement(data, item=>{
-                return item.tagName==='div' && item.id==='hiddencomment';
+            let div = webHttp.fintElement(data, item => {
+                return item.tagName === 'div' && item.id === 'hiddencomment';
             });
             // console.log(div);
-            if(div && div.children && div.children.length){
-                div.children.forEach(item=>{
+            if (div && div.children && div.children.length) {
+                div.children.forEach(item => {
                     this.comments.push(new Comment(item));
                 });
             }
         }
     }
 
-    getFileName():string{
-        if(this.fileName)
+    getFileName(): string {
+        if (this.fileName)
             return this.fileName
-        return '[PT]['+this.typeLabel+']'+this.id+'.torrent';
+        return '[PT][' + this.typeLabel + ']' + this.id + '.torrent';
     }
 }
 
 export class TorrentList {
+
+    /**
+     * store the torrent list
+     */
     list: Torrent[];
+
+    /**
+     * the max page this list covers, start from 0
+     */
+    page: number;
+
+    keyword: string = '';
+
 
     constructor(listData?: any) {
         this.list = [];
@@ -286,6 +298,7 @@ export class TorrentList {
                 this.list.push(torrent);
             }
         }
+        this.page = 0;
     }
 
     sortByRules(hot: boolean, top: boolean) {
@@ -318,19 +331,68 @@ export class TorrentList {
 
         })
     }
+
+
 }
 
-export class Comment{
+export class Comment {
     id: string;
     userId: string;
     userName: string;
-    content: string;
+    userClass: string;
+    userAvatar: string;
+    contents: { content: string, quote: number , type:string}[];
     date: string;
 
-    constructor(data?:any){
-        if(data){
-            console.log(data);
-            this.date = data.children["0"].children[7].value;
+    constructor(data?: any) {
+        if (data) {
+            // console.log(data);
+
+            let header = data.children["0"];
+            header.children.forEach(item => {
+                if (item.tagName == 'span' && item.class == 'nobr') {
+                    //name
+                    this.userName = item.children["0"].children["0"].children["0"].value;
+                    this.userClass = item.children["0"].class;
+                    this.userId = item.children["0"].href.substring(item.children["0"].href.indexOf('id=') + 3);
+                }
+            })
+            this.date = header.children[header.children.length - 1].value;
+
+            this.userAvatar = data.children[1].children["0"].children["0"].children["0"].src;
+
+            if(!this.userAvatar.startsWith('http')){
+                this.userAvatar = this.userAvatar.replace('pic/','assets/avatar/');
+            }
+
+
+            let contents = data.children[1].children["0"].children[1].children["0"].children["0"].children["0"];
+            // console.log(contents);
+
+            this.contents = this.getCommentContents(contents.children, 0);
         }
+
+
+
+        // console.log(this);
+    }
+
+    getCommentContents(children: [any], quote: number):{ content: string, quote: number,type:string }[] {
+
+        let comments:{ content: string, quote: number,type:string }[] = new Array<{ content: string, quote: number,type:string }>();
+        children.forEach(item=>{
+            if(item.tagName==='text'){
+                comments.push({content: item.value.replace(/\r|\n/g,''), quote: quote,type:'text'});
+            }
+            else if(item.tagName==='fieldset'){
+                let insideComments = this.getCommentContents(item.children, quote+1);
+                insideComments.forEach(comment=>comments.push(comment));
+            }
+            else if(item.tagName == 'legend'){
+                comments.push({content: item.text, quote:quote, type:'legend'});
+            }
+        });
+
+        return comments;
     }
 }

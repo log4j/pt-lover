@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
+import { UserData } from '../../providers/user-data';
+
+import { QuestionSet } from '../../models/question';
+
 /*
   Generated class for the Faq page.
 
@@ -13,16 +17,25 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class FaqPage {
 
+  questions: QuestionSet;
+
   constructor(
-    public navCtrl: NavController, 
-  public navParams: NavParams,
-  public viewCtrl: ViewController) {}
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public userData: UserData
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FaqPage');
+
+    this.userData.loadQuestions().then(data => {
+      console.log(data)
+      this.questions = data;
+    });
   }
 
-  dismiss(){
+  dismiss() {
     this.viewCtrl.dismiss();
   }
 }

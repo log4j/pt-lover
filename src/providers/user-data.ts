@@ -8,6 +8,7 @@ import { WebHttp } from './web-http';
 import { User } from '../models/user';
 import { NoticeList } from '../models/notice';
 import { MessageList } from '../models/message';
+import { QuestionSet } from '../models/question';
 
 /*
   Generated class for the UserData provider.
@@ -86,15 +87,15 @@ export class UserData {
 		})
 	};
 
-	shout(text:string,userId?:string){
+	shout(text: string, userId?: string) {
 		let body = {
-			'shbox_text':(userId?('[reply:'+userId+']:'):'')+ text,
+			'shbox_text': (userId ? ('[reply:' + userId + ']:') : '') + text,
 			'shout': '我喊',
 			'action': 'add'
 		};
 
 		// if(userId){
-			// body.shbox_text = +text;
+		// body.shbox_text = +text;
 		// }
 		return this.webHttp.post('shoutboxnew.php', body).then(data => {
 
@@ -146,7 +147,7 @@ export class UserData {
 			return new Promise<{ user: User, notices: NoticeList }>(resolve => resolve({ user: this.user, notices: this.noticeList }));
 		} else {
 			// return this.webHttp.get('http://pt.test/index.php').then(data => {
-				return this.webHttp.get('index.php').then(data => {
+			return this.webHttp.get('index.php').then(data => {
 				if (data) {
 					//already in
 					return this.parseIndexPage(data);
@@ -165,25 +166,35 @@ export class UserData {
 
 	loadMessages(): Promise<MessageList> {
 
-			let mid = '0';
-			if(this.messageList && this.messageList.messages.length>0){
-				mid = this.messageList.messages[0].id;
+		let mid = '0';
+		if (this.messageList && this.messageList.messages.length > 0) {
+			mid = this.messageList.messages[0].id;
+		}
+
+		return this.webHttp.getJson('shoutboxnew.php?action=show&mid=' + mid).then(data => {
+			// return this.webHttp.getJson('assets/data/pages/shoutboxnew.json').then(data=>{
+			// console.log(data);
+			let list = new MessageList(data);
+			if (this.messageList) {
+				//append to front
+				list.append(this.messageList.messages);
 			}
 
-			return this.webHttp.getJson('shoutboxnew.php?action=show&mid='+mid).then(data => {
-				// return this.webHttp.getJson('assets/data/pages/shoutboxnew.json').then(data=>{
-				// console.log(data);
-				let list = new MessageList(data);
-				if(this.messageList){
-					//append to front
-					list.append(this.messageList.messages);
-				}
+			this.messageList = list;
 
-				this.messageList = list;
-				
-				return this.messageList;
-			})
-		}
-	
+			return this.messageList;
+		})
+	}
+
+	loadQuestions(): Promise<QuestionSet> {
+
+		return this.webHttp.get('faq.php').then(data=>{
+			let questionSet = new QuestionSet(data);
+
+			return questionSet;
+		});
+
+	}
+
 
 }

@@ -21,6 +21,8 @@ declare var LocalFileSystem: any;
 })
 export class TorrentDetailPage {
 	torrent: Torrent;
+	isLoadingComment: boolean = false;
+	isLoadingDetail: boolean = false;
 
 	constructor(
 		public navCtrl: NavController,
@@ -31,13 +33,19 @@ export class TorrentDetailPage {
 		public toastCtrl: ToastController
 	) {
 
-		this.torrent = this.navParams.data;
+		this.torrent = this.navParams.data.torrent;
+
+		if(this.navParams.data.load==='detail'){
+			this.loadDetail();
+		}
+		else if(this.navParams.data.load==='comments'){
+			this.loadComments();
+		}
 
 
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad TorrentDetailPage');
 	}
 
 
@@ -45,6 +53,20 @@ export class TorrentDetailPage {
 		// using the injected ViewController this page
 		// can "dismiss" itself and pass back data
 		this.viewCtrl.dismiss(data);
+	}
+
+	loadComments() {
+		this.isLoadingComment = true;
+		this.torrentData.loadTorrentComments(this.torrent).then(data => {
+			this.isLoadingComment = false;
+		});;
+	}
+
+	loadDetail(){
+		this.isLoadingDetail = true;
+		this.torrentData.loadTorrentDatail(this.torrent).then(data => {
+			this.isLoadingDetail = false;
+		});;
 	}
 
 	download() {

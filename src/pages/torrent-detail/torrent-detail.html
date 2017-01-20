@@ -24,7 +24,7 @@
 
   <ion-title class="multple-line">{{torrent.name}}</ion-title>
 
-  <ion-list>
+  <ion-list *ngIf='torrent.basicInfos && torrent.basicInfos.length'>
     <ion-list-header>
       基本信息
     </ion-list-header>
@@ -34,24 +34,56 @@
     </ion-item>
   </ion-list>
 
-  <ion-list>
+  <ion-list *ngIf='torrent.descriptions && torrent.descriptions.length'>
     <ion-list-header>
       简介
     </ion-list-header>
     <ion-item class="torrent-descriptions">
       <!--<div >-->
-        <div *ngFor='let item of torrent.descriptions'>
-          {{item.text}}
-          <img *ngIf='item.img' [attr.src]='item.img'/>
-          <a *ngIf='item.link' [attr.href]='item.link'>{{item.link}}</a>
-        </div>
-        <!--<ion-label *ngIf='item.img'><img [attr.src]='item.img'/></ion-label>-->
+      <div *ngFor='let item of torrent.descriptions'>
+        {{item.text}}
+        <img *ngIf='item.img' [attr.src]='item.img' />
+        <a *ngIf='item.link' [attr.href]='item.link'>{{item.link}}</a>
+      </div>
+      <!--<ion-label *ngIf='item.img'><img [attr.src]='item.img'/></ion-label>-->
       <!--</div>-->
     </ion-item>
   </ion-list>
 
-  <ion-fab right bottom >
-		<a ion-fab color="pink" [attr.href]='torrent.fullUrl'><ion-icon name="download"></ion-icon></a>
-	</ion-fab>
+  <ion-list  *ngIf='!torrent.basicInfos || torrent.basicInfos.length==0'>
+    <ion-item text-center>
+      <button ion-button block (click)="loadDetail()" *ngIf="!isLoadingDetail">加载简介</button>
+      <ion-spinner *ngIf="isLoadingDetail"></ion-spinner>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf='torrent.comments' class="comments-list">
+    <ion-list-header>
+      评论
+    </ion-list-header>
+    <ion-item *ngFor='let comment of torrent.comments'>
+      <ion-avatar item-left>
+        <img [attr.src]='comment.userAvatar'>
+      </ion-avatar>
+      <h2 [ngClass]='comment.userClass'><b>{{comment.userName}}</b><ion-note>{{comment.date}}</ion-note></h2>
+      <p *ngFor='let p of comment.contents' [ngClass]='"comment-"+p.type+" quote-"+p.quote'>{{p.content}}</p>
+    </ion-item>
+    <ion-item *ngIf="torrent.comments.length==0">
+      暂无评论
+    </ion-item>
+  </ion-list>
+
+  <ion-list  *ngIf='!torrent.comments'>
+    <ion-item text-center>
+      <button ion-button block (click)="loadComments()" *ngIf="!isLoadingComment">加载评论({{torrent.commentsNumber}}条)</button>
+      <ion-spinner *ngIf="isLoadingComment"></ion-spinner>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <a ion-fab color="pink" [attr.href]='torrent.fullUrl'>
+      <ion-icon name="download"></ion-icon>
+    </a>
+  </ion-fab>
 
 </ion-content>
