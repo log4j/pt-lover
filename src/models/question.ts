@@ -20,6 +20,9 @@ export class QuestionSet{
 
 
     constructor(data?:any){
-        let questions:Question[] = this.map['data'];
+        // let questions:Question[] = this.map['data'];
+
+        console.log(data);
+
     }
 }
