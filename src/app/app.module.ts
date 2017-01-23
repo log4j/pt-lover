@@ -15,7 +15,7 @@ import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
 import { TorrentDetailPage } from '../pages/torrent-detail/torrent-detail';
 import { FaqPage } from '../pages/faq/faq';
 import { AboutPage } from '../pages/about/about';
-
+import { FaqDetailPage } from '../pages/faq-detail/faq-detail';
 
 import { TorrentData } from '../providers/torrent-data';
 import { UserData } from '../providers/user-data';
@@ -34,7 +34,8 @@ import { WebHttp } from '../providers/web-http';
     TorrentFilterPage,
     TorrentDetailPage,
     FaqPage,
-    AboutPage
+    AboutPage,
+    FaqDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -52,7 +53,8 @@ import { WebHttp } from '../providers/web-http';
     TorrentFilterPage,
     TorrentDetailPage,
     FaqPage,
-    AboutPage
+    AboutPage,
+    FaqDetailPage
   ],
   providers: [
     Storage, 

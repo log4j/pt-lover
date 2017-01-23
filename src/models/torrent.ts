@@ -395,4 +395,14 @@ export class Comment {
 
         return comments;
     }
+
+    getQuoteString():string{
+        let result = '';
+        this.contents.forEach(item=>{
+            if(item.quote==0 && item.type==='text'){
+                result+=item.content+'\n';
+            }
+        })
+        return result;
+    }
 }

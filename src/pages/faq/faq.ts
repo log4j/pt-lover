@@ -5,6 +5,8 @@ import { UserData } from '../../providers/user-data';
 
 import { QuestionSet } from '../../models/question';
 
+import { FaqDetailPage } from '../faq-detail/faq-detail';
+
 /*
   Generated class for the Faq page.
 
@@ -32,10 +34,29 @@ export class FaqPage {
     this.userData.loadQuestions().then(data => {
       console.log(data)
       this.questions = data;
+      this.doFilter(null);
+    });
+  }
+
+  viewMoreDetail(title:string){
+    this.navCtrl.push(FaqDetailPage, {
+      title: title,
+      questions:this.questions.map.get(title)
     });
   }
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  searchKeyword(event:any){
+    this.doFilter(event.target.value);
+  }
+
+  doFilter(value){
+    if(value){
+
+    }
+    this.questions.searchByKeyword(value);
   }
 }

@@ -62,7 +62,7 @@
       评论
     </ion-list-header>
     <ion-item *ngFor='let comment of torrent.comments'>
-      <ion-avatar item-left>
+      <ion-avatar item-left *ngIf='showAvatar'>
         <img [attr.src]='comment.userAvatar'>
       </ion-avatar>
       <h2 [ngClass]='comment.userClass'><b>{{comment.userName}}</b><ion-note>{{comment.date}}</ion-note></h2>
@@ -81,9 +81,16 @@
   </ion-list>
 
   <ion-fab right bottom>
-    <a ion-fab color="pink" [attr.href]='torrent.fullUrl'>
-      <ion-icon name="download"></ion-icon>
-    </a>
+    <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <a ion-fab color="pink" [attr.href]='torrent.fullUrl'>
+        <ion-icon name="download"></ion-icon>
+      </a>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab color="secondary" (click)='postComment()'><ion-icon name="chatbubbles"></ion-icon></button>
+    </ion-fab-list>
+    
   </ion-fab>
 
 </ion-content>

@@ -21,6 +21,8 @@ export class TorrentFilterPage {
 
   enableTop:boolean = true;
   enableHot:boolean = true;
+  showAvatar:boolean = true;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -32,6 +34,7 @@ export class TorrentFilterPage {
 
     this.enableHot = this.torrentData.enableHot;
     this.enableTop = this.torrentData.enableTop;
+    this.showAvatar = this.torrentData.showAvatar;
   }
 
   resetFilters(){
@@ -40,12 +43,14 @@ export class TorrentFilterPage {
     })
     this.enableHot = true;
     this.enableTop = true;
+    this.showAvatar = true;
   }
 
   applyFilters() {
     this.viewCtrl.dismiss({
       enableHot: this.enableHot,
-      enableTop: this.enableTop
+      enableTop: this.enableTop,
+      showAvatar: this.showAvatar
     });
   }
 

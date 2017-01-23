@@ -49,11 +49,9 @@ export class User {
 
 
             let bonus = data.children["0"].children[1].children;
-            console.log(bonus);
             
             bonus.forEach(item=>{
                 if (item.children && item.children.length && item.children[0].href=='/mybonus.php'){
-                    console.log(item);
                     let value = item.children["0"].text;
                     this.bonus = parseInt(
                         value.substring(value.indexOf('(')+1, value.indexOf(')')));

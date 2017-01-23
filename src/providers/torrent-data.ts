@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 
 // import * as Parser from "htmlparser2";
 
-import { Torrent, TorrentList } from '../models/torrent';
+import { Comment,Torrent, TorrentList } from '../models/torrent';
 
 import { WebHttp } from './web-http';
 
@@ -29,9 +29,11 @@ export class TorrentData {
 
 	SETTING_ENABLE_HOT = 'SETTING_ENABLE_HOT';
 	SETTING_ENABLE_TOP = 'SETTING_ENABLE_TOP';
+	SETTING_SHOW_AVATAR = 'SETTING_SHOW_AVATAR';
 
 	enableHot: boolean = true;
 	enableTop: boolean = true;
+	showAvatar: boolean = true;
 
 	constructor(
 		public http: Http,
@@ -66,16 +68,31 @@ export class TorrentData {
 			}
 		});
 
+		this.storage.get(this.SETTING_SHOW_AVATAR).then(value => {
+			if (value != undefined) {
+				this.showAvatar = value;
+			}
+		});
+
 	}
 
 	saveSettingFromStorage() {
 		this.storage.set(this.SETTING_ENABLE_HOT, this.enableHot);
 		this.storage.set(this.SETTING_ENABLE_TOP, this.enableTop);
+		this.storage.set(this.SETTING_SHOW_AVATAR, this.showAvatar);
 	}
 
-	saveFilterData(enableHot: boolean, enableTop: boolean) {
-		this.enableHot = enableHot;
-		this.enableTop = enableTop;
+	saveFilterData(options: any) {
+
+		if (options.enableHot != undefined)
+			this.enableHot = options.enableHot;
+
+		if (options.enableTop != undefined)
+			this.enableTop = options.enableTop;
+
+		if (options.showAvatar != undefined)
+			this.showAvatar = options.showAvatar;
+		// this.enableTop = enableTop;
 		this.saveSettingFromStorage();
 	}
 
@@ -124,10 +141,10 @@ export class TorrentData {
 
 
 				//determin when to append!!: only when options.next
-				if(this.torrentList && options && options.next){
-					torrent.list.forEach(item=>this.torrentList.list.push(item));
+				if (this.torrentList && options && options.next) {
+					torrent.list.forEach(item => this.torrentList.list.push(item));
 					this.torrentList.page++;
-				}else{
+				} else {
 					torrent.page = 0;
 					torrent.keyword = keyword;
 					this.torrentList = torrent;
@@ -164,6 +181,26 @@ export class TorrentData {
 
 	}
 
+
+	postTorrentComment(data:{torrent:string,message:string,quote?:Comment}){
+		let body = {
+			'pid': data.torrent,
+			'color': '0',
+			'font': '0',
+			'size':'0',
+			'body': (data.quote ? ('[quote=' + data.quote.userName + ']:') : '') + data.quote.getQuoteString(),
+		};
+
+		
+
+		// if(userId){
+		// body.shbox_text = +text;
+		// }
+		return this.webHttp.post('comment.php?action=add&type=torrent', body).then(data => {
+			console.log(data);
+			return data;
+		})
+	}
 
 
 }

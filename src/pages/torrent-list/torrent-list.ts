@@ -118,11 +118,11 @@ export class TorrentListPage {
 
 		modal.onWillDismiss((data: any) => {
 			if (data) {
-				console.log(data);
+				// console.log(data);
 				// this.torrentData.enableHot = data.enableHot;
 				// this.torrentData.enableTop = data.enableTop;
 				this.torrents.sortByRules(data.enableHot, data.enableTop);
-				this.torrentData.saveFilterData(data.enableHot, data.enableTop)
+				this.torrentData.saveFilterData(data);
 			}
 		});
 

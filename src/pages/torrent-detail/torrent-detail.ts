@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { WebHttp } from '../../providers/web-http';
-import { Torrent, TorrentList } from '../../models/torrent';
+import { Comment, Torrent, TorrentList } from '../../models/torrent';
 import { FileOpener } from 'ionic-native';
 
 
@@ -24,13 +24,16 @@ export class TorrentDetailPage {
 	isLoadingComment: boolean = false;
 	isLoadingDetail: boolean = false;
 
+	showAvatar:boolean = true;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
 		public torrentData: TorrentData,
 		public webHttp: WebHttp,
-		public toastCtrl: ToastController
+		public toastCtrl: ToastController,
+		public alertCtrl: AlertController
 	) {
 
 		this.torrent = this.navParams.data.torrent;
@@ -42,6 +45,7 @@ export class TorrentDetailPage {
 			this.loadComments();
 		}
 
+		this.showAvatar = this.torrentData.showAvatar;
 
 	}
 
@@ -67,6 +71,43 @@ export class TorrentDetailPage {
 		this.torrentData.loadTorrentDatail(this.torrent).then(data => {
 			this.isLoadingDetail = false;
 		});;
+	}
+
+	postComment(relpy?:Comment){
+		let prompt = this.alertCtrl.create({
+			title: 'Message',
+			message: "",
+			inputs: [
+				{
+					name: 'message',
+					placeholder: '添加评论'
+				},
+			],
+			buttons: [
+				{
+					text: 'Cancel',
+					handler: data => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: 'Send',
+					handler: data => {
+						console.log('Saved clicked',data);
+
+						// this.showLoading();
+						// this.userData.shout(data.message,message?message.userId:null).then(res=>{
+						// 	console.log(res);
+						// 	this.loadChatData().then(loadData=>{
+						// 		this.hideLoading()
+						// 	});
+						// })
+
+					}
+				}
+			]
+		});
+		prompt.present();
 	}
 
 	download() {

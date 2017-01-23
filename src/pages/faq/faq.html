@@ -12,10 +12,16 @@
       <button ion-button (click)="dismiss()" color="primary">返回</button>
     </ion-buttons>
   </ion-navbar>
-
+<ion-searchbar (ionInput)="searchKeyword($event)" placeholder='搜索'></ion-searchbar>
 </ion-header>
 
 
 <ion-content padding>
+<ion-list *ngIf='questions'>
+  <button ion-item *ngFor="let group of questions.titles" (click)='viewMoreDetail(group)' [hidden]='!questions.titleVisible.get(group)' >
+    {{ group }} 
+  </button>  
+</ion-list>
+
 
 </ion-content>

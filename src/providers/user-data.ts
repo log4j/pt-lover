@@ -189,8 +189,8 @@ export class UserData {
 	loadQuestions(): Promise<QuestionSet> {
 
 		return this.webHttp.get('faq.php').then(data=>{
-			let questionSet = new QuestionSet(data);
-
+			let questionSet = new QuestionSet();
+			questionSet.updateQuestions(data,this.webHttp);
 			return questionSet;
 		});
 
