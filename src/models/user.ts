@@ -18,6 +18,7 @@ export class User {
     logOutLink: string;
 
     constructor(data?:any){
+        // console.log(data);
         if(data && data.tagName=='table'){
             this.name = data.children["0"].children["0"].children["0"].children["0"].children["0"].children["0"].text;
             this.url = data.children["0"].children["0"].children["0"].children["0"].children["0"].href;
@@ -45,6 +46,21 @@ export class User {
             if(titles.length){
                 this.logOutLink = titles[titles.length-1].children[0].href;
             }
+
+
+            let bonus = data.children["0"].children[1].children;
+            console.log(bonus);
+            
+            bonus.forEach(item=>{
+                if (item.children && item.children.length && item.children[0].href=='/mybonus.php'){
+                    console.log(item);
+                    let value = item.children["0"].text;
+                    this.bonus = parseInt(
+                        value.substring(value.indexOf('(')+1, value.indexOf(')')));
+                    // console.log(value, value.substring(value.indexOf('(')+1, value.length-1), this.bonus);
+                }
+            });
+
 
         }
     }

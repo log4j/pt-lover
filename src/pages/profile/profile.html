@@ -19,38 +19,45 @@
 <ion-content padding>
 	<ion-list *ngIf='user'>
 		<ion-item>
-			<ion-icon name="leaf" item-left></ion-icon>
+			<ion-icon name="contact" item-left></ion-icon>
 			昵称
 			<ion-note item-right>
 				{{user.name}}
 			</ion-note>
 		</ion-item>
 		<ion-item>
-			<ion-icon name="leaf" item-left></ion-icon>
+			<ion-icon name="timer" item-left></ion-icon>
 			等级
 			<ion-note item-right>
 				{{user.level}}
 			</ion-note>
 		</ion-item>
 		<ion-item>
-			<ion-icon name="leaf" item-left></ion-icon>
+			<ion-icon name="cloud-upload" item-left></ion-icon>
 			上传
 			<ion-note item-right>
 				{{user.uploaded}}
 			</ion-note>
 		</ion-item>
 		<ion-item>
-			<ion-icon name="leaf" item-left></ion-icon>
+			<ion-icon name="cloud-download" item-left></ion-icon>
 			下载
 			<ion-note item-right>
 				{{user.downloaded}}
 			</ion-note>
 		</ion-item>
 		<ion-item>
-			<ion-icon name="leaf" item-left></ion-icon>
+			<ion-icon name="stats" item-left></ion-icon>
 			分享率
 			<ion-note item-right>
 				{{user.shareRate}}
+			</ion-note>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="flame" item-left></ion-icon>
+			魔力值
+			<ion-note item-right>
+				{{user.bonus}}
 			</ion-note>
 		</ion-item>
 	</ion-list>

@@ -40,8 +40,8 @@ export class MyApp {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ title: '葡萄', component: TabsPage, index: 0, icon: 'calendar' },
-		{ title: '资源', component: TabsPage, index: 1, icon: 'contacts' },
-		{ title: '我', component: TabsPage, index: 2, icon: 'map' }
+		{ title: '资源', component: TabsPage, index: 1, icon: 'keypad' },
+		{ title: '我', component: TabsPage, index: 2, icon: 'contact' }
 	];
 	loggedInPages: PageInterface[] = [
 		// { title: 'Account', component: AccountPage, icon: 'person' },
