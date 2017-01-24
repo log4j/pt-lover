@@ -26,6 +26,12 @@ export class UserData {
 	noticeList: NoticeList;
 	messageList: MessageList;
 
+	questionSet: QuestionSet;
+
+	checkcode: string = '';
+	checkcodeNeeded: boolean = true;
+	checkcodeUrl: string = '';
+
 	constructor(
 		public events: Events,
 		public storage: Storage,
@@ -54,18 +60,78 @@ export class UserData {
 	// 	this.events.publish('user:login');
 	// };
 
-	login(): any {
+	prepareLogin(): any {
+		return this.webHttp.get('login.php').then(data => {
+			console.log(data);
+			this.checkcodeNeeded = false;
+			this.checkcodeUrl = '';
+			this.checkcode = '';
+			let checkcode = this.webHttp.fintElement(data, item => {
+				return item.tagName === 'input' && item.name === 'checkcode';
+			});
+			console.log(checkcode);
+			if (checkcode.value) {
+				//already has value, no check needed
+				this.checkcode = checkcode.value;
+			} else {
+				//need checkcode!!!
+				let checkCodeImg = this.webHttp.fintElement(data, item => {
+					return item.tagName === 'img' && item.alt === '验证码';
+				});
+				console.log(checkCodeImg);
+				if (checkCodeImg) {
+					this.checkcodeUrl = this.webHttp.host + checkCodeImg.src;
+					this.checkcodeNeeded = true;
+				}
+			}
+
+			return {
+				checkcodeNeeded: this.checkcodeNeeded,
+				checkcodeUrl: this.checkcodeUrl,
+				checkcode: this.checkcode
+			}
+		});
+	}
+
+	login(username: string, password: string, checkcode?: string): any {
 		let body = {
-			'username': 'yangmang',
-			'password': 'mission',
-			'checkcode': 'XxXx'
+			'username': username,
+			'password': password,
+			'checkcode': this.checkcode
+		}
+
+		if (checkcode) {
+			body.checkcode = checkcode;
 		}
 
 		let url = 'takelogin.php';
 		// let url = 'http://localhost:8080/https://pt.sjtu.edu.cn/takelogin.php';
 
 		return this.webHttp.post(url, body).then(data => {
-			return this.parseIndexPage(data);
+			console.log(data);
+			let errorWord = this.webHttp.fintElement(data, item => {
+				return item.text === '登录失败！';
+			})
+			console.log(errorWord);
+
+
+			if (errorWord && errorWord.tagName) {
+
+				let checkcodeError = this.webHttp.fintElement(data, item => {
+					return item.tagName === 'td' && item.text && item.text.indexOf('请输入正确的验证码') >= 0
+				});
+				console.log(checkcodeError);
+				if (checkcodeError && checkcodeError.tagName) {
+					return { user: null, error: '请输入正确的验证码!' };
+				} else {
+					return { user: null, error: '用户名或密码不正确!或者你还没有通过验证!' };
+				}
+
+			} else {
+				return this.parseIndexPage(data);
+			}
+
+
 		})
 	}
 
@@ -189,11 +255,18 @@ export class UserData {
 
 	loadQuestions(): Promise<QuestionSet> {
 
-		return this.webHttp.get('faq.php').then(data=>{
-			let questionSet = new QuestionSet();
-			questionSet.updateQuestions(data,this.webHttp);
-			return questionSet;
-		});
+		if (this.questionSet) {
+			return new Promise<QuestionSet>(resolve => {
+				resolve(this.questionSet);
+			})
+		}
+		else
+			return this.webHttp.get('faq.php').then(data => {
+				let questionSet = new QuestionSet();
+				questionSet.updateQuestions(data, this.webHttp);
+				this.questionSet = questionSet;
+				return questionSet;
+			});
 
 	}
 

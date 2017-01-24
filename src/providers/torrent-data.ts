@@ -188,10 +188,10 @@ export class TorrentData {
 			'color': '0',
 			'font': '0',
 			'size':'0',
-			'body': (data.quote ? ('[quote=' + data.quote.userName + ']:') : '') + data.quote.getQuoteString(),
+			'body': ((data.quote ? ('[quote=' + data.quote.userName + ']'+ data.quote.getQuoteString()+'[/quote]\n') : ''))+data.message,
 		};
 
-		
+		console.log(body);
 
 		// if(userId){
 		// body.shbox_text = +text;

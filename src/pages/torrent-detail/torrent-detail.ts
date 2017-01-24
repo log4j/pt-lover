@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController,Loading } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { WebHttp } from '../../providers/web-http';
@@ -24,7 +24,9 @@ export class TorrentDetailPage {
 	isLoadingComment: boolean = false;
 	isLoadingDetail: boolean = false;
 
-	showAvatar:boolean = true;
+	showAvatar: boolean = true;
+
+	loader: Loading;
 
 	constructor(
 		public navCtrl: NavController,
@@ -33,15 +35,16 @@ export class TorrentDetailPage {
 		public torrentData: TorrentData,
 		public webHttp: WebHttp,
 		public toastCtrl: ToastController,
-		public alertCtrl: AlertController
+		public alertCtrl: AlertController,
+		public loadingCtrl: LoadingController
 	) {
 
 		this.torrent = this.navParams.data.torrent;
 
-		if(this.navParams.data.load==='detail'){
+		if (this.navParams.data.load === 'detail') {
 			this.loadDetail();
 		}
-		else if(this.navParams.data.load==='comments'){
+		else if (this.navParams.data.load === 'comments') {
 			this.loadComments();
 		}
 
@@ -59,25 +62,44 @@ export class TorrentDetailPage {
 		this.viewCtrl.dismiss(data);
 	}
 
+
+showLoading() {
+		this.loader = this.loadingCtrl.create({
+			content: "正在载入, 请稍等..."
+		});
+		this.loader.present();
+	}
+
+	hideLoading() {
+		if (this.loader) {
+			this.loader.dismiss();
+		}
+	}
+
 	loadComments() {
 		this.isLoadingComment = true;
-		this.torrentData.loadTorrentComments(this.torrent).then(data => {
+		return this.torrentData.loadTorrentComments(this.torrent).then(data => {
 			this.isLoadingComment = false;
+			return data;
 		});;
 	}
 
-	loadDetail(){
+	loadDetail() {
 		this.isLoadingDetail = true;
 		this.torrentData.loadTorrentDatail(this.torrent).then(data => {
 			this.isLoadingDetail = false;
 		});;
 	}
 
-	postComment(reply?:Comment){
+	postComment(reply?: Comment) {
 		console.log(reply);
+		let message = "";
+		if (reply) {
+			message = "引用" + reply.userName + "的评论:\"" + reply.getQuoteString() + "\"";
+		}
 		let prompt = this.alertCtrl.create({
-			title: 'Message',
-			message: reply?"引用"+reply.userName+"的评论":"",
+			title: '添加评论',
+			message: message,
 			inputs: [
 				{
 					name: 'message',
@@ -86,21 +108,35 @@ export class TorrentDetailPage {
 			],
 			buttons: [
 				{
-					text: 'Cancel',
+					text: '取消',
 					handler: data => {
 						console.log('Cancel clicked');
 					}
 				},
 				{
-					text: 'Send',
+					text: '评论',
 					handler: data => {
-						console.log('Saved clicked',data);
+						console.log('Saved clicked', data);
+						if (data && data.message) {
+							let body = {
+								torrent: this.torrent.id,
+								message: data.message,
+								quote: reply
+							}
+							this.showLoading();
+							this.torrentData.postTorrentComment(body).then(res=>{
+								this.loadComments().then(comms=>{
+									this.hideLoading()
+								});
+							});
+						}
 
-						// this.showLoading();
+
+						// 
 						// this.userData.shout(data.message,message?message.userId:null).then(res=>{
 						// 	console.log(res);
 						// 	this.loadChatData().then(loadData=>{
-						// 		this.hideLoading()
+						// 		
 						// 	});
 						// })
 

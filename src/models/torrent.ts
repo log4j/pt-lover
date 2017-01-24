@@ -264,6 +264,8 @@ export class Torrent {
                 });
             }
         }
+
+        this.comments = this.comments.reverse();
     }
 
     getFileName(): string {
@@ -380,6 +382,7 @@ export class Comment {
     getCommentContents(children: [any], quote: number):{ content: string, quote: number,type:string }[] {
 
         let comments:{ content: string, quote: number,type:string }[] = new Array<{ content: string, quote: number,type:string }>();
+        // console.log(children);
         children.forEach(item=>{
             if(item.tagName==='text'){
                 comments.push({content: item.value.replace(/\r|\n/g,''), quote: quote,type:'text'});
@@ -390,6 +393,12 @@ export class Comment {
             }
             else if(item.tagName == 'legend'){
                 comments.push({content: item.text, quote:quote, type:'legend'});
+            }
+            else if(item.tagName === 'img' && item.class==='smilies'){
+                comments.push({content: item.src.replace('pic/','assets/'), quote:quote, type:'smilies'});
+            }
+            else{
+                // console.log(item);
             }
         });
 

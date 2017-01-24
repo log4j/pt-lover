@@ -16,9 +16,9 @@ declare var cordova: any;
 export class WebHttp {
 
 
-	isLocal: boolean = true;
-	useProxy: boolean = false;
-	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://read.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+	isLocal: boolean = false;
+	useProxy: boolean = true;
+	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.test/' : 'https://pt.sjtu.edu.cn/');
 
 
 

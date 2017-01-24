@@ -164,7 +164,7 @@ export class HomePage {
 
 	showMessagePrompt(message?: Message) {
 		let prompt = this.alertCtrl.create({
-			title: 'Message',
+			title: '发送信息',
 			message: "",
 			inputs: [
 				{
@@ -174,13 +174,13 @@ export class HomePage {
 			],
 			buttons: [
 				{
-					text: 'Cancel',
+					text: '取消',
 					handler: data => {
 						console.log('Cancel clicked');
 					}
 				},
 				{
-					text: 'Send',
+					text: '发送',
 					handler: data => {
 						console.log('Saved clicked',data);
 

@@ -54,13 +54,15 @@
 
 
 		<ion-list *ngSwitchCase="'chat'" class="message-list">
-			<ion-item *ngFor="let message of messages" (click)="showMessagePrompt(message)">
+			<ion-item *ngFor="let message of messages" >
 				
 				<h2 [ngClass]='message.userClass'><b>{{message.name}}</b>
 					<img *ngIf='message.hasStar' src='assets/smilies/star.gif'>
 					<ion-note>{{message.date}}</ion-note>
 				</h2>
 				<p [innerHTML]="message.content"></p>
+
+				<ion-note style="float:right;"><button ion-button outline small (click)='showMessagePrompt(message)'>回复</button></ion-note>
 
 			</ion-item>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 
 import { UserData } from '../../providers/user-data';
 
@@ -25,23 +25,35 @@ export class FaqPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    public userData: UserData
+    public userData: UserData,
+    public loadingCtrl: LoadingController,
   ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FaqPage');
 
+
+
+  }
+
+  ngAfterViewInit() {
+    let loader = this.loadingCtrl.create({
+      content: "正在加载, 请稍等..."
+    });
+    loader.present();
+
     this.userData.loadQuestions().then(data => {
       console.log(data)
+      loader.dismiss();
       this.questions = data;
       this.doFilter(null);
     });
   }
 
-  viewMoreDetail(title:string){
+  viewMoreDetail(title: string) {
     this.navCtrl.push(FaqDetailPage, {
       title: title,
-      questions:this.questions.map.get(title)
+      questions: this.questions.map.get(title)
     });
   }
 
@@ -49,12 +61,12 @@ export class FaqPage {
     this.viewCtrl.dismiss();
   }
 
-  searchKeyword(event:any){
+  searchKeyword(event: any) {
     this.doFilter(event.target.value);
   }
 
-  doFilter(value){
-    if(value){
+  doFilter(value) {
+    if (value) {
 
     }
     this.questions.searchByKeyword(value);
