@@ -67,6 +67,7 @@
       </ion-avatar>
       <h2 [ngClass]='comment.userClass'><b>{{comment.userName}}</b><ion-note>{{comment.date}}</ion-note></h2>
       <p *ngFor='let p of comment.contents' [ngClass]='"comment-"+p.type+" quote-"+p.quote'>{{p.content}}</p>
+      <ion-note style="float:right;"><button ion-button outline small (click)='postComment(comment)'>引用</button></ion-note>
     </ion-item>
     <ion-item *ngIf="torrent.comments.length==0">
       暂无评论

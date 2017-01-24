@@ -73,10 +73,11 @@ export class TorrentDetailPage {
 		});;
 	}
 
-	postComment(relpy?:Comment){
+	postComment(reply?:Comment){
+		console.log(reply);
 		let prompt = this.alertCtrl.create({
 			title: 'Message',
-			message: "",
+			message: reply?"引用"+reply.userName+"的评论":"",
 			inputs: [
 				{
 					name: 'message',

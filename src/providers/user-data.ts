@@ -148,6 +148,7 @@ export class UserData {
 		} else {
 			// return this.webHttp.get('http://pt.test/index.php').then(data => {
 			return this.webHttp.get('index.php').then(data => {
+				console.log(data);
 				if (data) {
 					//already in
 					return this.parseIndexPage(data);
