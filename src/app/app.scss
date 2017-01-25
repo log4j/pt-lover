@@ -58,3 +58,10 @@
 ion-list-header.list-header-md{
     margin-bottom: 0px;
 }
+
+ion-alert {
+  z-index: 99998 !important;
+}
+ion-loading {
+  z-index: 99999 !important;
+}

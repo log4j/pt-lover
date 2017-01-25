@@ -17,8 +17,8 @@ export class WebHttp {
 
 
 	isLocal: boolean = false;
-	useProxy: boolean = false;
-	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.test/' : 'https://pt.sjtu.edu.cn/');
+	useProxy: boolean = true;
+	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://read.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 
@@ -139,7 +139,10 @@ export class WebHttp {
 			this.http.get(this.host + url, { withCredentials: true })
 				.subscribe(
 				response => this.parseHtml(response.text(), resolve),
-				error => resolve(null)
+				error => {
+					// alert(error);
+					resolve(null);
+				}
 				);
 		});
 
@@ -191,14 +194,14 @@ export class WebHttp {
 		});
 	};
 
-// Cordova
-	
+	// Cordova
 
-	download(url: string, name:string) {
-		
+
+	download(url: string, name: string) {
+
 		let fileTransfer = new Transfer();
 		// let url = 'http://www.example.com/file.pdf';
-		return fileTransfer.download(this.host +url, cordova.file.externalRootDirectory + 'Download/'+name);
+		return fileTransfer.download(this.host + url, cordova.file.externalRootDirectory + 'Download/' + name);
 	}
 
 

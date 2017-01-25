@@ -69,7 +69,7 @@ export class HomePage {
 
 			} else {
 				//show login modal
-				let modal = this.modalCtrl.create(LoginPage);
+				let modal = this.modalCtrl.create(LoginPage,{},{enableBackdropDismiss:true});
 				modal.onDidDismiss(data => {
 					if (data && data.user && data.notices) {
 						this.notices = data.notices.notices;

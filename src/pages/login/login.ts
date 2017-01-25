@@ -41,10 +41,20 @@ export class LoginPage {
 		loader.present();
 		this.userData.prepareLogin().then(data => {
 			loader.dismiss();
-			console.log(data);
-			this.checkcodeUrl = data.checkcodeUrl;
-			this.checkcodeNeeded = data.checkcodeNeeded;
-			this.checkcode = data.checkcode;
+
+			if (data) {
+				this.checkcodeUrl = data.checkcodeUrl;
+				this.checkcodeNeeded = data.checkcodeNeeded;
+				this.checkcode = data.checkcode;
+			} else {
+				let alert = this.alertCtrl.create({
+					title: '连接失败!',
+					subTitle: '无法连接葡萄服务器,请稍后再试...',
+					buttons: ['确定']
+				});
+				alert.present();
+			}
+
 		});
 	}
 

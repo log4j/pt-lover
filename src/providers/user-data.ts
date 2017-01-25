@@ -62,33 +62,35 @@ export class UserData {
 
 	prepareLogin(): any {
 		return this.webHttp.get('login.php').then(data => {
-			console.log(data);
-			this.checkcodeNeeded = false;
-			this.checkcodeUrl = '';
-			this.checkcode = '';
-			let checkcode = this.webHttp.fintElement(data, item => {
-				return item.tagName === 'input' && item.name === 'checkcode';
-			});
-			console.log(checkcode);
-			if (checkcode.value) {
-				//already has value, no check needed
-				this.checkcode = checkcode.value;
-			} else {
-				//need checkcode!!!
-				let checkCodeImg = this.webHttp.fintElement(data, item => {
-					return item.tagName === 'img' && item.alt === '验证码';
+			if (data) {
+				this.checkcodeNeeded = false;
+				this.checkcodeUrl = '';
+				this.checkcode = '';
+				let checkcode = this.webHttp.fintElement(data, item => {
+					return item.tagName === 'input' && item.name === 'checkcode';
 				});
-				console.log(checkCodeImg);
-				if (checkCodeImg) {
-					this.checkcodeUrl = this.webHttp.host + checkCodeImg.src;
-					this.checkcodeNeeded = true;
+				if (checkcode.value) {
+					//already has value, no check needed
+					this.checkcode = checkcode.value;
+				} else {
+					//need checkcode!!!
+					let checkCodeImg = this.webHttp.fintElement(data, item => {
+						return item.tagName === 'img' && item.alt === '验证码';
+					});
+					console.log(checkCodeImg);
+					if (checkCodeImg) {
+						this.checkcodeUrl = this.webHttp.host + checkCodeImg.src;
+						this.checkcodeNeeded = true;
+					}
 				}
-			}
 
-			return {
-				checkcodeNeeded: this.checkcodeNeeded,
-				checkcodeUrl: this.checkcodeUrl,
-				checkcode: this.checkcode
+				return {
+					checkcodeNeeded: this.checkcodeNeeded,
+					checkcodeUrl: this.checkcodeUrl,
+					checkcode: this.checkcode
+				}
+			} else {
+				return null;
 			}
 		});
 	}
@@ -108,28 +110,33 @@ export class UserData {
 		// let url = 'http://localhost:8080/https://pt.sjtu.edu.cn/takelogin.php';
 
 		return this.webHttp.post(url, body).then(data => {
-			console.log(data);
-			let errorWord = this.webHttp.fintElement(data, item => {
-				return item.text === '登录失败！';
-			})
-			console.log(errorWord);
+			// console.log(data);
+			if (data) {
+				let errorWord = this.webHttp.fintElement(data, item => {
+					return item.text === '登录失败！';
+				})
+				console.log(errorWord);
 
 
-			if (errorWord && errorWord.tagName) {
+				if (errorWord && errorWord.tagName) {
 
-				let checkcodeError = this.webHttp.fintElement(data, item => {
-					return item.tagName === 'td' && item.text && item.text.indexOf('请输入正确的验证码') >= 0
-				});
-				console.log(checkcodeError);
-				if (checkcodeError && checkcodeError.tagName) {
-					return { user: null, error: '请输入正确的验证码!' };
+					let checkcodeError = this.webHttp.fintElement(data, item => {
+						return item.tagName === 'td' && item.text && item.text.indexOf('请输入正确的验证码') >= 0
+					});
+					console.log(checkcodeError);
+					if (checkcodeError && checkcodeError.tagName) {
+						return { user: null, error: '请输入正确的验证码!' };
+					} else {
+						return { user: null, error: '用户名或密码不正确!或者你还没有通过验证!' };
+					}
+
 				} else {
-					return { user: null, error: '用户名或密码不正确!或者你还没有通过验证!' };
+					return this.parseIndexPage(data);
 				}
-
-			} else {
-				return this.parseIndexPage(data);
+			}else{
+				return { user: null, error: '无法连接到葡萄服务器,请稍后尝试...' };
 			}
+
 
 
 		})
@@ -189,7 +196,7 @@ export class UserData {
 
 	checkHasSeenTutorial() {
 		return this.storage.get(this.HAS_SEEN_TUTORIAL).then((value) => {
-			return value;
+			return true;
 		})
 	};
 

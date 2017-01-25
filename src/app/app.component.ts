@@ -67,16 +67,16 @@ export class MyApp {
 	) {
 
 		// Check if the user has already seen the tutorial
-		this.storage.get('hasSeenTutorial')
-			.then((hasSeenTutorial) => {
-				console.log(hasSeenTutorial);
-				if (hasSeenTutorial == true || hasSeenTutorial == 'true') {
-					this.rootPage = TabsPage;
-				} else {
-					this.rootPage = WelcomePage;
-				}
-				this.platformReady()
-			})
+		this.userData.checkHasSeenTutorial().then(hasSeenTutorial => {
+			console.log(hasSeenTutorial);
+			if (hasSeenTutorial) {
+				this.rootPage = TabsPage;
+			} else {
+				this.rootPage = WelcomePage;
+			}
+			this.platformReady()
+		});
+
 
 
 		this.enableMenu(false);
