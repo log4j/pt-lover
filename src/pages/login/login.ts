@@ -16,8 +16,8 @@ import { UserData } from '../../providers/user-data';
 })
 export class LoginPage {
 
-	username: string = 'yangmang';
-	password: string = 'mission';
+	username: string = '';
+	password: string = '';
 	checkcode: string = '';
 	checkcodeNeeded: boolean = false;
 	checkcodeUrl: string = '';
