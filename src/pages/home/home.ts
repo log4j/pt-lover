@@ -69,17 +69,19 @@ export class HomePage {
 
 			} else {
 				//show login modal
-				let modal = this.modalCtrl.create(LoginPage,{},{enableBackdropDismiss:true});
-				modal.onDidDismiss(data => {
-					if (data && data.user && data.notices) {
-						this.notices = data.notices.notices;
+				// let modal = this.modalCtrl.create(LoginPage,{},{enableBackdropDismiss:true});
+				// modal.onDidDismiss(data => {
+				// 	if (data && data.user && data.notices) {
+				// 		this.notices = data.notices.notices;
 
-						this.events.publish('user:login', data.user, Date.now());
+				// 		this.events.publish('user:login', data.user, Date.now());
 
-						this.loadChatData();
-					}
-				})
-				modal.present();
+				// 		this.loadChatData();
+				// 	}
+				// })
+				// modal.present();
+				
+				this.navCtrl.parent.parent.setRoot(LoginPage);
 			}
 
 			return data;

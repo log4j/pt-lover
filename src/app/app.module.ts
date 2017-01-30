@@ -17,8 +17,13 @@ import { FaqPage } from '../pages/faq/faq';
 import { AboutPage } from '../pages/about/about';
 import { FaqDetailPage } from '../pages/faq-detail/faq-detail';
 
+import { ForumListPage } from '../pages/forum-list/forum-list';
+import { ForumTopicListPage } from '../pages/forum-topic-list/forum-topic-list';
+import { ForumTopicPage } from '../pages/forum-topic/forum-topic';
+
 import { TorrentData } from '../providers/torrent-data';
 import { UserData } from '../providers/user-data';
+import { ForumData } from '../providers/forum-data';
 import { WebHttp } from '../providers/web-http';
 
 @NgModule({
@@ -35,7 +40,10 @@ import { WebHttp } from '../providers/web-http';
     TorrentDetailPage,
     FaqPage,
     AboutPage,
-    FaqDetailPage
+    FaqDetailPage,
+    ForumListPage,
+    ForumTopicListPage,
+    ForumTopicPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -54,7 +62,10 @@ import { WebHttp } from '../providers/web-http';
     TorrentDetailPage,
     FaqPage,
     AboutPage,
-    FaqDetailPage
+    FaqDetailPage,
+    ForumListPage,
+    ForumTopicListPage,
+    ForumTopicPage
   ],
   providers: [
     Storage, 
@@ -62,6 +73,7 @@ import { WebHttp } from '../providers/web-http';
     WebHttp, 
     TorrentData,
     UserData, 
+    ForumData,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

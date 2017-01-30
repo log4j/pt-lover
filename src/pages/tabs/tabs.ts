@@ -5,6 +5,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { TorrentListPage } from '../torrent-list/torrent-list';
 import { ProfilePage } from '../profile/profile';
+import { ForumListPage } from '../forum-list/forum-list';
 
 /*
   Generated class for the Tabs page.
@@ -22,12 +23,13 @@ export class TabsPage {
   tab1Root: any = HomePage;
   tab2Root: any = TorrentListPage;
   tab3Root: any = ProfilePage;
+  tab4Root: any = ForumListPage;
   mySelectedIndex: number;
 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.mySelectedIndex = navParams.data.tabIndex || 0;
+    this.mySelectedIndex = navParams.data.tabIndex || 3;
   }
 
   ionViewDidLoad() {
