@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { ForumData } from '../../providers/forum-data';
+import { ForumTopic } from '../../models/forum';
 /*
   Generated class for the ForumTopic page.
 
@@ -8,15 +10,29 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-forum-topic',
-  templateUrl: 'forum-topic.html'
+	selector: 'page-forum-topic',
+	templateUrl: 'forum-topic.html'
 })
 export class ForumTopicPage {
+	topic: ForumTopic;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public forumData: ForumData
+	) {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ForumTopicPage');
-  }
+		this.topic = this.navParams.data.topic;
+
+		forumData.loadForumTopicMessages(this.topic).then(data => {
+			console.log(data);
+			
+		})
+
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad ForumTopicPage');
+	}
 
 }

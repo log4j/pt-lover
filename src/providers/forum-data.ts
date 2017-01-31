@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import {Forum,ForumSection} from '../models/forum';
+import { ForumTopic, Forum, ForumSection } from '../models/forum';
 
 import { WebHttp } from './web-http';
 /*
@@ -32,19 +32,48 @@ export class ForumData {
 		});
 	}
 
-	loadForumTopicList(forum: Forum, option?: { next?: boolean }) : Promise<Forum>{
-		let fetchUrl = 'forums.php'+forum.url;
-		if(option && option.next){
-			fetchUrl+='&page='+(forum.page+1);
+	loadForumTopicList(forum: Forum, option?: { next?: boolean }): Promise<Forum> {
+		let fetchUrl = 'forums.php' + forum.url;
+		if (option && option.next) {
+			fetchUrl += '&page=' + (forum.page + 1);
 		}
-		return this.webHttp.get(fetchUrl).then(data=>{
+		return this.webHttp.get(fetchUrl).then(data => {
 			forum.loadTopicList(data, this.webHttp);
-			if(option && option.next){
-				forum.page ++;
-			}else{
+			if (option && option.next) {
+				forum.page++;
+			} else {
 				forum.page = 0;
 			}
 			return forum;
+		})
+	}
+
+	loadForumTopicMessages(topic: ForumTopic, option?: { next?: boolean, previous?: boolean, first?: boolean, last?: boolean }): Promise<ForumTopic> {
+		let fetchUrl = 'forums.php' + topic.url;
+		let page = topic.page;
+		if (option) {
+			if (option.next && page < topic.maxPage) {
+				page++;
+			}
+
+			else if (option.previous && page > 0) {
+				page--;
+			}
+
+			if (option.first) {
+				page = 0;
+			}
+
+			if (option.last) {
+				page = topic.maxPage;
+			}
+
+		}
+		fetchUrl+='&page='+page;
+		return this.webHttp.get(fetchUrl).then(data=>{
+			topic.loadMessages(data, this.webHttp);
+			topic.page = page;
+			return topic;
 		})
 	}
 

@@ -6,13 +6,43 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>ForumTopicList</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{forum.title}}</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
+	<ion-list *ngIf="isLoading">
+		<ion-item text-center>
+			<ion-spinner></ion-spinner>
+		</ion-item>
+	</ion-list>
+
+	<ion-list>
+		<button ion-item *ngFor='let p of forum.topics' (click)='openTopic(p)'>
+			<h2>{{p.topic}}</h2>
+			<p>
+				<ion-badge *ngIf="p.isTop">置顶</ion-badge>
+				<ion-badge *ngIf="p.isLocked">锁定</ion-badge>
+				<ion-badge *ngIf="p.isClassic" color="pink">精华</ion-badge>
+				<ion-badge *ngIf="!p.isRead" color="green">未读</ion-badge>
+			</p>
+			<ion-note item-right text-right>
+				<p>{{p.user}}</p>
+				
+				<ion-badge  color="gray">{{p.count}}</ion-badge>
+			</ion-note>
+		</button>
+
+	</ion-list>
+
+
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content loadingText="正在加载..." threshold="20%">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
 </ion-content>

@@ -3,7 +3,7 @@ import { NavController, ViewController, NavParams, LoadingController, AlertContr
 
 
 import { UserData } from '../../providers/user-data';
-
+import { TabsPage } from '../../pages/tabs/tabs';
 /*
   Generated class for the Login page.
 
@@ -77,7 +77,8 @@ export class LoginPage {
 
 			if (data && data.user) {
 				// console.log(data);
-				this.viewCtrl.dismiss(data);
+				// this.viewCtrl.dismiss(data);
+				this.navCtrl.setRoot(TabsPage);
 			} else {
 				let alert = this.alertCtrl.create({
 					title: '登录失败!',

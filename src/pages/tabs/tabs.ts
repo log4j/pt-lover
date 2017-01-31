@@ -22,14 +22,14 @@ export class TabsPage {
   // set the root pages for each tab
   tab1Root: any = HomePage;
   tab2Root: any = TorrentListPage;
-  tab3Root: any = ProfilePage;
-  tab4Root: any = ForumListPage;
+  tab4Root: any = ProfilePage;
+  tab3Root: any = ForumListPage;
   mySelectedIndex: number;
 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.mySelectedIndex = navParams.data.tabIndex || 3;
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
 
   ionViewDidLoad() {

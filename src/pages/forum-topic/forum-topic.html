@@ -6,13 +6,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>ForumTopic</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{topic.topic}}</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
+
+	<ion-list class="comments-list">
+		<ion-item *ngFor='let comment of topic.messages'>
+			<h2 [ngClass]='comment.userClass'><b>{{comment.userName}}</b>
+				<ion-note>{{comment.date}}</ion-note>
+			</h2>
+			<p *ngFor='let p of comment.contents' [ngClass]='"comment-"+p.type+" quote-"+p.quote + (p.last?" comment-last-line":" ")+ (p.type=="legend"?" comment-first-line":" ")'>
+				{{p.type==='text'||p.type==='legend'?p.content:''}}
+				<img [src]='p.content' *ngIf="p.type==='smilies'" />
+			</p>
+			<ion-note style="float:right;"><button ion-button outline small (click)='postComment(comment)'>引用</button></ion-note>
+</ion-item>
+</ion-list>
 </ion-content>
