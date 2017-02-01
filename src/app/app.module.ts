@@ -19,6 +19,7 @@ import { FaqDetailPage } from '../pages/faq-detail/faq-detail';
 
 import { ForumListPage } from '../pages/forum-list/forum-list';
 import { ForumTopicListPage } from '../pages/forum-topic-list/forum-topic-list';
+import { ForumTopicPostPage } from '../pages/forum-topic-post/forum-topic-post';
 import { ForumTopicPage } from '../pages/forum-topic/forum-topic';
 
 import { TorrentData } from '../providers/torrent-data';
@@ -43,10 +44,13 @@ import { WebHttp } from '../providers/web-http';
     FaqDetailPage,
     ForumListPage,
     ForumTopicListPage,
-    ForumTopicPage
+    ForumTopicPage,
+    ForumTopicPostPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +69,8 @@ import { WebHttp } from '../providers/web-http';
     FaqDetailPage,
     ForumListPage,
     ForumTopicListPage,
-    ForumTopicPage
+    ForumTopicPage,
+    ForumTopicPostPage
   ],
   providers: [
     Storage, 

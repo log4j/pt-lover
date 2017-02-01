@@ -14,6 +14,13 @@
 
 
 <ion-content>
+
+  <ion-list *ngIf="isLoading">
+		<ion-item text-center>
+			<ion-spinner></ion-spinner>
+		</ion-item>
+	</ion-list>
+  
 	<ion-list *ngFor='let section of forumSection.sections'>
 		<ion-list-header>
         {{section.title}}

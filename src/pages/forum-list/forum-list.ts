@@ -6,7 +6,7 @@ import { ForumData } from '../../providers/forum-data';
 
 import { ForumSection } from '../../models/forum';
 
-import {ForumTopicListPage} from '../forum-topic-list/forum-topic-list';
+import { ForumTopicListPage } from '../forum-topic-list/forum-topic-list';
 
 /*
   Generated class for the ForumList page.
@@ -20,6 +20,7 @@ import {ForumTopicListPage} from '../forum-topic-list/forum-topic-list';
 })
 export class ForumListPage {
 	forumSection: ForumSection;
+	isLoading: boolean = true;
 
 	constructor(
 		public navCtrl: NavController,
@@ -30,15 +31,14 @@ export class ForumListPage {
 		this.forumSection = new ForumSection();
 		this.forumData.loadForumHome().then(data => {
 			this.forumSection = data;
-			console.log(this.forumSection);
+			this.isLoading = false;
 		});
 	}
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ForumListPage');
 	}
 
-	openForum(forum){
-		this.navCtrl.push(ForumTopicListPage,{forum:forum});
+	openForum(forum) {
+		this.navCtrl.push(ForumTopicListPage, { forum: forum });
 	}
 
 }

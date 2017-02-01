@@ -8,8 +8,9 @@ export class ForumMessage {
     userName: string;
     userClass: string;
     userAvatar: string;
-    contents: { content: string, quote: number, type: string, last?:boolean }[];
+    contents: { content: string, quote: number, type: string, last?: boolean }[];
     date: string;
+
 
     constructor(data?: any) {
         if (data) {
@@ -41,34 +42,59 @@ export class ForumMessage {
     }
 
 
-    loadCommentContents(children: [any], quote: number):{ content: string, quote: number,type:string, last?:boolean }[] {
+    loadCommentContents(children: [any], quote: number): { content: string, quote: number, type: string, last?: boolean }[] {
 
-        let comments:{ content: string, quote: number,type:string, last?:boolean }[] = new Array<{ content: string, quote: number,type:string, last?:boolean }>();
+        let comments: { content: string, quote: number, type: string, last?: boolean }[] = new Array<{ content: string, quote: number, type: string, last?: boolean }>();
         // console.log(children);
-        children.forEach(item=>{
-            if(item.tagName==='text'){
-                comments.push({content: item.value.replace(/\r|\n/g,''), quote: quote,type:'text'});
+        children.forEach(item => {
+            if (item.tagName === 'text' && item.value.trim()) {
+                comments.push({ content: item.value.replace(/\r|\n/g, ''), quote: quote, type: 'text' });
+
+                // if(item.value.indexOf('nbsp')>=0){
+                    console.log(item.value);
+                // }
             }
-            else if(item.tagName==='fieldset'){
-                let insideComments = this.loadCommentContents(item.children, quote+1);
-                insideComments.forEach(comment=>comments.push(comment));
+            else if (item.tagName === 'fieldset') {
+                let insideComments = this.loadCommentContents(item.children, quote + 1);
+                insideComments.forEach(comment => comments.push(comment));
             }
-            else if(item.tagName == 'legend'){
-                comments.push({content: item.text, quote:quote, type:'legend'});
+            else if (item.tagName == 'legend') {
+                comments.push({ content: item.text, quote: quote, type: 'legend' });
             }
-            else if(item.tagName === 'img' && item.class==='smilies'){
-                comments.push({content: item.src.replace('pic/','assets/'), quote:quote, type:'smilies'});
+            else if (item.tagName === 'img' && item.class === 'smilies') {
+                comments.push({ content: item.src.replace('pic/', 'assets/'), quote: quote, type: 'smilies' });
             }
-            else{
-                // console.log(item);
+            else if(item.tagName === 'img' && item.alt==='image'){
+                comments.push({content: item.src, quote: quote, type:'image'});
+            }
+            else if(item.tagName === 'a'){
+                comments.push({content:item.src, quote:quote, type:'link'});
+            }
+            else if(item.tagName==='span'){
+                
+            }
+            else if(item.tagName === 'br'){
+                comments.push({content: '', quote:quote, type:'br'});
+            }
+            else {
+                console.log(item);
             }
         });
 
-        if(quote>0&&comments.length){
-            comments[comments.length-1].last = true;
+        if (quote > 0 && comments.length) {
+            comments[comments.length - 1].last = true;
         }
-
         return comments;
+    }
+
+    getQuoteString(): string {
+        let result = '';
+        this.contents.forEach(item => {
+            if (item.quote == 0 && item.type === 'text') {
+                result += item.content + '\n';
+            }
+        })
+        return result;
     }
 }
 
@@ -82,12 +108,18 @@ export class ForumTopic {
     count: number = 0;
 
     url: string;
+    id: string;
 
     user: string;
 
     messages: ForumMessage[];
     page: number = 0;
     maxPage: number = 0;
+
+    hasNext: boolean = false;
+    hasPrevious: boolean = false;
+    isLast: boolean = false;
+    isFirst: boolean = false;
 
     constructor(data?: any) {
         if (data) {
@@ -138,6 +170,7 @@ export class ForumTopic {
 
 
                 this.url = data.children[0].href;
+                this.id = this.url.substring(this.url.indexOf('topicid=') + 8);
             }
 
 
@@ -161,12 +194,62 @@ export class ForumTopic {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
         console.log(list);
+        //update id
+        let modalLink = webHttp.fintElement(data, item=>{
+            return item.tagName==='a' && item['data-rel']==='dialog' && item.href.indexOf('?action=reply&topicid=')>=0;
+        });
+        if(modalLink){
+            console.log(modalLink);
+            this.id = modalLink.href.substring(modalLink.href.indexOf('topicid=')+8);
+            console.log(this.id);
+        }
 
         if (list && list.children && list.children.length) {
             this.messages = [];
             list.children.forEach(item => {
                 this.messages.push(new ForumMessage(item.children["0"]));
             });
+        }
+    }
+
+    loadLastPageMessage(data, webHttp: WebHttp): boolean {
+        console.log(data);
+        let list = webHttp.fintElement(data, item => {
+            return item.tagName === 'ul' && item['data-role'] === 'listview';
+        });
+        console.log(list);
+
+
+        if (list && list.children && list.children.length) {
+            this.messages = [];
+            list.children.forEach(item => {
+                this.messages.push(new ForumMessage(item.children["0"]));
+            });
+
+            //update maxPage
+            let lastMessage = this.messages[this.messages.length - 1];
+            this.count = parseInt(lastMessage.level.substring(0, lastMessage.level.length - 1));
+            console.log(this.count);
+            if (this.count > 0) {
+                this.maxPage = Math.floor((this.count - 1) / 10);
+                this.setPage(this.maxPage);
+            }
+
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    setPage(page: number) {
+        if (page >= 0 && page <= this.maxPage) {
+            this.page = page;
+            this.isFirst = (page === 0);
+            this.isLast = (page === this.maxPage);
+            this.hasNext = (page < this.maxPage);
+            this.hasPrevious = (page > 0);
         }
     }
 }
@@ -178,6 +261,7 @@ export class Forum {
     read: boolean;
     url: string;
     page: number = -1;
+    id: string;
 
     topics: ForumTopic[];
 
@@ -186,16 +270,21 @@ export class Forum {
             this.title = data.children["0"].children[1].value;
             this.read = data.children["0"].children["0"].alt === 'read';
             this.url = data.children["0"].href;
+            this.id = this.url.substring(this.url.indexOf('forumid=') + 8);
         }
 
         this.topics = [];
     }
 
-    loadTopicList(data, webHttp: WebHttp) {
+
+    loadTopicList(data, webHttp: WebHttp, forceClean?:boolean) {
         // console.log(data);
         let list = webHttp.fintElement(data, item => {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
+        if(forceClean){
+            this.topics = [];
+        }
 
         if (list && list.children && list.children.length) {
             list.children.forEach(item => {

@@ -8,6 +8,12 @@
 
 	<ion-navbar>
 		<ion-title>{{forum.title}}</ion-title>
+
+		<ion-buttons end>
+			<button ion-button icon-only (click)="showTopicPost()">
+				<ion-icon name='add-circle'></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-navbar>
 
 </ion-header>
@@ -45,4 +51,10 @@
 		<ion-infinite-scroll-content loadingText="正在加载..." threshold="20%">
 		</ion-infinite-scroll-content>
 	</ion-infinite-scroll>
+
+	<!--<ion-fab right bottom #fab>
+		<button ion-fab color="primary">
+			<ion-icon name="chatbubbles" (click)="postTopic()"></ion-icon>
+		</button>
+	</ion-fab>-->
 </ion-content>

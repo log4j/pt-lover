@@ -2,6 +2,8 @@ page-forum-topic {
 
 
     .comments-list{
+
+        padding-bottom: 50px;
         ion-item{
 
             .item-inner{
@@ -60,6 +62,10 @@ page-forum-topic {
                     font-size: 1.4rem;
                     padding-top: 5px;
                 }
+            }
+
+            .comment-level{
+                padding-right: 10px;
             }
         }
     }

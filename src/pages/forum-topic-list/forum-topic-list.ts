@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ModalController, Content } from 'ionic-angular';
 
 
 import { ForumData } from '../../providers/forum-data';
@@ -9,6 +9,7 @@ import { Forum } from '../../models/forum';
 
 
 import { ForumTopicPage } from '../forum-topic/forum-topic';
+import { ForumTopicPostPage } from '../forum-topic-post/forum-topic-post';
 
 /*
   Generated class for the ForumTopicList page.
@@ -21,12 +22,16 @@ import { ForumTopicPage } from '../forum-topic/forum-topic';
 	templateUrl: 'forum-topic-list.html'
 })
 export class ForumTopicListPage {
+
+	@ViewChild(Content) content: Content;
+
 	forum: Forum;
 	isLoading: boolean = true;
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public forumData: ForumData
+		public forumData: ForumData,
+		public modalCtrl: ModalController
 	) {
 
 		this.forum = this.navParams.data.forum;
@@ -40,6 +45,28 @@ export class ForumTopicListPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ForumTopicListPage');
+	}
+
+	postTopic() {
+
+	}
+
+	showTopicPost() {
+		let modal = this.modalCtrl.create(ForumTopicPostPage, this.forum);
+		modal.present();
+
+		modal.onWillDismiss((data: any) => {
+			if (data) {
+				//data is the id of topic just created!!
+				this.forum.topics.forEach(item=>{
+					if(item.id === data){
+						this.content.scrollToTop();
+						this.openTopic(item);
+						return;
+					}
+				});
+			}
+		});
 	}
 
 	openTopic(topic) {

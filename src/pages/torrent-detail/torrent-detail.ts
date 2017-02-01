@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController,Loading } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController, Loading } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { WebHttp } from '../../providers/web-http';
@@ -63,7 +63,7 @@ export class TorrentDetailPage {
 	}
 
 
-showLoading() {
+	showLoading() {
 		this.loader = this.loadingCtrl.create({
 			content: "正在载入, 请稍等..."
 		});
@@ -124,8 +124,8 @@ showLoading() {
 								quote: reply
 							}
 							this.showLoading();
-							this.torrentData.postTorrentComment(body).then(res=>{
-								this.loadComments().then(comms=>{
+							this.torrentData.postTorrentComment(body).then(res => {
+								this.loadComments().then(comms => {
 									this.hideLoading()
 								});
 							});

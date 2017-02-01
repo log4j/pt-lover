@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { ForumTopic, Forum, ForumSection } from '../models/forum';
+import { ForumTopic, Forum, ForumSection, ForumMessage } from '../models/forum';
 
 import { WebHttp } from './web-http';
 /*
@@ -32,13 +32,13 @@ export class ForumData {
 		});
 	}
 
-	loadForumTopicList(forum: Forum, option?: { next?: boolean }): Promise<Forum> {
+	loadForumTopicList(forum: Forum, option?: { next?: boolean,forceClear?:boolean }): Promise<Forum> {
 		let fetchUrl = 'forums.php' + forum.url;
 		if (option && option.next) {
 			fetchUrl += '&page=' + (forum.page + 1);
 		}
 		return this.webHttp.get(fetchUrl).then(data => {
-			forum.loadTopicList(data, this.webHttp);
+			forum.loadTopicList(data, this.webHttp, option && option.forceClear);
 			if (option && option.next) {
 				forum.page++;
 			} else {
@@ -68,12 +68,66 @@ export class ForumData {
 				page = topic.maxPage;
 			}
 
+
+
 		}
-		fetchUrl+='&page='+page;
-		return this.webHttp.get(fetchUrl).then(data=>{
+		fetchUrl += '&page=' + page;
+		console.log(fetchUrl);
+		return this.webHttp.get(fetchUrl).then(data => {
 			topic.loadMessages(data, this.webHttp);
-			topic.page = page;
+			topic.setPage(page);
+			// topic.page = page;
 			return topic;
+		})
+	}
+
+	postTopic(forum: Forum,subject:string, content: string){
+		let body = {
+			'id': forum.id,
+			'type': 'new',
+			'subject': subject,
+			'body':content
+		};
+
+		console.log(forum, body);
+
+		// if(userId){
+		// body.shbox_text = +text;
+		// }
+		return this.webHttp.post('forums.php?action=post', body).then(data => {
+			console.log(data);
+			//this data is the html for new topic content,
+			let topic = new ForumTopic();
+			topic.loadMessages(data, this.webHttp);
+
+			if(topic.id){
+				//posted!!
+				//still need to reload current forum(topic list)
+				return this.loadForumTopicList(forum,{forceClear:true}).then(forumData=>{
+					return topic.id;	
+				});
+			}else{
+				return null;
+			}
+			
+		
+		})
+	}
+
+	postReply(topic: ForumTopic, content:string, comment?: ForumMessage){
+		let body = {
+			'id': topic.id,
+			'type': 'reply',
+			'body':comment?('[quote=[@'+comment.userName+']]'+comment.getQuoteString()+'[/quote]'+content):content
+		};
+
+		console.log(ForumTopic, body);
+		return this.webHttp.post('forums.php?action=post', body).then(data => {
+			// console.log(data);
+
+			return topic.loadLastPageMessage(data, this.webHttp);
+
+			// return data;
 		})
 	}
 

@@ -142,8 +142,7 @@ export class WebHttp {
 				error => {
 					// alert(error);
 					resolve(null);
-				}
-				);
+				});
 		});
 
 	}
@@ -153,16 +152,12 @@ export class WebHttp {
 			url = url.replace('php', 'html')
 		}
 
-		const body = new URLSearchParams();
+		let body = new URLSearchParams();
 		for (let key in postBody)
 			body.set(key, postBody[key]);
 
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		// return this.http.post(url, body.toString(), { headers: headers, withCredentials: true })
-		// 	.subscribe(res => {
-		// 		console.log(res)
-		// 	});
 
 		return new Promise<any>(resolve => {
 			this.http.post(this.host + url, body.toString(), { headers: headers, withCredentials: true })
