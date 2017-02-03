@@ -25,6 +25,11 @@ page-torrent-detail {
         ion-item{
             align-items:baseline;
 
+            .item-inner{
+                border-bottom: none !important;
+            }
+            border-bottom: 2px solid #ECF1F5;
+
             p{
                 white-space: normal;
                 margin: 0;

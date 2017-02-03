@@ -9,7 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { FaqPage } from '../pages/faq/faq';
 import { AboutPage } from '../pages/about/about';
-
+import { ProfilePage } from '../pages/profile/profile';
 import { User } from '../models/user';
 
 import { UserData } from '../providers/user-data';
@@ -41,11 +41,11 @@ export class MyApp {
 	appPages: PageInterface[] = [
 		{ title: '葡萄', component: TabsPage, index: 0, icon: 'calendar' },
 		{ title: '资源', component: TabsPage, index: 1, icon: 'keypad' },
-		{ title: '我', component: TabsPage, index: 2, icon: 'contact' }
+		{ title: '论坛', component: TabsPage, index: 2, icon: 'contacts' }
 	];
 	loggedInPages: PageInterface[] = [
 		// { title: 'Account', component: AccountPage, icon: 'person' },
-		// { title: 'Support', component: SupportPage, icon: 'help' },
+		{ title: '我', component: ProfilePage, icon: 'information-circle' },
 		{ title: '退出', component: TabsPage, icon: 'log-out', index: 0, logsOut: true }
 	];
 	loggedOutPages: PageInterface[] = [
@@ -127,13 +127,14 @@ export class MyApp {
 				});
 			})
 		}
-		else if (page.index) {
+		else if (page.index !=undefined) {
 			this.nav.setRoot(page.component, { tabIndex: page.index });
 
 		} else {
-			this.nav.setRoot(page.component).catch(() => {
-				console.log("Didn't set nav root");
-			});
+			// this.nav.setRoot(page.component).catch(() => {
+			// 	console.log("Didn't set nav root");
+			// });
+			this.openModal(page.component);
 		}
 
 		// if (page.logsOut === true) {
@@ -148,6 +149,13 @@ export class MyApp {
 
 	openTutorial() {
 		// this.nav.setRoot(TutorialPage);
+	}
+
+	openModal (page:any){
+
+		// console.log('open modal!!!');
+		let modal = this.modalCtrl.create(page);
+		modal.present();
 	}
 
 	openAbout() {

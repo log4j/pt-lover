@@ -7,7 +7,10 @@
 <ion-header>
 
 	<ion-navbar>
-		<ion-title>论坛</ion-title>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>葡萄园</ion-title>
 	</ion-navbar>
 
 </ion-header>
@@ -15,20 +18,21 @@
 
 <ion-content>
 
-  <ion-list *ngIf="isLoading">
+	<ion-list class="loading-list" *ngIf="isLoading">
 		<ion-item text-center>
 			<ion-spinner></ion-spinner>
 		</ion-item>
 	</ion-list>
-  
-	<ion-list *ngFor='let section of forumSection.sections'>
+
+	<ion-list class="forum-list" *ngFor='let section of forumSection.sections'>
 		<ion-list-header>
-        {{section.title}}
-      </ion-list-header>
+			{{section.title}}
+		</ion-list-header>
 
 
-	  <button ion-item *ngFor='let forum of section.forums' (click)="openForum(forum)">
+		<button ion-item *ngFor='let forum of section.forums' (click)="openForum(forum)">
        {{forum.title}}
+			 <ion-note item-right><ion-badge color='pink' *ngIf='forum.count>0'>{{forum.count}}</ion-badge></ion-note>
       </button>
 
 	</ion-list>

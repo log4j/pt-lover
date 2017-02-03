@@ -68,13 +68,17 @@ export class ForumMessage {
                 comments.push({content: item.src, quote: quote, type:'image'});
             }
             else if(item.tagName === 'a'){
-                comments.push({content:item.src, quote:quote, type:'link'});
+                comments.push({content:item.text, quote:quote, type:'link'});
             }
-            else if(item.tagName==='span'){
+            // else if(item.tagName==='span'){
                 
-            }
+            // }
             else if(item.tagName === 'br'){
                 comments.push({content: '', quote:quote, type:'br'});
+            }
+            else if(item.tagName === 'font' || item.tagName === 'span' || item.tagName === 'b' || item.tagName === 'u'){
+                let insideComments = this.loadCommentContents(item.children, quote);
+                insideComments.forEach(comment => comments.push(comment));
             }
             else {
                 console.log(item);
@@ -262,6 +266,7 @@ export class Forum {
     url: string;
     page: number = -1;
     id: string;
+    count: number = 0;
 
     topics: ForumTopic[];
 
@@ -271,7 +276,14 @@ export class Forum {
             this.read = data.children["0"].children["0"].alt === 'read';
             this.url = data.children["0"].href;
             this.id = this.url.substring(this.url.indexOf('forumid=') + 8);
-        }
+            data.children["0"].children.forEach(item=>{
+                if(item.tagName==='span' && item.class==='ui-li-count'){
+                    this.count = parseInt(item.text);
+                }
+            })
+    }
+
+
 
         this.topics = [];
     }

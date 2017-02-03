@@ -1,3 +1,19 @@
 page-forum-list {
 
+
+    .forum-list{
+        margin: 10px 10px 30px 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.09);
+        ion-list-header{
+            background: #F8FBFC;
+            border:none;
+
+        }
+
+        button.item{
+            .item-inner{
+                padding-left: 10px;
+            }
+        }
+    }
 }

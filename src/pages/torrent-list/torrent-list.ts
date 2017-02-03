@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, PopoverController, ModalController, NavParams, List, Loading, LoadingController, Refresher } from 'ionic-angular';
-
+import { Component, Input, ViewChild, NgZone } from '@angular/core';
+import { Content, NavController, PopoverController, ModalController, NavParams, List, Loading, LoadingController, Refresher } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
@@ -28,12 +27,15 @@ export class TorrentListPage {
 	// the List and not a reference to the element
 	@ViewChild('torrentList', { read: List }) torrentList: List;
 	@ViewChild(Refresher) refresher: Refresher;
+	@ViewChild(Content) content: Content;
 
 	torrents: TorrentList = new TorrentList();
 
 	torrentFilter: TorrentFilter;
 
 	loader: Loading;
+	@Input() showScrollToTop: boolean = false;
+
 
 	specialLabels = {
 		'free': '免费',
@@ -50,7 +52,8 @@ export class TorrentListPage {
 		public torrentData: TorrentData,
 		private popoverCtrl: PopoverController,
 		public modalCtrl: ModalController,
-		public loadingCtrl: LoadingController
+		public loadingCtrl: LoadingController,
+		public ngZone: NgZone
 	) {
 
 		this.torrentData.getTypes().subscribe(data => {
@@ -86,6 +89,28 @@ export class TorrentListPage {
 			return data;
 		});
 
+	}
+
+	onScroll() {
+
+
+
+
+		this.ngZone.run(() => {
+			if (this.content.scrollTop >= 500) {
+				this.showScrollToTop = true;
+			}
+			else if (this.content.scrollTop < 100) {
+				this.showScrollToTop = false;
+			}
+		});
+
+
+	}
+
+	scrollToTop() {
+		this.content.scrollToTop();
+		// this.showScrollToTop = false;s
 	}
 
 	presentPopover(ev) {
@@ -133,9 +158,9 @@ export class TorrentListPage {
 		// this.showLoading();
 
 		// this.torrentData.loadTorrentDatail(torrent).then(data => {
-			// this.hideLoading();
-			let modal = this.modalCtrl.create(TorrentDetailPage, {torrent:torrent,load:'detail'});
-			modal.present();
+		// this.hideLoading();
+		let modal = this.modalCtrl.create(TorrentDetailPage, { torrent: torrent, load: 'detail' });
+		modal.present();
 		// });;
 
 	}
@@ -145,9 +170,9 @@ export class TorrentListPage {
 		// this.showLoading();
 
 		// this.torrentData.loadTorrentComments(torrent).then(data => {
-			// this.hideLoading();
-			let modal = this.modalCtrl.create(TorrentDetailPage, {torrent:torrent,load:'comments'});
-			modal.present();
+		// this.hideLoading();
+		let modal = this.modalCtrl.create(TorrentDetailPage, { torrent: torrent, load: 'comments' });
+		modal.present();
 		// });;
 
 	}
@@ -166,10 +191,10 @@ export class TorrentListPage {
 
 	doInfinite(infiniteScroll) {
 
-		this.torrentData.loadTorrentPage(true,{next:true}).then(data=>{
-			if(data){
+		this.torrentData.loadTorrentPage(true, { next: true }).then(data => {
+			if (data) {
 				infiniteScroll.complete();
-			}else{
+			} else {
 				infiniteScroll.enable(false);
 			}
 		});

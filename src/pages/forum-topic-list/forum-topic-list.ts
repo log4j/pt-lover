@@ -36,7 +36,9 @@ export class ForumTopicListPage {
 
 		this.forum = this.navParams.data.forum;
 
-		this.forumData.loadForumTopicList(this.forum).then(data => {
+		this.forum.topics = [];
+
+		this.forumData.loadForumTopicList(this.forum,{forceClear:true}).then(data => {
 			console.log(data);
 			this.forum = data;
 			this.isLoading = false;

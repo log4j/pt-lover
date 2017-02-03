@@ -3,4 +3,17 @@ page-torrent-list {
         text-overflow: inherit;
         white-space: normal;
     }
+
+    ion-fab{
+        transition: all 0.3s;
+    }
+
+    .show-scroll-button{
+        right: 10px;
+        opacity: 1;
+    }
+    .hide-scroll-button{
+        right: -60px;
+        opacity: 0;
+    }
 }

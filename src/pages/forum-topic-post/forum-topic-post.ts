@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ForumData } from '../../providers/forum-data';
 
@@ -17,6 +17,9 @@ export class ForumTopicPostPage {
 	forum: Forum;
 	title: string;
 	content: string;
+
+	@ViewChild('titleInput') titleInput;
+
 	constructor(
 		public navCtrl: NavController, 
 		public navParams: NavParams,
@@ -50,6 +53,10 @@ export class ForumTopicPostPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ForumTopicPostPage');
+
+		setTimeout(()=>{
+			this.titleInput.setFocus();
+		},150);
 	}
 
 }

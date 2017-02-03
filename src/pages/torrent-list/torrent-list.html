@@ -24,7 +24,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content (ionScroll)='onScroll()'>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -87,6 +87,10 @@
 
 
 </ion-card>
+
+<ion-fab right bottom [ngClass]="showScrollToTop?'show-scroll-button':'hide-scroll-button'">
+    <button ion-fab color="primary"  (click)='scrollToTop()'><ion-icon name="arrow-up"></ion-icon></button>
+</ion-fab>
 
 
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

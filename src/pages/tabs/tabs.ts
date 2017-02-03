@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { TorrentListPage } from '../torrent-list/torrent-list';
-import { ProfilePage } from '../profile/profile';
 import { ForumListPage } from '../forum-list/forum-list';
 
 /*
@@ -22,7 +21,7 @@ export class TabsPage {
   // set the root pages for each tab
   tab1Root: any = HomePage;
   tab2Root: any = TorrentListPage;
-  tab4Root: any = ProfilePage;
+  // tab4Root: any = ProfilePage;
   tab3Root: any = ForumListPage;
   mySelectedIndex: number;
 

@@ -48,6 +48,38 @@ $colors: (
 $content-ios-outer-background: #EAEFF5;
 $content-ios-transition-background: #EAEFF5;
 
+ion-content.content-ios{
+  background:-webkit-linear-gradient(#FAFBFC,#ECF1F5);
+}
+
+ion-card.card-ios{
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.09);
+  ion-card-header.card-header-ios{
+    background: #F8FBFC;
+  }
+
+  // ion-card-header.card-header-md.free{
+    // background: color($colors, orange);
+  // }
+}
+
+ion-tabs.tabs-ios{
+  .tabbar{
+    border-top:none;
+  }
+}
+
+.list-ios{
+  ion-item.item-block:first-child{
+    border-top: none;
+  }
+  ion-item.item-block:last-child{
+    border-bottom: none;
+  }
+}
+
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here

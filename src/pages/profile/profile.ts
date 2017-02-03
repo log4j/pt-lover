@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 
 import { User } from '../../models/user';
@@ -18,13 +18,14 @@ import { UserData } from '../../providers/user-data';
 	templateUrl: 'profile.html'
 })
 export class ProfilePage {
-	user:User = null;
+	user: User = null;
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public torrentData: TorrentData,
-		public userData: UserData
+		public userData: UserData,
+		public viewCtrl: ViewController
 	) {
 
 		// this.torrentData.login().subscribe(data=>{
@@ -34,14 +35,18 @@ export class ProfilePage {
 	}
 
 	loadUserInformation() {
-		this.userData.loadHomeData().then(data=>{
-			if(data){
+		this.userData.loadHomeData().then(data => {
+			if (data) {
 				this.user = data.user;
 			}
 		});
 	}
 
 	ionViewDidLoad() {
+	}
+
+	dismiss() {
+		this.viewCtrl.dismiss();
 	}
 
 }
