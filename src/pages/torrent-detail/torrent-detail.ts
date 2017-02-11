@@ -216,13 +216,12 @@ export class TorrentDetailPage {
 								alert(saveRes);
 							});
 						}
-
 					}
 
 					reader.readAsDataURL(file);
 				})
 			} else {
-				
+
 				// alert('download complete: ' + entry.toURL());
 				let duration: number = 10000;
 				let openToast = this.toastCtrl.create({
