@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { WebHttp } from '../../providers/web-http';
 import { Comment, Torrent, TorrentList } from '../../models/torrent';
 import { FileOpener } from 'ionic-native';
 
+import { RemoteServerChoosePage } from '../remote-server-choose/remote-server-choose';
+import { WebIntent } from 'ionic-native';
+
+
 
 declare var window: any;
+declare var FileTransfer: any;
 declare var LocalFileSystem: any;
 /*
   Generated class for the TorrentDetail page.
@@ -36,7 +41,8 @@ export class TorrentDetailPage {
 		public webHttp: WebHttp,
 		public toastCtrl: ToastController,
 		public alertCtrl: AlertController,
-		public loadingCtrl: LoadingController
+		public loadingCtrl: LoadingController,
+		public modalCtrl: ModalController,
 	) {
 
 		this.torrent = this.navParams.data.torrent;
@@ -140,7 +146,12 @@ export class TorrentDetailPage {
 		prompt.present();
 	}
 
-	download() {
+	/**
+	 * type: 
+	 * 	'file': download file and ask how to open it
+	 *  'remote': download file and let user choose which RemoteServer to add
+	 */
+	download(type: string) {
 
 		// window.resolveLocalFileSystemURL('file:///storage/emulated/0/Download',function (fileSystem) {
 		// 					alert(fileSystem.name+' '+fileSystem.root.fullPath);
@@ -169,6 +180,13 @@ export class TorrentDetailPage {
 
 		// 				});
 
+		if (typeof FileTransfer === 'undefined') {
+			let base64 = 'fake file';
+			this.presentRemoteServerChoosePage(base64).then(saveRes => {
+				console.log(saveRes);
+			});
+			return;
+		}
 
 		let toast = this.toastCtrl.create({
 			message: '开始下载...',
@@ -176,38 +194,94 @@ export class TorrentDetailPage {
 		});
 
 
+
 		toast.present();
 
 		this.webHttp.download(this.torrent.url, this.torrent.getFileName()).then((entry) => {
-			// alert('download complete: ' + entry.toURL());
-			let duration: number = 10000;
-			let openToast = this.toastCtrl.create({
-				message: '文件已下载 ' + entry.fullPath,
-				showCloseButton: true,
-				closeButtonText: '打开'
-			});
-			let timeoutHandler = setTimeout(() => {
-				openToast.dismiss({ autoClose: true });
-			}, duration);
-			openToast.onDidDismiss(data => {
-				if (data && data.autoClose) {
-					//do nothing
-				} else {
 
-					//user click
-					FileOpener.open(entry.toURL(), 'application/x-bittorrent').then((event1) => {
-						// alert(entry.toURL()+' event1 ' + event1);
-					}, (event2) => {
-						// alert(entry.toURL()+'event2' + JSON.stringify(event2));
-					});
-				}
-			});
-			openToast.present();
+
+			if (type === 'remote') {
+				entry.file(file => {
+					let reader = new FileReader();
+					reader.onload = (event) => {
+						let target: any = event.target;
+						//console.log(event.target.result)
+						if (target && target.result) {
+							let base64 = target.result.substring(
+								target.result.indexOf('base64,') + 7);
+
+							// alert(base64);
+
+							this.presentRemoteServerChoosePage(base64).then(saveRes => {
+								alert(saveRes);
+							});
+						}
+
+					}
+
+					reader.readAsDataURL(file);
+				})
+			} else {
+				
+				// alert('download complete: ' + entry.toURL());
+				let duration: number = 10000;
+				let openToast = this.toastCtrl.create({
+					message: '文件已下载 ' + entry.fullPath,
+					showCloseButton: true,
+					closeButtonText: '打开'
+				});
+				let timeoutHandler = setTimeout(() => {
+					openToast.dismiss({ autoClose: true });
+				}, duration);
+				openToast.onDidDismiss(data => {
+					if (data && data.autoClose) {
+						//do nothing
+					} else {
+
+
+						// entry.getParent(parent=>{
+						// 	alert("Parent Name: " + parent.name);
+
+						// },err=>{
+						// 	alert(err.code);
+						// })
+
+						if (type === 'file') {
+							//user click
+							FileOpener.open(entry.fullPath.substring(7), 'application/x-bittorrent').then((event1) => {
+								alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
+							}, (event2) => {
+								alert(entry.toURL() + ' event2 ' + JSON.stringify(event2));
+							});
+						}
+
+
+
+
+
+					}
+				});
+				openToast.present();
+			}
+
+
 
 		}, (error) => {
 			// handle error
 
 			alert('error:' + JSON.stringify(error));
+		});
+	}
+
+
+	presentRemoteServerChoosePage(torrent: String) {
+		return new Promise(resolve => {
+			// alert('start modal');
+			let modal = this.modalCtrl.create(RemoteServerChoosePage, { torrent: torrent });
+			modal.onDidDismiss(data => {
+				return resolve(data);
+			})
+			modal.present();
 		});
 	}
 }

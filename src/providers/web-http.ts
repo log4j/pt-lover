@@ -17,7 +17,7 @@ export class WebHttp {
 
 
 	isLocal: boolean = false;
-	useProxy: boolean = false;
+	useProxy: boolean = true;
 	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.test/' : 'https://pt.sjtu.edu.cn/');
 
 
@@ -192,12 +192,17 @@ export class WebHttp {
 	// Cordova
 
 
+	//target directory depends on which platform
 	download(url: string, name: string) {
 
 		let fileTransfer = new Transfer();
 		// let url = 'http://www.example.com/file.pdf';
-		console.log(name);
-		return fileTransfer.download(this.host + url, cordova.file.dataDirectory  + name);
+		// console.log(name);
+		let target = cordova.file.dataDirectory;
+		if(Device.platform === 'Android'){
+			target = cordova.file.externalDataDirectory;
+		}
+		return fileTransfer.download(this.host + url, target  + name);
 	}
 
 

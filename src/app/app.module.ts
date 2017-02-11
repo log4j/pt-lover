@@ -23,6 +23,7 @@ import { ForumTopicPostPage } from '../pages/forum-topic-post/forum-topic-post';
 import { ForumTopicPage } from '../pages/forum-topic/forum-topic';
 import { RemotePage } from '../pages/remote/remote';
 import { RemoteServerPage } from '../pages/remote-server/remote-server';
+import { RemoteServerChoosePage } from '../pages/remote-server-choose/remote-server-choose';
 
 import { TorrentData } from '../providers/torrent-data';
 import { UserData } from '../providers/user-data';
@@ -51,7 +52,8 @@ import { RemoteData } from '../providers/remote-data';
     ForumTopicPage,
     ForumTopicPostPage,
     RemotePage,
-    RemoteServerPage
+    RemoteServerPage,
+    RemoteServerChoosePage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -78,7 +80,8 @@ import { RemoteData } from '../providers/remote-data';
     ForumTopicPage,
     ForumTopicPostPage,
     RemotePage,
-    RemoteServerPage
+    RemoteServerPage,
+    RemoteServerChoosePage
   ],
   providers: [
     Storage, 

@@ -41,13 +41,13 @@ export class ServerHttp {
 
 	post(url, postBody): Promise<any> {
 
-		let body = new URLSearchParams();
-		for (let key in postBody)
-			body.set(key, postBody[key]);
+		// let body = new URLSearchParams();
+		// for (let key in postBody)
+		// 	body.set(key, postBody[key]);
 
 
 		return new Promise<any>(resolve => {
-			this.http.post(this.host + url, body.toString(), { withCredentials: true })
+			this.http.post(this.host + url, postBody, { withCredentials: true })
 				.subscribe(
 				response => resolve(response.json()),
 				error => resolve(null)

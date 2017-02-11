@@ -90,8 +90,11 @@
       <!--<a ion-fab color="pink" [attr.href]='torrent.fullUrl'>
         <ion-icon name="download"></ion-icon>
       </a>-->
-      <button ion-fab color="pink" (click)='download()'>
+      <button ion-fab color="pink" (click)='download("file")'>
         <ion-icon name="download"></ion-icon>
+      </button>
+      <button ion-fab color="pink" (click)='download("remote")'>
+        <ion-icon name="desktop"></ion-icon>
       </button>
     </ion-fab-list>
     <ion-fab-list side="left">

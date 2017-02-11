@@ -6,7 +6,7 @@ import { RemoteData } from '../../providers/remote-data';
 
 import { RemoteServerPage } from '../remote-server/remote-server';
 
-import {Remote, RemoteServer} from '../../models/remote'
+import { Remote, RemoteServer } from '../../models/remote'
 
 /*
   Generated class for the Remote page.
@@ -32,25 +32,36 @@ export class RemotePage {
 		console.log('ionViewDidLoad RemotePage');
 
 
-		
+
 		this.loadRemoteServers();
 	}
 
-	loadRemoteServers(){
-		return this.remoteData.getRemoteServers().then(res=>{
+	loadRemoteServers() {
+		return this.remoteData.getRemoteServers().then(res => {
 			console.log(res);
 			this.remote = res;
 			return this.remote;
 		})
 	}
 
-	loadRemoteServerTorrents(server:RemoteServer){
+	loadRemoteServerTorrents(server: RemoteServer) {
 		return this.remoteData.getRemoteServerTorrents(server);
 	}
 
-	openServerPage(server:RemoteServer){
+	openServerPage(server: RemoteServer) {
 		//RemoteServerPage
 		this.navCtrl.push(RemoteServerPage, { server: server });
+	}
+
+
+	doRefresh(refresher) {
+
+		this.loadRemoteServers().then(data => {
+			this.remote = data;
+			refresher.complete();
+		})
+
+
 	}
 
 }

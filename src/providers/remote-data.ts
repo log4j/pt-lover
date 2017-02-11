@@ -47,4 +47,14 @@ export class RemoteData {
 		});
 	}
 
+	postRemoteServerTorrent(data:{torrent:string, server:string, target?:string}){
+		return this.serverHttp.post(
+			'torrent/'+this.userData.user.name + '/' + data.server,
+			{
+				torrent: data.torrent,
+				target: data.target
+			}
+		);
+	}
+
 }
