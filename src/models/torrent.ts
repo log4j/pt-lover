@@ -270,7 +270,7 @@ export class Torrent {
 
     getFileName(): string {
         if (this.fileName)
-            return this.fileName
+            return this.fileName.replace(/\s/g,'');
         return '[PT][' + this.typeLabel + ']' + this.id + '.torrent';
     }
 }

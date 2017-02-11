@@ -196,7 +196,8 @@ export class WebHttp {
 
 		let fileTransfer = new Transfer();
 		// let url = 'http://www.example.com/file.pdf';
-		return fileTransfer.download(this.host + url, cordova.file.externalRootDirectory + 'Download/' + name);
+		console.log(name);
+		return fileTransfer.download(this.host + url, cordova.file.dataDirectory  + name);
 	}
 
 

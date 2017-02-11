@@ -132,13 +132,6 @@ export class TorrentDetailPage {
 						}
 
 
-						// 
-						// this.userData.shout(data.message,message?message.userId:null).then(res=>{
-						// 	console.log(res);
-						// 	this.loadChatData().then(loadData=>{
-						// 		
-						// 	});
-						// })
 
 					}
 				}
