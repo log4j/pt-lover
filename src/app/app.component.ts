@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController } from 'ionic-angular';
-import { StatusBar, Splashscreen, Device } from 'ionic-native';
+import { StatusBar, Splashscreen, Device, Push } from 'ionic-native';
 
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -10,9 +10,12 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { FaqPage } from '../pages/faq/faq';
 import { AboutPage } from '../pages/about/about';
 import { ProfilePage } from '../pages/profile/profile';
+import { RemotePage } from '../pages/remote/remote';
+import { TorrentAlertPage } from '../pages/torrent-alert/torrent-alert';
 import { User } from '../models/user';
 
 import { UserData } from '../providers/user-data';
+import { PushData } from '../providers/push-data';
 
 
 
@@ -22,6 +25,7 @@ export interface PageInterface {
 	icon: string;
 	logsOut?: boolean;
 	index?: number;
+	isModal?: boolean;
 }
 
 @Component({
@@ -43,9 +47,15 @@ export class MyApp {
 		{ title: '资源', component: TabsPage, index: 1, icon: 'keypad' },
 		{ title: '论坛', component: TabsPage, index: 2, icon: 'contacts' }
 	];
+
+	betaPages: PageInterface[] = [
+		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film' },
+		{ title: '远程客户端', component: RemotePage, icon: 'desktop' },
+	];
+
 	loggedInPages: PageInterface[] = [
 		// { title: 'Account', component: AccountPage, icon: 'person' },
-		{ title: '我', component: ProfilePage, icon: 'information-circle' },
+		{ title: '我', component: ProfilePage, icon: 'information-circle', isModal: true },
 		{ title: '退出', component: TabsPage, icon: 'log-out', index: 0, logsOut: true }
 	];
 	loggedOutPages: PageInterface[] = [
@@ -57,6 +67,7 @@ export class MyApp {
 	constructor(
 		public events: Events,
 		public userData: UserData,
+		public pushData: PushData,
 		public menu: MenuController,
 		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
@@ -112,6 +123,24 @@ export class MyApp {
 			StatusBar.backgroundColorByHexString("#353A3D");
 			// }
 			console.log(Device.platform);
+
+			var push = Push.init({
+				android: {
+					senderID: '12345679'
+				},
+				ios: {
+					alert: 'true',
+					badge: true,
+					sound: 'false'
+				},
+				windows: {}
+			});
+			push.on('registration',  data=> {
+				
+				//update pushId
+				this.pushData.updatePushId(data.registrationId);
+				// alert('registration:'+data.registrationId);
+			});
 		});
 	}
 
@@ -134,14 +163,19 @@ export class MyApp {
 				});
 			})
 		}
-		else if (page.index !=undefined) {
+		else if (page.index != undefined) {
 			this.nav.setRoot(page.component, { tabIndex: page.index });
 
 		} else {
 			// this.nav.setRoot(page.component).catch(() => {
 			// 	console.log("Didn't set nav root");
 			// });
-			this.openModal(page.component);
+			if (page.isModal) {
+				this.openModal(page.component);
+			} else {
+				this.nav.setRoot(page.component);
+			}
+
 		}
 
 		// if (page.logsOut === true) {
@@ -158,7 +192,7 @@ export class MyApp {
 		// this.nav.setRoot(TutorialPage);
 	}
 
-	openModal (page:any){
+	openModal(page: any) {
 
 		// console.log('open modal!!!');
 		let modal = this.modalCtrl.create(page);

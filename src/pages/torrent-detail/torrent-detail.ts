@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
@@ -43,6 +43,7 @@ export class TorrentDetailPage {
 		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
 		public modalCtrl: ModalController,
+		public ngZone: NgZone
 	) {
 
 		this.torrent = this.navParams.data.torrent;

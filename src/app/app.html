@@ -67,7 +67,17 @@
         {{p.title}}
       </ion-item>-->
     </ion-list>
-    <br>
+
+    <ion-list>
+      <ion-list-header>
+        测试功能
+      </ion-list-header>
+      <button ion-item menuClose *ngFor="let p of betaPages" (click)="openPage(p)">
+        <ion-icon item-left [name]="p.icon"></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+
     <ion-list>
       <ion-list-header>
         帐号

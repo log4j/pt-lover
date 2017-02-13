@@ -13,6 +13,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { PeerListPopOverPage } from '../pages/peer-list-pop-over/peer-list-pop-over';
 import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
 import { TorrentDetailPage } from '../pages/torrent-detail/torrent-detail';
+import { TorrentAlertPage } from '../pages/torrent-alert/torrent-alert';
+import { TorrentAlertDetailPage } from '../pages/torrent-alert-detail/torrent-alert-detail';
 import { FaqPage } from '../pages/faq/faq';
 import { AboutPage } from '../pages/about/about';
 import { FaqDetailPage } from '../pages/faq-detail/faq-detail';
@@ -31,6 +33,7 @@ import { ForumData } from '../providers/forum-data';
 import { WebHttp } from '../providers/web-http';
 import { ServerHttp } from '../providers/server-http';
 import { RemoteData } from '../providers/remote-data';
+import { PushData } from '../providers/push-data';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { RemoteData } from '../providers/remote-data';
     PeerListPopOverPage,
     TorrentFilterPage,
     TorrentDetailPage,
+    TorrentAlertPage,
+    TorrentAlertDetailPage,
     FaqPage,
     AboutPage,
     FaqDetailPage,
@@ -57,7 +62,11 @@ import { RemoteData } from '../providers/remote-data';
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
-      backButtonText: ''
+      backButtonText: '',
+      monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      monthShortNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      dayNames: ['星期一','星期二','星期三','星期四','星期五','星期六','星期日'],
+      dayShortNames: ['星期一','星期二','星期三','星期四','星期五','星期六','星期日']
     })
   ],
   bootstrap: [IonicApp],
@@ -72,6 +81,8 @@ import { RemoteData } from '../providers/remote-data';
     PeerListPopOverPage,
     TorrentFilterPage,
     TorrentDetailPage,
+    TorrentAlertPage,
+    TorrentAlertDetailPage,
     FaqPage,
     AboutPage,
     FaqDetailPage,
@@ -92,6 +103,7 @@ import { RemoteData } from '../providers/remote-data';
     ForumData,
     RemoteData,
     ServerHttp,
+    PushData,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

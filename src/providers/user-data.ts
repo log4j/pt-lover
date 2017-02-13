@@ -32,6 +32,8 @@ export class UserData {
 	checkcodeNeeded: boolean = true;
 	checkcodeUrl: string = '';
 
+	
+
 	constructor(
 		public events: Events,
 		public storage: Storage,
@@ -46,6 +48,8 @@ export class UserData {
 	addFavorite(sessionName) {
 		this._favorites.push(sessionName);
 	};
+
+
 
 	removeFavorite(sessionName) {
 		let index = this._favorites.indexOf(sessionName);
@@ -221,15 +225,12 @@ export class UserData {
 		} else {
 			// return this.webHttp.get('http://pt.test/index.php').then(data => {
 			return this.webHttp.get('index.php').then(data => {
-				console.log(data);
 				if (data) {
 					//already in
 					return this.parseIndexPage(data);
 				} else {
 					//require login!!
 					//pop login page
-
-
 					return null;
 				}
 

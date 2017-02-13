@@ -40,12 +40,6 @@ export class ServerHttp {
 	}
 
 	post(url, postBody): Promise<any> {
-
-		// let body = new URLSearchParams();
-		// for (let key in postBody)
-		// 	body.set(key, postBody[key]);
-
-
 		return new Promise<any>(resolve => {
 			this.http.post(this.host + url, postBody, { withCredentials: true })
 				.subscribe(
@@ -54,6 +48,28 @@ export class ServerHttp {
 				);
 		});
 	};
+
+	put(url, postBody): Promise<any> {
+		return new Promise<any>(resolve => {
+			this.http.put(this.host + url, postBody, { withCredentials: true })
+				.subscribe(
+				response => resolve(response.json()),
+				error => resolve(null)
+				);
+		});
+	};
+
+	delete(url): Promise<any> {
+		return new Promise<any>(resolve => {
+			this.http.delete(this.host + url, { withCredentials: true })
+				.subscribe(
+				response => resolve(response.json()),
+				error => resolve(null)
+				);
+		});
+	};
+
+	
 
 	
 
