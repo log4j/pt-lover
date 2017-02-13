@@ -213,7 +213,7 @@ export class TorrentDetailPage {
 							// alert(base64);
 
 							this.presentRemoteServerChoosePage(base64).then(saveRes => {
-								alert(saveRes);
+								// alert(saveRes);
 							});
 						}
 					}
@@ -247,10 +247,10 @@ export class TorrentDetailPage {
 
 						if (type === 'file') {
 							//user click
-							FileOpener.open(entry.fullPath.substring(7), 'application/x-bittorrent').then((event1) => {
-								alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
+							FileOpener.open(entry.toURL(), 'application/x-bittorrent').then((event1) => {
+								// alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
 							}, (event2) => {
-								alert(entry.toURL() + ' event2 ' + JSON.stringify(event2));
+								// alert(entry.toURL() + ' event2 ' + JSON.stringify(event2));
 							});
 						}
 

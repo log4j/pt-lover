@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
 
 
@@ -39,7 +39,8 @@ export class RemoteServerChoosePage {
 		public remoteData: RemoteData,
 		public toastCtrl: ToastController,
 		public alertCtrl: AlertController,
-		public viewCtrl: ViewController
+		public viewCtrl: ViewController,
+		public ngZone: NgZone
 	) {
 		this.loadRemoteServers();
 		this.torrent = this.navParams.data.torrent;
@@ -90,7 +91,10 @@ export class RemoteServerChoosePage {
 
 	confirm() {
 		// this.viewCtrl.dismiss({id: this.choice});
-		this.isUploading = true;
+		this.ngZone.run(()=>{
+			this.isUploading = true;
+		});
+		
 		//upload torrent!!!
 		this.remoteData.postRemoteServerTorrent({
 			torrent: this.torrent,
@@ -99,21 +103,26 @@ export class RemoteServerChoosePage {
 		}).then(res => {
 			console.log(res);
 
-			this.isUploading = false;
+			this.isUploading = true;
 
 			if (res && res.result) {
 				if (res.data.result === 'success') {
 					//success!!
 
-					if (res.data.arguments['torrent-add']) {
+					console.log('success uploaded!!');
+					console.log(JSON.stringify(res.data));
+					if (res.data.arguments['torrent-added']) {
 						//name in  res.data.arguments['torrent-add'].name
-						let toast = this.toastCtrl.create({
-							message: '下载任务已上传: "' + res.data.arguments['torrent-add'].name + '"',
-							duration: 2000
-						});
-						toast.present();
+						console.log('start ngZone');
+						// this.ngZone.run(() => {
+							let toast = this.toastCtrl.create({
+								message: '下载任务已上传: "' + res.data.arguments['torrent-added'].name + '"',
+								duration: 2000
+							});
+							toast.present();
 
-						this.viewCtrl.dismiss({result:true, id: this.choice});
+							this.viewCtrl.dismiss({ result: true, id: this.choice });
+						// })
 					}
 					else if (res.data.arguments['torrent-duplicate']) {
 						let alert = this.alertCtrl.create({
@@ -134,7 +143,7 @@ export class RemoteServerChoosePage {
 					alert.present();
 				}
 			}
-			else{
+			else {
 				//something happened, make a alert
 				let alert = this.alertCtrl.create({
 					title: '上传失败',
