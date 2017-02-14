@@ -44,12 +44,15 @@
 		<ion-item>
 			<ion-label>PushId: {{rule.device}}</ion-label>
 		</ion-item>
+		<ion-item>
+			<ion-label>User: {{rule.username}}</ion-label>
+		</ion-item>
 
 	</ion-list>
 
 	<ion-list padding>
 
-		<button ion-button block (click)='confirm()' color='danger' [disabled]='isUploading'>
+		<button ion-button block color='danger' [disabled]='isUploading' *ngIf='rule.id' (click)='removeRule()'>
 			删除
 			<ion-spinner *ngIf='isUploading'></ion-spinner>	
 		</button>

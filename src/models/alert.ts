@@ -5,7 +5,7 @@ export class AlertRule {
 
     id: number;
     device: string;
-
+    username: string;
     keyword: string = '';
     category: string = '';
     expirate: any;
@@ -19,15 +19,31 @@ export class AlertRule {
             this.device = data;
         }
         else if (data) {
-            this.id = data.id;
-            this.device = data.device;
-            this.keyword = data.keyword;
-            this.category = data.category;
-            this.expirate = data.expirate;
+            if (data.id)
+                this.id = data.id;
+            if (data.username)
+                this.username = data.username;
+            if (data.device)
+                this.device = data.device;
+            if (data.keyword)
+                this.keyword = data.keyword;
+            if (data.category)
+                this.category = data.category;
+            if (data.expirate)
+                this.expirate = data.expirate;
         }
     }
 
     updateDevice(device: string) {
         this.device = device;
+    }
+
+    updateUsername(username: string) {
+        this.username = username;
+    }
+
+    truncateDate(){
+        if(this.expirate.length>10)
+            this.expirate = this.expirate.substring(0,10);
     }
 }

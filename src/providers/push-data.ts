@@ -34,7 +34,7 @@ export class PushData {
 	getTorrentAlertRules(): Promise<AlertRule[]> {
 		//works only when pushId is available
 		if (this.pushId) {
-			return this.serverHttp.get('subscription/'+this.pushId).then(res=>{
+			return this.serverHttp.get('subscription/?device='+this.pushId).then(res=>{
 				if(res && res.result){
 					let results:AlertRule[] = [];
 
@@ -53,22 +53,24 @@ export class PushData {
 	}
 
 	updateTorrentAlertRule(rule:AlertRule):Promise<AlertRule>{
-
+		rule.truncateDate();
 		if(rule.id){
 			//update
-			return this.serverHttp.put('subscription/'+this.pushId+'/'+rule.id, rule).then(res=>{
+			return this.serverHttp.put('subscription/'+rule.id, rule).then(res=>{
 				if(res && res.result){
 					return rule;
 				}else{
+					alert(res);
 					return null;
 				}
 			});
 		}else{
 			//post
-			return this.serverHttp.post('subscription/'+this.pushId, rule).then(res=>{
+			return this.serverHttp.post('subscription', rule).then(res=>{
 				if(res && res.result){
 					return rule;
 				}else{
+					alert(JSON.stringify(res));
 					return null;
 				}
 			});
@@ -77,7 +79,7 @@ export class PushData {
 
 	removeTorrentAlertRule(rule:AlertRule):Promise<boolean>{
 		if(rule && rule.id){
-			return this.serverHttp.delete('subscription/'+this.pushId+'/'+rule.id).then(res=>{
+			return this.serverHttp.delete('subscription/'+rule.id).then(res=>{
 				if(res && res.result){
 					return true;
 				}else{

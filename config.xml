@@ -94,4 +94,8 @@
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
     <plugin name="cordova-plugin-file-opener2" spec="~2.0.7" />
     <plugin name="com.borismus.webintent" spec="https://github.com/Initsogar/cordova-webintent.git" />
+    <plugin name="phonegap-plugin-push" spec="~1.9.2">
+        <variable name="SENDER_ID" value="707320332782" />
+    </plugin>
+    <plugin name="cordova-plugin-firebase" spec="~0.1.19" />
 </widget>

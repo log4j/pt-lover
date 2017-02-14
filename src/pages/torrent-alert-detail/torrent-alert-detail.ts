@@ -3,10 +3,11 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 
 import { PushData } from '../../providers/push-data';
+import { UserData } from '../../providers/user-data';
 
 
 import { AlertRule } from '../../models/alert';
-import {Type } from '../../models/type';
+import { Type } from '../../models/type';
 
 /*
   Generated class for the TorrentAlertDetail page.
@@ -20,7 +21,7 @@ import {Type } from '../../models/type';
 })
 export class TorrentAlertDetailPage {
 	rule: AlertRule;
-	typeOptions =  Type.Types;
+	typeOptions = Type.Types;
 
 	@ViewChild('keywordInput') keywordInput;
 
@@ -28,25 +29,48 @@ export class TorrentAlertDetailPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
-		public pushData: PushData
+		public pushData: PushData,
+		public userData: UserData
 	) {
 
+		if (this.navParams.data.rule) {
+			this.rule = this.navParams.data.rule;
+		} else {
+			this.rule = new AlertRule({
+				device: this.pushData.pushId,
+				username: this.userData.user.name
+			});
+		}
 
-		this.rule = new AlertRule(this.pushData.pushId);
-		console.log(this.rule);
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TorrentAlertDetailPage');
-		setTimeout(()=>{
+		setTimeout(() => {
 			this.keywordInput.setFocus();
-		},150);
+		}, 150);
 	}
 
 	applyRules() {
-		console.log(this.rule);
-		this.viewCtrl.dismiss({
 
+		this.pushData.updateTorrentAlertRule(this.rule).then(res => {
+			console.log(res);
+			if (res) {
+				this.viewCtrl.dismiss({
+
+				});
+			}
+		});
+
+	}
+
+	removeRule() {
+		this.pushData.removeTorrentAlertRule(this.rule).then(res => {
+			if (res) {
+				this.viewCtrl.dismiss({
+
+				});
+			}
 		});
 	}
 

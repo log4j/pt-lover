@@ -126,7 +126,7 @@ export class MyApp {
 
 			var push = Push.init({
 				android: {
-					senderID: '12345679'
+					senderID: '707320332782'
 				},
 				ios: {
 					alert: 'true',
@@ -135,12 +135,33 @@ export class MyApp {
 				},
 				windows: {}
 			});
-			push.on('registration',  data=> {
-				
-				//update pushId
-				this.pushData.updatePushId(data.registrationId);
-				// alert('registration:'+data.registrationId);
-			});
+
+			// alert(push);
+
+			if (push) {
+				push.on('registration', data => {
+					// alert('registration:' + data);
+					//update pushId
+					this.pushData.updatePushId(data.registrationId);
+
+				});
+
+				push.on('error', function (e) {
+					alert(e.message);
+				});
+
+
+				// alert('finished push on');
+				// push.on
+			} else {
+				//fake push id
+				this.pushData.updatePushId('fakedpushid');
+			}
+
+			Push.hasPermission().then(res=>{
+				alert('permissionL:'+JSON.stringify(res));
+			})
+
 		});
 	}
 

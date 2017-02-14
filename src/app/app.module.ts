@@ -35,6 +35,9 @@ import { ServerHttp } from '../providers/server-http';
 import { RemoteData } from '../providers/remote-data';
 import { PushData } from '../providers/push-data';
 
+import {CategoryPipe} from '../pipes/torrent-category-pipe';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -58,7 +61,9 @@ import { PushData } from '../providers/push-data';
     ForumTopicPostPage,
     RemotePage,
     RemoteServerPage,
-    RemoteServerChoosePage
+    RemoteServerChoosePage,
+    CategoryPipe
+    
   ],
   imports: [
     IonicModule.forRoot(MyApp, {

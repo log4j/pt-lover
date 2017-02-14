@@ -6,22 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
+	<ion-navbar>
+		<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>资源订阅</ion-title>
+		<ion-title>资源订阅</ion-title>
 
-    <ion-buttons end>
+		<ion-buttons end>
 			<button ion-button icon-only (click)="showTorrentAlertDetail()">
 				<ion-icon name='add-circle'></ion-icon>
 			</button>
 		</ion-buttons>
-  </ion-navbar>
+	</ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
+	<ion-list>
+		<button ion-item *ngFor='let r of rules' (click)="showTorrentAlertDetail(r)">
+			<h2>关键字:{{r.keyword}}</h2>
+			<p>{{r.category | category}} <ion-note style='float:right'>有效至:{{r.expirate | date:'yyyy/MM/dd'}}</ion-note></p>
+		</button>
+	</ion-list>
 </ion-content>

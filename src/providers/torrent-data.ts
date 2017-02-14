@@ -133,26 +133,26 @@ export class TorrentData {
 			}
 			return this.webHttp.get('torrents.php' + (paras ? "?" + paras : paras)).then(data => {
 
-				let types = this.webHttp.fintElement(data, item=>{
-					return item.tagName==='tr' && item.id==='kAdvsearch';
-				})
-				if(types){
-					console.log(types);
-					let strs = '[';
-					types.children["0"].children["0"].children.forEach(row=>{
-						if(row.children){
-							row.children.forEach(item=>{
-								// console.log(item);
-								if(item.children && item.children.length==2){
-									// console.log(item.children[0], item.children[1]);
-									strs+='{ label:"'+item.children[1].title+'",value:"'+item.children[0].name+'"},';
-								}
-							})
-						}
-					});
-					strs+=']';
-					console.log(strs);
-				}
+				// let types = this.webHttp.fintElement(data, item=>{
+				// 	return item.tagName==='tr' && item.id==='kAdvsearch';
+				// })
+				// if(types){
+				// 	console.log(types);
+				// 	let strs = '[';
+				// 	types.children["0"].children["0"].children.forEach(row=>{
+				// 		if(row.children){
+				// 			row.children.forEach(item=>{
+				// 				// console.log(item);
+				// 				if(item.children && item.children.length==2){
+				// 					// console.log(item.children[0], item.children[1]);
+				// 					strs+='{ label:"'+item.children[1].title+'",value:"'+item.children[0].name+'"},';
+				// 				}
+				// 			})
+				// 		}
+				// 	});
+				// 	strs+=']';
+				// 	console.log(strs);
+				// }
 				
 
 				//find table.torrents
