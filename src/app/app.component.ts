@@ -159,7 +159,7 @@ export class MyApp {
 			}
 
 			Push.hasPermission().then(res=>{
-				alert('permissionL:'+JSON.stringify(res));
+				console.log('permissionL:'+JSON.stringify(res));
 			})
 
 		});
