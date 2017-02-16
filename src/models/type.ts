@@ -170,5 +170,40 @@ export class Type {
             label: "其他",
             value: "standard5"
         }
+    ];
+
+    public static TorrentStatus = [
+        {
+            label: '未知',
+            value: -1
+        },
+        {
+            label: '已停止',
+            value:0
+        },
+        {
+            label: '准备检查',
+            value:1
+        },
+        {
+            label: '检查中',
+            value:2
+        },
+        {
+            label: '准备下载',
+            value:3
+        },
+        {
+            label: '下载中',
+            value:4
+        },
+        {
+            label: '准备做种',
+            value:5
+        },
+        {
+            label: '做种中',
+            value:6
+        }
     ]
 }

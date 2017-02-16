@@ -66,8 +66,15 @@ export class RemoteServerChoosePage {
 		console.log(this.choice);
 		if (this.remote && this.remote.servers && this.remote.servers.length) {
 			this.remote.servers.forEach(item => {
-				if (item.id === this.choice)
+				if (item.id === this.choice) {
 					this.server = item;
+					if(this.server.folders && this.server.folders.length){
+						this.target = this.server.folders[0].value;
+					}else{
+						this.target = '';
+					}
+				}
+
 			})
 		}
 
@@ -91,10 +98,10 @@ export class RemoteServerChoosePage {
 
 	confirm() {
 		// this.viewCtrl.dismiss({id: this.choice});
-		this.ngZone.run(()=>{
+		this.ngZone.run(() => {
 			this.isUploading = true;
 		});
-		
+
 		//upload torrent!!!
 		this.remoteData.postRemoteServerTorrent({
 			torrent: this.torrent,
@@ -115,13 +122,13 @@ export class RemoteServerChoosePage {
 						//name in  res.data.arguments['torrent-add'].name
 						console.log('start ngZone');
 						// this.ngZone.run(() => {
-							let toast = this.toastCtrl.create({
-								message: '下载任务已上传: "' + res.data.arguments['torrent-added'].name + '"',
-								duration: 2000
-							});
-							toast.present();
+						let toast = this.toastCtrl.create({
+							message: '下载任务已上传: "' + res.data.arguments['torrent-added'].name + '"',
+							duration: 2000
+						});
+						toast.present();
 
-							this.viewCtrl.dismiss({ result: true, id: this.choice });
+						this.viewCtrl.dismiss({ result: true, id: this.choice });
 						// })
 					}
 					else if (res.data.arguments['torrent-duplicate']) {

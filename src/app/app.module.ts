@@ -36,6 +36,9 @@ import { RemoteData } from '../providers/remote-data';
 import { PushData } from '../providers/push-data';
 
 import {CategoryPipe} from '../pipes/torrent-category-pipe';
+import {TorrentStatusPipe} from '../pipes/torrent-status-pipe';
+
+import {FileSizePipe} from '../pipes/file-size-pipe';
 
 
 @NgModule({
@@ -62,8 +65,9 @@ import {CategoryPipe} from '../pipes/torrent-category-pipe';
     RemotePage,
     RemoteServerPage,
     RemoteServerChoosePage,
-    CategoryPipe
-    
+    CategoryPipe,
+    TorrentStatusPipe,
+    FileSizePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp, {

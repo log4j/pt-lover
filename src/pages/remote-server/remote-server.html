@@ -18,7 +18,18 @@
   <ion-list>
     <ion-item *ngFor='let t of server.torrents'>
       <h2>{{t.name}}</h2>
-      <p>{{t.totalSize}}</p>
+      <p>
+        <ion-badge item-left color="gray">{{t.totalSize | fileSize}}</ion-badge>
+        <ion-badge style="float:right;" item-left color="pink">{{t.status| torrentStatus}}</ion-badge>
+        <!--<ion-badge item-right color="gray">
+          <ion-icon name="arrow-round-up"></ion-icon>
+          {{t.uploadedEver | fileSize}}
+        </ion-badge>-->
+        <ion-badge item-right color="green" >
+          <ion-icon name="arrow-round-down"></ion-icon>
+          {{(((t.downloadedEver>t.totalSize?t.totalSize:t.downloadedEver))/t.totalSize) | percent}}
+        </ion-badge>
+      </p>
     </ion-item>
   </ion-list>
 

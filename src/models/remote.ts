@@ -3,6 +3,7 @@
 export class RemoteServer{
     name:string;
     id: string;
+    folders: {label:string,value:string}[];
 
     torrents:any[];
 
@@ -10,6 +11,11 @@ export class RemoteServer{
         this.name = data.name;
         this.id = data.id;
         this.torrents = [];
+        if(data.folders){
+            this.folders = data.folders;
+        }else{
+            this.folders = [];
+        }
     }
 
     loadTorrents(data){
@@ -17,11 +23,7 @@ export class RemoteServer{
         console.log(data);
         if(data){
             data.forEach(item=>{
-                this.torrents.push({
-                    id:item.id,
-                    name:item.name,
-                    totalSize:item.totalSize
-                })
+                this.torrents.push(item)
             })
         }
     }

@@ -40,7 +40,10 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    {
+      "locator": "phonegap-plugin-push"
+    }
   ],
   "cordovaPlatforms": [],
   "description": "PTLover: An Ionic project"

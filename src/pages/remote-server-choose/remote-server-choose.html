@@ -36,14 +36,15 @@
 
 	</ion-list>
 
-	<ion-list radio-group *ngIf='server && server.targets' [(ngModel)]='target'>
+	<ion-list radio-group *ngIf='server && server.folders && server.folders.length' [(ngModel)]='target'>
 		<ion-list-header>
 			请选择一个下载路径
 		</ion-list-header>
 
-		<ion-item *ngFor='let s of server.targets'>
-			<ion-label>{{s.name}}</ion-label>
-			<ion-radio value="{{s.id}}"></ion-radio>
+		<ion-item *ngFor='let s of server.folders'>
+			<ion-label>{{s.label}}<p>{{s.value}}</p></ion-label>
+			
+			<ion-radio value="{{s.value}}"></ion-radio>
 		</ion-item>
 
 	</ion-list>

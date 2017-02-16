@@ -126,7 +126,10 @@ export class MyApp {
 
 			var push = Push.init({
 				android: {
-					senderID: '707320332782'
+					senderID: '707320332782',
+					// forceShow: true,
+					icon: "Facebook",
+					iconColor: "blue"
 				},
 				ios: {
 					alert: 'true',
@@ -138,9 +141,9 @@ export class MyApp {
 
 			// alert(push);
 
-			if (push) {
+			if (push && typeof push.on === 'function') {
 				push.on('registration', data => {
-					// alert('registration:' + data);
+					// alert('registration:' + data.registrationId);
 					//update pushId
 					this.pushData.updatePushId(data.registrationId);
 
@@ -150,6 +153,9 @@ export class MyApp {
 					alert(e.message);
 				});
 
+				push.on('notification', function (data) {
+					// alert(JSON.stringify(data));
+				});
 
 				// alert('finished push on');
 				// push.on
@@ -158,8 +164,8 @@ export class MyApp {
 				this.pushData.updatePushId('fakedpushid');
 			}
 
-			Push.hasPermission().then(res=>{
-				console.log('permissionL:'+JSON.stringify(res));
+			Push.hasPermission().then(res => {
+				// alert('permission:' + JSON.stringify(res));
 			})
 
 		});
