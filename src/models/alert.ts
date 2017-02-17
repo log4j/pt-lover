@@ -1,5 +1,6 @@
 
 import moment from 'moment';
+import { Device } from 'ionic-native';
 
 export class AlertRule {
 
@@ -9,11 +10,14 @@ export class AlertRule {
     keyword: string = '';
     category: string = '';
     expirate: any;
+    platform: string;
+    mode: string;
 
 
     constructor(data) {
         this.expirate = moment().add(90, 'days').format('YYYY-MM-DD');
-
+        this.platform = Device.platform;
+        this.mode = 'sandbox';
 
         if (typeof data === 'string') {
             this.device = data;
@@ -31,6 +35,10 @@ export class AlertRule {
                 this.category = data.category;
             if (data.expirate)
                 this.expirate = data.expirate;
+            if (data.platform)
+                this.platform = data.platform;
+            if (data.mode)
+                this.mode = data.mode;
         }
     }
 
@@ -42,8 +50,8 @@ export class AlertRule {
         this.username = username;
     }
 
-    truncateDate(){
-        if(this.expirate.length>10)
-            this.expirate = this.expirate.substring(0,10);
+    truncateDate() {
+        if (this.expirate.length > 10)
+            this.expirate = this.expirate.substring(0, 10);
     }
 }
