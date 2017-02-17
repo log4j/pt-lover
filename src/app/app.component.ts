@@ -128,8 +128,8 @@ export class MyApp {
 				android: {
 					senderID: '707320332782',
 					// forceShow: true,
-					icon: "Facebook",
-					iconColor: "blue"
+					icon: "mipmap",
+					// iconColor: "blue"
 				},
 				ios: {
 					alert: 'true',
@@ -164,9 +164,9 @@ export class MyApp {
 				this.pushData.updatePushId('fakedpushid');
 			}
 
-			Push.hasPermission().then(res => {
-				// alert('permission:' + JSON.stringify(res));
-			})
+			// Push.hasPermission().then(res => {
+			// 	// alert('permission:' + JSON.stringify(res));
+			// })
 
 		});
 	}
