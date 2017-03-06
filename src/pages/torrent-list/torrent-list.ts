@@ -34,6 +34,8 @@ export class TorrentListPage {
 	torrentFilter: TorrentFilter;
 
 	loader: Loading;
+	isLoading:boolean = true;
+
 	@Input() showScrollToTop: boolean = false;
 
 
@@ -75,8 +77,12 @@ export class TorrentListPage {
 
 	ngAfterViewInit() {
 		// this.refresher.
-		this.refresher._beginRefresh();
+		// this.refresher._beginRefresh();
 		this.showLoading();
+		this.updateTorrentList(true).then(data => {
+			this.hideLoading();
+			// refresher.complete();
+		})
 	}
 
 
@@ -125,16 +131,19 @@ export class TorrentListPage {
 
 
 	showLoading() {
-		this.loader = this.loadingCtrl.create({
-			content: "正在载入, 请稍等..."
-		});
-		this.loader.present();
+		// this.loader = this.loadingCtrl.create({
+		// 	content: "正在载入, 请稍等..."
+		// });
+		// this.loader.present();
+		this.isLoading = true;
 	}
 
 	hideLoading() {
 		if (this.loader) {
 			this.loader.dismiss();
 		}
+		this.isLoading = false;
+		// console.log('hide loading');
 	}
 
 	presentFilter() {
@@ -181,8 +190,7 @@ export class TorrentListPage {
 	doRefresh(refresher) {
 
 		this.updateTorrentList(true).then(data => {
-			if (this.loader)
-				this.loader.dismiss();
+			this.hideLoading();
 			refresher.complete();
 		})
 

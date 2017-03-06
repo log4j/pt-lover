@@ -30,7 +30,6 @@ export class ForumMessage {
                         this.userId = item.children[1].children["0"].href;
                     }
                     else if (item.tagName === 'div') {
-                        console.log(item);
 
                         this.contents = this.loadCommentContents(item.children, 0);
                     }
@@ -51,7 +50,6 @@ export class ForumMessage {
                 comments.push({ content: item.value.replace(/\r|\n/g, ''), quote: quote, type: 'text' });
 
                 // if(item.value.indexOf('nbsp')>=0){
-                    console.log(item.value);
                 // }
             }
             else if (item.tagName === 'fieldset') {
@@ -81,7 +79,6 @@ export class ForumMessage {
                 insideComments.forEach(comment => comments.push(comment));
             }
             else {
-                console.log(item);
             }
         });
 
@@ -193,19 +190,15 @@ export class ForumTopic {
     }
 
     loadMessages(data, webHttp: WebHttp) {
-        console.log(data);
         let list = webHttp.fintElement(data, item => {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
-        console.log(list);
         //update id
         let modalLink = webHttp.fintElement(data, item=>{
             return item.tagName==='a' && item['data-rel']==='dialog' && item.href.indexOf('?action=reply&topicid=')>=0;
         });
         if(modalLink){
-            console.log(modalLink);
             this.id = modalLink.href.substring(modalLink.href.indexOf('topicid=')+8);
-            console.log(this.id);
         }
 
         if (list && list.children && list.children.length) {
@@ -217,11 +210,9 @@ export class ForumTopic {
     }
 
     loadLastPageMessage(data, webHttp: WebHttp): boolean {
-        console.log(data);
         let list = webHttp.fintElement(data, item => {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
-        console.log(list);
 
 
         if (list && list.children && list.children.length) {
@@ -233,7 +224,6 @@ export class ForumTopic {
             //update maxPage
             let lastMessage = this.messages[this.messages.length - 1];
             this.count = parseInt(lastMessage.level.substring(0, lastMessage.level.length - 1));
-            console.log(this.count);
             if (this.count > 0) {
                 this.maxPage = Math.floor((this.count - 1) / 10);
                 this.setPage(this.maxPage);

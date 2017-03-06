@@ -12,7 +12,7 @@
 		</ion-buttons>
 		<ion-title>订阅规则</ion-title>
 		<ion-buttons end>
-			<button ion-button (click)="applyRules()" strong>确定</button>
+			<button ion-button (click)="applyRules()" [disabled]='isSaving || isRemoving' strong>确定<ion-spinner *ngIf='isSaving'></ion-spinner></button>
 		</ion-buttons>
 	</ion-navbar>
 
@@ -41,20 +41,20 @@
 			<ion-datetime displayFormat="MMM DD YYYY" cancelText='取消' max='2020-12-31' doneText='确定' pickerFormat="YYYY-MM-DD" [(ngModel)]="rule.expirate"></ion-datetime>
 		</ion-item>
 
-		<ion-item>
+		<!--<ion-item>
 			<ion-label>PushId: {{rule.device}}</ion-label>
 		</ion-item>
 		<ion-item>
 			<ion-label>User: {{rule.username}}</ion-label>
-		</ion-item>
+		</ion-item>-->
 
 	</ion-list>
 
 	<ion-list padding>
 
-		<button ion-button block color='danger' [disabled]='isUploading' *ngIf='rule.id' (click)='removeRule()'>
+		<button ion-button block color='danger' [disabled]='isSaving||isRemoving' *ngIf='rule.id' (click)='removeRule()'>
 			删除
-			<ion-spinner *ngIf='isUploading'></ion-spinner>	
+			<ion-spinner *ngIf='isRemoving'></ion-spinner>	
 		</button>
 	</ion-list>
 </ion-content>

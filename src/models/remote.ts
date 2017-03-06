@@ -20,7 +20,6 @@ export class RemoteServer{
 
     loadTorrents(data){
         this.torrents = [];
-        console.log(data);
         if(data){
             data.forEach(item=>{
                 this.torrents.push(item)

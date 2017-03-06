@@ -17,7 +17,7 @@ export class AlertRule {
     constructor(data) {
         this.expirate = moment().add(90, 'days').format('YYYY-MM-DD');
         this.platform = Device.platform;
-        this.mode = 'sandbox';
+        this.mode = 'production';
 
         if (typeof data === 'string') {
             this.device = data;

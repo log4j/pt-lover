@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 
 import { TorrentAlertDetailPage } from '../torrent-alert-detail/torrent-alert-detail';
 
@@ -25,14 +25,16 @@ import { AlertRule } from '../../models/alert';
 })
 export class TorrentAlertPage {
 
-	rules: AlertRule[]
+	rules: AlertRule[];
+	isLoading: boolean = true;
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public pushData:PushData,
-		public modalCtrl: ModalController
-	) { 
+		public pushData: PushData,
+		public modalCtrl: ModalController,
+		public viewCtrl: ViewController
+	) {
 
 		this.rules = [];
 
@@ -45,22 +47,31 @@ export class TorrentAlertPage {
 
 	}
 
-	loadAlertRules(){
-		return this.pushData.getTorrentAlertRules().then(res=>{
-			if(res && res.length){
+	loadAlertRules() {
+		this.isLoading = true;
+		return this.pushData.getTorrentAlertRules().then(res => {
+			this.isLoading = false;
+			if (res && res.length) {
 				this.rules = res;
 			}
+			// console.log(this.rules);
 			return res;
 		});
 	}
 
 
-	showTorrentAlertDetail(rule:AlertRule) {
-		let modal = this.modalCtrl.create(TorrentAlertDetailPage,{rule:rule});
-		modal.present();
 
+	showTorrentAlertDetail(rule?: AlertRule) {
+		let modal = this.modalCtrl.create(TorrentAlertDetailPage, { rule: rule });
 		modal.onWillDismiss((data: any) => {
+			// console.log('on dismiss');
 			this.loadAlertRules();
 		});
+		// console.log('show modal');
+		modal.present();
 	}
+
+	// dismiss() {
+	// 	this.viewCtrl.dismiss();
+	// }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 
 import { RemoteData } from '../../providers/remote-data';
@@ -25,7 +25,8 @@ export class RemotePage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public remoteData: RemoteData
+		public remoteData: RemoteData,
+		public viewCtrl: ViewController
 	) { }
 
 	ionViewDidLoad() {
@@ -38,7 +39,6 @@ export class RemotePage {
 
 	loadRemoteServers() {
 		return this.remoteData.getRemoteServers().then(res => {
-			console.log(res);
 			this.remote = res;
 			return this.remote;
 		})
@@ -63,5 +63,8 @@ export class RemotePage {
 
 
 	}
+	// dismiss() {
+	// 	this.viewCtrl.dismiss();
+	// }
 
 }

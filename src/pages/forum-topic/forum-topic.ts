@@ -94,9 +94,7 @@ export class ForumTopicPage {
 
 							this.showLoading();
 							this.forumData.postReply(this.topic, data.message, comment).then(res => {
-								console.log(res);
 								this.hideLoading();
-								console.log(this.topic);
 								setTimeout(() => {
 									this.content.scrollToBottom();
 								}, 500);

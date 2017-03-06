@@ -23,6 +23,7 @@ export class HomePage {
 	messages: Message[] = [];
 
 	loader: Loading;
+	isLoading: boolean = true;
 
 
 	constructor(
@@ -80,7 +81,7 @@ export class HomePage {
 				// 	}
 				// })
 				// modal.present();
-				
+
 				this.navCtrl.parent.parent.setRoot(LoginPage);
 			}
 
@@ -98,12 +99,14 @@ export class HomePage {
 
 	updateSegment() {
 		// console.log('update', this.segment);
-		if (this.segment === 'notice'){
+		if (this.segment === 'notice') {
 
-		} else if(this.segment === 'chat'){
-			if(this.messages === null || this.messages.length==0){
-				this.refresher._beginRefresh();
+		} else if (this.segment === 'chat') {
+			if (this.messages === null || this.messages.length == 0) {
 				this.showLoading();
+				this.loadChatData().then(data => {
+					this.hideLoading();
+				})
 			}
 		}
 		// 	this.slides.slideTo(0);
@@ -114,17 +117,19 @@ export class HomePage {
 
 	}
 
-	showLoading(){
-		this.loader = this.loadingCtrl.create({
-			content: "正在载入, 请稍等..."
-		});
-		this.loader.present();
+	showLoading() {
+		// this.loader = this.loadingCtrl.create({
+		// 	content: "正在载入, 请稍等..."
+		// });
+		// this.loader.present();
+		this.isLoading = true;
 	}
 
-	hideLoading(){
-		if(this.loader){
+	hideLoading() {
+		if (this.loader) {
 			this.loader.dismiss();
 		}
+		this.isLoading = false;
 	}
 
 	slideChanged() {
@@ -148,15 +153,13 @@ export class HomePage {
 
 		if (this.segment === 'chat') {
 			this.loadChatData().then(data => {
-				if (this.loader)
-					this.loader.dismiss();
+				this.hideLoading();
 				refresher.complete();
 			})
 		} else {
 
 			this.loadHomePageData().then(data => {
-				if (this.loader)
-					this.loader.dismiss();
+				this.hideLoading();
 				refresher.complete();
 			})
 		}
@@ -184,12 +187,11 @@ export class HomePage {
 				{
 					text: '发送',
 					handler: data => {
-						console.log('Saved clicked',data);
+						console.log('Saved clicked', data);
 
 						this.showLoading();
-						this.userData.shout(data.message,message?message.userId:null).then(res=>{
-							console.log(res);
-							this.loadChatData().then(loadData=>{
+						this.userData.shout(data.message, message ? message.userId : null).then(res => {
+							this.loadChatData().then(loadData => {
 								this.hideLoading()
 							});
 						})

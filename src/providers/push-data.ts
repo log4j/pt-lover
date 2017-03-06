@@ -54,13 +54,15 @@ export class PushData {
 
 	updateTorrentAlertRule(rule:AlertRule):Promise<AlertRule>{
 		rule.truncateDate();
+		// console.log(rule);
 		if(rule.id){
 			//update
 			return this.serverHttp.put('subscription/'+rule.id, rule).then(res=>{
 				if(res && res.result){
 					return rule;
 				}else{
-					alert(res);
+					// alert(res);
+					// console.log(res);
 					return null;
 				}
 			});
@@ -70,7 +72,8 @@ export class PushData {
 				if(res && res.result){
 					return rule;
 				}else{
-					alert(JSON.stringify(res));
+					// console.log(res);
+					// alert(JSON.stringify(res));
 					return null;
 				}
 			});

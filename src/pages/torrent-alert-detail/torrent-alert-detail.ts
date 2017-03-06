@@ -22,6 +22,8 @@ import { Type } from '../../models/type';
 export class TorrentAlertDetailPage {
 	rule: AlertRule;
 	typeOptions = Type.Types;
+	isSaving:boolean = false;
+	isRemoving:boolean = false;
 
 	@ViewChild('keywordInput') keywordInput;
 
@@ -52,9 +54,9 @@ export class TorrentAlertDetailPage {
 	}
 
 	applyRules() {
-
+		this.isSaving = true;
 		this.pushData.updateTorrentAlertRule(this.rule).then(res => {
-			console.log(res);
+			this.isSaving = false;
 			if (res) {
 				this.viewCtrl.dismiss({
 
@@ -65,7 +67,9 @@ export class TorrentAlertDetailPage {
 	}
 
 	removeRule() {
+		this.isRemoving = true;
 		this.pushData.removeTorrentAlertRule(this.rule).then(res => {
+			this.isRemoving = false;
 			if (res) {
 				this.viewCtrl.dismiss({
 

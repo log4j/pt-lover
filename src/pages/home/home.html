@@ -23,6 +23,12 @@
 		<ion-refresher-content></ion-refresher-content>
 	</ion-refresher>
 
+	<ion-list *ngIf="isLoading" class="loading-list">
+		<ion-item text-center>
+			<ion-spinner></ion-spinner>
+		</ion-item>
+	</ion-list>
+
 	<div [ngSwitch]="segment">
 		<ion-list *ngSwitchCase="'notice'">
 			<ion-card *ngFor="let notice of notices" class="card-notice">

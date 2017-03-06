@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController } from 'ionic-angular';
+import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController , ToastController} from 'ionic-angular';
 import { StatusBar, Splashscreen, Device, Push } from 'ionic-native';
 
 import { Storage } from '@ionic/storage';
@@ -49,8 +49,8 @@ export class MyApp {
 	];
 
 	betaPages: PageInterface[] = [
-		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film' },
-		{ title: '远程客户端', component: RemotePage, icon: 'desktop' },
+		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal:false },
+		{ title: '远程客户端', component: RemotePage, icon: 'desktop', isModal:false },
 	];
 
 	loggedInPages: PageInterface[] = [
@@ -72,6 +72,7 @@ export class MyApp {
 		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
 		public modalCtrl: ModalController,
+		public toastCtrl: ToastController,
 		public platform: Platform,
 		// public confData: ConferenceData,
 		public storage: Storage
@@ -79,7 +80,6 @@ export class MyApp {
 
 		// Check if the user has already seen the tutorial
 		this.userData.checkHasSeenTutorial().then(hasSeenTutorial => {
-			console.log(hasSeenTutorial);
 			if (hasSeenTutorial) {
 				this.rootPage = TabsPage;
 			} else {
@@ -122,7 +122,9 @@ export class MyApp {
 			// if (Device.platform == 'android') {
 			StatusBar.backgroundColorByHexString("#353A3D");
 			// }
-			console.log(Device.platform);
+
+			var self = this;
+			
 
 			var push = Push.init({
 				android: {
@@ -134,7 +136,8 @@ export class MyApp {
 				ios: {
 					alert: 'true',
 					badge: true,
-					sound: 'false'
+					sound: 'false',
+					clearBadge:true
 				},
 				windows: {}
 			});
@@ -155,6 +158,11 @@ export class MyApp {
 
 				push.on('notification', function (data) {
 					// alert(JSON.stringify(data));
+					console.log(data);
+					if(data && data.message){
+						
+						self.showNotifyToast(data);
+					}
 				});
 
 				// alert('finished push on');
@@ -171,6 +179,15 @@ export class MyApp {
 		});
 	}
 
+	showNotifyToast(msg){
+		let toast = this.toastCtrl.create({
+			message: msg.message,
+			duration: 4000,
+			position: 'top'
+		});
+		toast.present();
+	}
+
 	openPage(page: PageInterface) {
 		// the nav component was found using @ViewChild(Nav)
 		// reset the nav to remove previous pages and only have this page
@@ -185,7 +202,6 @@ export class MyApp {
 			this.userData.logout().then(data => {
 				loader.dismiss();
 				this.nav.setRoot(page.component, { tabIndex: page.index }).catch(() => {
-					// console.log("Didn't set nav root");
 
 				});
 			})
@@ -195,7 +211,6 @@ export class MyApp {
 
 		} else {
 			// this.nav.setRoot(page.component).catch(() => {
-			// 	console.log("Didn't set nav root");
 			// });
 			if (page.isModal) {
 				this.openModal(page.component);

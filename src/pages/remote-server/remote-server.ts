@@ -31,7 +31,6 @@ export class RemoteServerPage {
 		console.log('ionViewDidLoad RemoteServerPage');
 
 		this.loadTorrentList().then(res=>{
-			console.log(this.server);
 		});
 	}
 

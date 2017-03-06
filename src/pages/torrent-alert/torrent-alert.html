@@ -10,6 +10,11 @@
 		<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
+		<!--<ion-buttons start >
+      <button ion-button (click)="dismiss()" color="primary">返回</button>
+    </ion-buttons>-->
+
 		<ion-title>资源订阅</ion-title>
 
 		<ion-buttons end>
@@ -19,11 +24,17 @@
 		</ion-buttons>
 	</ion-navbar>
 
+
 </ion-header>
 
 
 <ion-content>
 
+	<ion-list *ngIf="isLoading" class="loading-list">
+		<ion-item text-center>
+			<ion-spinner></ion-spinner>
+		</ion-item>
+	</ion-list>
 	<ion-list>
 		<button ion-item *ngFor='let r of rules' (click)="showTorrentAlertDetail(r)">
 			<h2>关键字:{{r.keyword}}</h2>

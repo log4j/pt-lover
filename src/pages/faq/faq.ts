@@ -43,7 +43,6 @@ export class FaqPage {
     loader.present();
 
     this.userData.loadQuestions().then(data => {
-      console.log(data)
       loader.dismiss();
       this.questions = data;
       this.doFilter(null);
