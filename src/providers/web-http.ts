@@ -110,7 +110,7 @@ export class WebHttp {
 
 	}
 
-	fintElement(node: any, isThatOne: Function): any {
+	findElement(node: any, isThatOne: Function): any {
 		if (node) {
 			let list: any[] = [];
 			list.push(node);
@@ -199,10 +199,10 @@ export class WebHttp {
 		// let url = 'http://www.example.com/file.pdf';
 		// console.log(name);
 		let target = cordova.file.dataDirectory;
-		if(Device.platform === 'Android'){
+		if (Device.platform === 'Android') {
 			target = cordova.file.externalDataDirectory;
 		}
-		return fileTransfer.download(this.host + url, target  + name);
+		return fileTransfer.download(this.host + url, target + name);
 	}
 
 

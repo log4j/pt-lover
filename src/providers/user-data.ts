@@ -32,7 +32,7 @@ export class UserData {
 	checkcodeNeeded: boolean = true;
 	checkcodeUrl: string = '';
 
-	
+
 
 	constructor(
 		public events: Events,
@@ -70,7 +70,7 @@ export class UserData {
 				this.checkcodeNeeded = false;
 				this.checkcodeUrl = '';
 				this.checkcode = '';
-				let checkcode = this.webHttp.fintElement(data, item => {
+				let checkcode = this.webHttp.findElement(data, item => {
 					return item.tagName === 'input' && item.name === 'checkcode';
 				});
 				if (checkcode.value) {
@@ -78,7 +78,7 @@ export class UserData {
 					this.checkcode = checkcode.value;
 				} else {
 					//need checkcode!!!
-					let checkCodeImg = this.webHttp.fintElement(data, item => {
+					let checkCodeImg = this.webHttp.findElement(data, item => {
 						return item.tagName === 'img' && item.alt === '验证码';
 					});
 					console.log(checkCodeImg);
@@ -116,7 +116,7 @@ export class UserData {
 		return this.webHttp.post(url, body).then(data => {
 			// console.log(data);
 			if (data) {
-				let errorWord = this.webHttp.fintElement(data, item => {
+				let errorWord = this.webHttp.findElement(data, item => {
 					return item.text === '登录失败！';
 				})
 				console.log(errorWord);
@@ -124,7 +124,7 @@ export class UserData {
 
 				if (errorWord && errorWord.tagName) {
 
-					let checkcodeError = this.webHttp.fintElement(data, item => {
+					let checkcodeError = this.webHttp.findElement(data, item => {
 						return item.tagName === 'td' && item.text && item.text.indexOf('请输入正确的验证码') >= 0
 					});
 					console.log(checkcodeError);
@@ -137,7 +137,7 @@ export class UserData {
 				} else {
 					return this.parseIndexPage(data);
 				}
-			}else{
+			} else {
 				return { user: null, error: '无法连接到葡萄服务器,请稍后尝试...' };
 			}
 
@@ -205,11 +205,11 @@ export class UserData {
 	};
 
 	parseIndexPage(data: any): any {
-		let body = this.webHttp.fintElement(data, item => {
+		let body = this.webHttp.findElement(data, item => {
 			return item.tagName === 'table' && item.id === "userbar";
 		});
 
-		let noticeData = this.webHttp.fintElement(data, item => {
+		let noticeData = this.webHttp.findElement(data, item => {
 			return item.tagName === 'td' && item.children && item.children.length >= 2 && item.children[0].text === '最新公告';
 		});
 

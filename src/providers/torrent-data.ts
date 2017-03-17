@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 
 // import * as Parser from "htmlparser2";
 
-import { Comment,Torrent, TorrentList } from '../models/torrent';
+import { Comment, Torrent, TorrentList } from '../models/torrent';
 
 import { WebHttp } from './web-http';
 
@@ -133,7 +133,7 @@ export class TorrentData {
 			}
 			return this.webHttp.get('torrents.php' + (paras ? "?" + paras : paras)).then(data => {
 
-				// let types = this.webHttp.fintElement(data, item=>{
+				// let types = this.webHttp.findElement(data, item=>{
 				// 	return item.tagName==='tr' && item.id==='kAdvsearch';
 				// })
 				// if(types){
@@ -153,10 +153,10 @@ export class TorrentData {
 				// 	strs+=']';
 				// 	console.log(strs);
 				// }
-				
+
 
 				//find table.torrents
-				let table = this.webHttp.fintElement(data, item => {
+				let table = this.webHttp.findElement(data, item => {
 					return (item.tagName == 'table' && item.class == 'torrents');
 				});
 				let torrent = new TorrentList(table.children);
@@ -205,13 +205,13 @@ export class TorrentData {
 	}
 
 
-	postTorrentComment(data:{torrent:string,message:string,quote?:Comment}){
+	postTorrentComment(data: { torrent: string, message: string, quote?: Comment }) {
 		let body = {
 			'pid': data.torrent,
 			'color': '0',
 			'font': '0',
-			'size':'0',
-			'body': ((data.quote ? ('[quote=' + data.quote.userName + ']'+ data.quote.getQuoteString()+'[/quote]\n') : ''))+data.message,
+			'size': '0',
+			'body': ((data.quote ? ('[quote=' + data.quote.userName + ']' + data.quote.getQuoteString() + '[/quote]\n') : '')) + data.message,
 		};
 
 		console.log(body);

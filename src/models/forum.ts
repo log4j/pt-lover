@@ -62,19 +62,19 @@ export class ForumMessage {
             else if (item.tagName === 'img' && item.class === 'smilies') {
                 comments.push({ content: item.src.replace('pic/', 'assets/'), quote: quote, type: 'smilies' });
             }
-            else if(item.tagName === 'img' && item.alt==='image'){
-                comments.push({content: item.src, quote: quote, type:'image'});
+            else if (item.tagName === 'img' && item.alt === 'image') {
+                comments.push({ content: item.src, quote: quote, type: 'image' });
             }
-            else if(item.tagName === 'a'){
-                comments.push({content:item.text, quote:quote, type:'link'});
+            else if (item.tagName === 'a') {
+                comments.push({ content: item.text, quote: quote, type: 'link' });
             }
             // else if(item.tagName==='span'){
-                
+
             // }
-            else if(item.tagName === 'br'){
-                comments.push({content: '', quote:quote, type:'br'});
+            else if (item.tagName === 'br') {
+                comments.push({ content: '', quote: quote, type: 'br' });
             }
-            else if(item.tagName === 'font' || item.tagName === 'span' || item.tagName === 'b' || item.tagName === 'u'){
+            else if (item.tagName === 'font' || item.tagName === 'span' || item.tagName === 'b' || item.tagName === 'u') {
                 let insideComments = this.loadCommentContents(item.children, quote);
                 insideComments.forEach(comment => comments.push(comment));
             }
@@ -190,15 +190,15 @@ export class ForumTopic {
     }
 
     loadMessages(data, webHttp: WebHttp) {
-        let list = webHttp.fintElement(data, item => {
+        let list = webHttp.findElement(data, item => {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
         //update id
-        let modalLink = webHttp.fintElement(data, item=>{
-            return item.tagName==='a' && item['data-rel']==='dialog' && item.href.indexOf('?action=reply&topicid=')>=0;
+        let modalLink = webHttp.findElement(data, item => {
+            return item.tagName === 'a' && item['data-rel'] === 'dialog' && item.href.indexOf('?action=reply&topicid=') >= 0;
         });
-        if(modalLink){
-            this.id = modalLink.href.substring(modalLink.href.indexOf('topicid=')+8);
+        if (modalLink) {
+            this.id = modalLink.href.substring(modalLink.href.indexOf('topicid=') + 8);
         }
 
         if (list && list.children && list.children.length) {
@@ -210,7 +210,7 @@ export class ForumTopic {
     }
 
     loadLastPageMessage(data, webHttp: WebHttp): boolean {
-        let list = webHttp.fintElement(data, item => {
+        let list = webHttp.findElement(data, item => {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
 
@@ -266,12 +266,12 @@ export class Forum {
             this.read = data.children["0"].children["0"].alt === 'read';
             this.url = data.children["0"].href;
             this.id = this.url.substring(this.url.indexOf('forumid=') + 8);
-            data.children["0"].children.forEach(item=>{
-                if(item.tagName==='span' && item.class==='ui-li-count'){
+            data.children["0"].children.forEach(item => {
+                if (item.tagName === 'span' && item.class === 'ui-li-count') {
                     this.count = parseInt(item.text);
                 }
             })
-    }
+        }
 
 
 
@@ -279,12 +279,12 @@ export class Forum {
     }
 
 
-    loadTopicList(data, webHttp: WebHttp, forceClean?:boolean) {
+    loadTopicList(data, webHttp: WebHttp, forceClean?: boolean) {
         // console.log(data);
-        let list = webHttp.fintElement(data, item => {
+        let list = webHttp.findElement(data, item => {
             return item.tagName === 'ul' && item['data-role'] === 'listview';
         });
-        if(forceClean){
+        if (forceClean) {
             this.topics = [];
         }
 
@@ -311,7 +311,7 @@ export class ForumSection {
 
     loadData(data: any, webHttp: WebHttp) {
         if (data) {
-            let list = webHttp.fintElement(data, item => {
+            let list = webHttp.findElement(data, item => {
                 return item.tagName === 'div' && item['data-role'] === 'collapsible-set';
             });
 

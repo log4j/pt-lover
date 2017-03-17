@@ -34,33 +34,33 @@ export class Question {
         this.answers.push({ link: link });
     }
 
-    pushStrongLine(text:string){
-        this.answers.push({strong: text});
+    pushStrongLine(text: string) {
+        this.answers.push({ strong: text });
     }
 
-    pushBrLine(){
-        if(this.answers.length && this.answers[this.answers.length-1].br){
+    pushBrLine() {
+        if (this.answers.length && this.answers[this.answers.length - 1].br) {
             return;
-        }else{
-            this.answers.push({br:true});
+        } else {
+            this.answers.push({ br: true });
         }
     }
 
-    searchByKeyword(keyword){
+    searchByKeyword(keyword) {
         this.visible = false;
-        if(keyword){
-            if(this.title.toLowerCase().indexOf(keyword.toLowerCase())>=0)
+        if (keyword) {
+            if (this.title.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
                 this.visible = true;
-            if(!this.visible){
-                this.answers.forEach(item=>{
-                    if(item.text && item.text.toLowerCase().indexOf(keyword.toLowerCase())>=0){
+            if (!this.visible) {
+                this.answers.forEach(item => {
+                    if (item.text && item.text.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
                         this.visible = true;
                         return;
                     }
                 });
             }
             return this.visible;
-        }else{
+        } else {
             this.visible = true;
             return true;
         }
@@ -82,35 +82,35 @@ export class QuestionSet {
         this.titles = [];
         this.ids = [];
         this.map = new Map<string, Question[]>();
-        this.titleVisible = new Map<string,boolean>();
+        this.titleVisible = new Map<string, boolean>();
     }
 
-    searchByKeyword(keyword){
-        if(keyword){
-            this.titles.forEach(item=>{
-                this.titleVisible.set(item,false);
-                if(item.toLowerCase().indexOf(keyword.toLowerCase())>=0){
-                    this.map.get(item).forEach(q=>q.searchByKeyword(null));
-                    this.titleVisible.set(item,true);
-                }else{
-                    this.map.get(item).forEach(q=>{
-                        if(q.searchByKeyword(keyword)){
-                            this.titleVisible.set(item,true);
+    searchByKeyword(keyword) {
+        if (keyword) {
+            this.titles.forEach(item => {
+                this.titleVisible.set(item, false);
+                if (item.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
+                    this.map.get(item).forEach(q => q.searchByKeyword(null));
+                    this.titleVisible.set(item, true);
+                } else {
+                    this.map.get(item).forEach(q => {
+                        if (q.searchByKeyword(keyword)) {
+                            this.titleVisible.set(item, true);
                         }
                     })
                 }
             })
-        }else{
-            this.titles.forEach(item=>{
-                this.titleVisible.set(item,true);
-                this.map.get(item).forEach(q=>q.searchByKeyword(null));   
+        } else {
+            this.titles.forEach(item => {
+                this.titleVisible.set(item, true);
+                this.map.get(item).forEach(q => q.searchByKeyword(null));
             });
         }
     }
 
     updateQuestions(data: any, webHttp: WebHttp) {
         // console.log(data);
-        let contents = webHttp.fintElement(data, item => {
+        let contents = webHttp.findElement(data, item => {
             return item.tagName === 'td' && item.class === 'embedded';
         });
         // console.log(contents);
@@ -120,7 +120,7 @@ export class QuestionSet {
             if (item.tagName === 'h2') {
                 title = item.text;
                 // console.log(title);
-                title = title.replace('-','');
+                title = title.replace('-', '');
                 this.titles.push(title);
             } else if (item.tagName === 'table') {
                 let questions = this.generateQuestions(item, webHttp);
@@ -128,9 +128,9 @@ export class QuestionSet {
             }
         });
 
-        let newTitles:string[] = [];
-        this.titles.forEach(item=>{
-            if(this.map.has(item) && this.map.get(item).length>0){
+        let newTitles: string[] = [];
+        this.titles.forEach(item => {
+            if (this.map.has(item) && this.map.get(item).length > 0) {
                 newTitles.push(item);
             }
         });
@@ -143,8 +143,8 @@ export class QuestionSet {
         // console.log(data);
 
         let list = data.children["0"].children["0"].children;
-        let titles:string[] = [];
-        let titleQuestionMap:Map<string, Question> = new Map<string, Question>();
+        let titles: string[] = [];
+        let titleQuestionMap: Map<string, Question> = new Map<string, Question>();
         let title;
         let lastTitle;
         let hasTitleToken = false;
@@ -153,12 +153,12 @@ export class QuestionSet {
         // let answers;
         list.forEach(item => {
             //set title as null before each element
-            if(lastTitle && (lastTitle!==title)){
+            if (lastTitle && (lastTitle !== title)) {
                 //title changed, must followed directly by a href with id. other wise, change it back and add current title into answers
-                if(item.tagName == 'a' && item.id){
+                if (item.tagName == 'a' && item.id) {
                     //do remove lastTitle
                     lastTitle = title;
-                }else{
+                } else {
                     let question = titleQuestionMap.get(lastTitle);
                     question.pushStrongLine(title);
                     title = lastTitle;
@@ -174,7 +174,7 @@ export class QuestionSet {
             }
             else if (item.tagName == 'a' && item.id) {
                 //consume title token if there is one
-                if(hasTitleToken){
+                if (hasTitleToken) {
                     hasTitleToken = false;
                     titles.push(title);
                     titleQuestionMap.set(title, new Question(title));
@@ -183,9 +183,9 @@ export class QuestionSet {
                         question.setId(item.id);
                     }
                 }
-                
+
             }
-            
+
             else if (item.tagName == 'br') {
                 let question = titleQuestionMap.get(title);
                 if (question) {
@@ -195,7 +195,7 @@ export class QuestionSet {
             else if (item.tagName === 'text') {
                 let question = titleQuestionMap.get(title);
                 if (question) {
-                    question.pushTextLine(item.value.replace(/\r|\n/g,''));
+                    question.pushTextLine(item.value.replace(/\r|\n/g, ''));
                 }
             }
             else if (item.tagName === 'img') {
@@ -212,8 +212,8 @@ export class QuestionSet {
             }
         });
 
-        let results:Question[] = [];
-        titles.forEach(item=>results.push(titleQuestionMap.get(item)));
+        let results: Question[] = [];
+        titles.forEach(item => results.push(titleQuestionMap.get(item)));
 
         return results;
     }

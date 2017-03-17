@@ -157,7 +157,7 @@ export class Torrent {
 
             this.basicInfos = [];
 
-            let basicInfos = webHttp.fintElement(data, item => {
+            let basicInfos = webHttp.findElement(data, item => {
                 return (item.children && item.children.length && item.children[0].tagName == 'td' && item.children[0].text == '基本信息');
             })
 
@@ -204,7 +204,7 @@ export class Torrent {
 
 
             this.descriptions = [];
-            let desciption = webHttp.fintElement(data, item => {
+            let desciption = webHttp.findElement(data, item => {
                 return item.tagName === 'div' && item.id === 'kdescr';
             });
             if (desciption) {
@@ -233,7 +233,7 @@ export class Torrent {
                 });
             }
 
-            let downloadLink = webHttp.fintElement(data, item => {
+            let downloadLink = webHttp.findElement(data, item => {
                 return item.tagName === 'a' && !item.title && item.href === this.url;
             })
             if (downloadLink) {
@@ -254,7 +254,7 @@ export class Torrent {
         this.comments = [];
         if (data) {
             // console.log(data);
-            let div = webHttp.fintElement(data, item => {
+            let div = webHttp.findElement(data, item => {
                 return item.tagName === 'div' && item.id === 'hiddencomment';
             });
             // console.log(div);
@@ -270,7 +270,7 @@ export class Torrent {
 
     getFileName(): string {
         if (this.fileName)
-            return this.fileName.replace(/\s/g,'');
+            return this.fileName.replace(/\s/g, '');
         return '[PT][' + this.typeLabel + ']' + this.id + '.torrent';
     }
 }
@@ -343,7 +343,7 @@ export class Comment {
     userName: string;
     userClass: string;
     userAvatar: string;
-    contents: { content: string, quote: number , type:string}[];
+    contents: { content: string, quote: number, type: string }[];
     date: string;
 
     constructor(data?: any) {
@@ -363,8 +363,8 @@ export class Comment {
 
             this.userAvatar = data.children[1].children["0"].children["0"].children["0"].src;
 
-            if(!this.userAvatar.startsWith('http')){
-                this.userAvatar = this.userAvatar.replace('pic/','assets/avatar/');
+            if (!this.userAvatar.startsWith('http')) {
+                this.userAvatar = this.userAvatar.replace('pic/', 'assets/avatar/');
             }
 
 
@@ -379,25 +379,25 @@ export class Comment {
         // console.log(this);
     }
 
-    getCommentContents(children: [any], quote: number):{ content: string, quote: number,type:string }[] {
+    getCommentContents(children: [any], quote: number): { content: string, quote: number, type: string }[] {
 
-        let comments:{ content: string, quote: number,type:string }[] = new Array<{ content: string, quote: number,type:string }>();
+        let comments: { content: string, quote: number, type: string }[] = new Array<{ content: string, quote: number, type: string }>();
         // console.log(children);
-        children.forEach(item=>{
-            if(item.tagName==='text'){
-                comments.push({content: item.value.replace(/\r|\n/g,''), quote: quote,type:'text'});
+        children.forEach(item => {
+            if (item.tagName === 'text') {
+                comments.push({ content: item.value.replace(/\r|\n/g, ''), quote: quote, type: 'text' });
             }
-            else if(item.tagName==='fieldset'){
-                let insideComments = this.getCommentContents(item.children, quote+1);
-                insideComments.forEach(comment=>comments.push(comment));
+            else if (item.tagName === 'fieldset') {
+                let insideComments = this.getCommentContents(item.children, quote + 1);
+                insideComments.forEach(comment => comments.push(comment));
             }
-            else if(item.tagName == 'legend'){
-                comments.push({content: item.text, quote:quote, type:'legend'});
+            else if (item.tagName == 'legend') {
+                comments.push({ content: item.text, quote: quote, type: 'legend' });
             }
-            else if(item.tagName === 'img' && item.class==='smilies'){
-                comments.push({content: item.src.replace('pic/','assets/'), quote:quote, type:'smilies'});
+            else if (item.tagName === 'img' && item.class === 'smilies') {
+                comments.push({ content: item.src.replace('pic/', 'assets/'), quote: quote, type: 'smilies' });
             }
-            else{
+            else {
                 // console.log(item);
             }
         });
@@ -405,11 +405,11 @@ export class Comment {
         return comments;
     }
 
-    getQuoteString():string{
+    getQuoteString(): string {
         let result = '';
-        this.contents.forEach(item=>{
-            if(item.quote==0 && item.type==='text'){
-                result+=item.content+'\n';
+        this.contents.forEach(item => {
+            if (item.quote == 0 && item.type === 'text') {
+                result += item.content + '\n';
             }
         })
         return result;
