@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
-
+import { Device } from '@ionic-native/device';
 import { PushData } from '../../providers/push-data';
 import { UserData } from '../../providers/user-data';
 
@@ -22,8 +22,8 @@ import { Type } from '../../models/type';
 export class TorrentAlertDetailPage {
 	rule: AlertRule;
 	typeOptions = Type.Types;
-	isSaving:boolean = false;
-	isRemoving:boolean = false;
+	isSaving: boolean = false;
+	isRemoving: boolean = false;
 
 	@ViewChild('keywordInput') keywordInput;
 
@@ -32,7 +32,8 @@ export class TorrentAlertDetailPage {
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
 		public pushData: PushData,
-		public userData: UserData
+		public userData: UserData,
+		private device: Device
 	) {
 
 		if (this.navParams.data.rule) {
@@ -40,7 +41,8 @@ export class TorrentAlertDetailPage {
 		} else {
 			this.rule = new AlertRule({
 				device: this.pushData.pushId,
-				username: this.userData.user.name
+				username: this.userData.user.name,
+				platform: this.device.platform
 			});
 		}
 

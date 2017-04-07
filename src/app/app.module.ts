@@ -1,7 +1,14 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { Device } from 'ionic-native';
+// import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage'
+import { Device } from '@ionic-native/device';
+import { BrowserModule } from '@angular/platform-browser';
+import { Transfer } from '@ionic-native/transfer';
+import { Push } from '@ionic-native/push';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -35,10 +42,10 @@ import { ServerHttp } from '../providers/server-http';
 import { RemoteData } from '../providers/remote-data';
 import { PushData } from '../providers/push-data';
 
-import {CategoryPipe} from '../pipes/torrent-category-pipe';
-import {TorrentStatusPipe} from '../pipes/torrent-status-pipe';
+import { CategoryPipe } from '../pipes/torrent-category-pipe';
+import { TorrentStatusPipe } from '../pipes/torrent-status-pipe';
 
-import {FileSizePipe} from '../pipes/file-size-pipe';
+import { FileSizePipe } from '../pipes/file-size-pipe';
 
 
 @NgModule({
@@ -70,12 +77,15 @@ import {FileSizePipe} from '../pipes/file-size-pipe';
     FileSizePipe
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
-      monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-      monthShortNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-      dayNames: ['星期一','星期二','星期三','星期四','星期五','星期六','星期日'],
-      dayShortNames: ['星期一','星期二','星期三','星期四','星期五','星期六','星期日']
+      monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      monthShortNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      dayNames: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
+      dayShortNames: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
     })
   ],
   bootstrap: [IonicApp],
@@ -104,11 +114,14 @@ import {FileSizePipe} from '../pipes/file-size-pipe';
     RemoteServerChoosePage
   ],
   providers: [
-    Storage, 
     Device,
-    WebHttp, 
+    Push,
+    StatusBar,
+    SplashScreen,
+    Transfer,
+    WebHttp,
     TorrentData,
-    UserData, 
+    UserData,
     ForumData,
     RemoteData,
     ServerHttp,

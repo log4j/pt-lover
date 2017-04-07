@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as Parser from "htmlparser2";
-
-import { Device, Transfer } from 'ionic-native';
+import { Device } from '@ionic-native/device';
+import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 declare var cordova: any;
 
 /*
@@ -24,14 +24,20 @@ export class WebHttp {
 
 	constructor(
 		public http: Http,
-		public device: Device
+		private device: Device,
+		private transfer: Transfer
+		// public device: Device
 	) {
 
 
 
 		console.log('Hello WebHttp Provider');
-		console.log(Device.platform);
+		console.log(device.platform);
+
+		const fileTransfer: TransferObject = this.transfer.create();
 	}
+
+
 
 	parseHtml(text: any, callback: Function): any {
 
@@ -195,11 +201,11 @@ export class WebHttp {
 	//target directory depends on which platform
 	download(url: string, name: string) {
 
-		let fileTransfer = new Transfer();
+		let fileTransfer: TransferObject = this.transfer.create();
 		// let url = 'http://www.example.com/file.pdf';
 		// console.log(name);
 		let target = cordova.file.dataDirectory;
-		if (Device.platform === 'Android') {
+		if (this.device.platform === 'Android') {
 			target = cordova.file.externalDataDirectory;
 		}
 		return fileTransfer.download(this.host + url, target + name);

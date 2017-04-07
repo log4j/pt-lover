@@ -4,10 +4,10 @@ import { NavController, NavParams, ViewController, ToastController, AlertControl
 import { TorrentData } from '../../providers/torrent-data';
 import { WebHttp } from '../../providers/web-http';
 import { Comment, Torrent, TorrentList } from '../../models/torrent';
-import { FileOpener } from 'ionic-native';
+import { FileOpener } from '@ionic-native/file-opener';
 
 import { RemoteServerChoosePage } from '../remote-server-choose/remote-server-choose';
-import { WebIntent } from 'ionic-native';
+import { WebIntent } from '@ionic-native/web-intent';
 
 
 
@@ -43,7 +43,9 @@ export class TorrentDetailPage {
 		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
 		public modalCtrl: ModalController,
-		public ngZone: NgZone
+		public ngZone: NgZone,
+		private fileOpener: FileOpener,
+		private webIntent: WebIntent
 	) {
 
 		this.torrent = this.navParams.data.torrent;
@@ -248,15 +250,13 @@ export class TorrentDetailPage {
 
 						if (type === 'file') {
 							//user click
-							FileOpener.open(entry.toURL(), 'application/x-bittorrent').then((event1) => {
-								// alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
-							}, (event2) => {
-								// alert(entry.toURL() + ' event2 ' + JSON.stringify(event2));
-							});
+							this.fileOpener.open(entry.toURL(), 'application/x-bittorrent')
+								.then((event1) => {
+									alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
+								}, (event2) => {
+									alert(entry.toURL() + ' event2 ' + JSON.stringify(event2));
+								}).catch(e => alert('Error openening file' + JSON.stringify(e)));;
 						}
-
-
-
 
 
 					}

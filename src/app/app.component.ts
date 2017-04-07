@@ -1,6 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController , ToastController} from 'ionic-angular';
-import { StatusBar, Splashscreen, Device, Push } from 'ionic-native';
+import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
+
+import { Device } from '@ionic-native/device';
+import { Push, PushObject, PushOptions, RegistrationEventResponse, NotificationEventResponse } from '@ionic-native/push';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -49,8 +53,8 @@ export class MyApp {
 	];
 
 	betaPages: PageInterface[] = [
-		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal:false },
-		{ title: '远程客户端', component: RemotePage, icon: 'desktop', isModal:false },
+		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal: false },
+		{ title: '远程客户端', component: RemotePage, icon: 'desktop', isModal: false },
 	];
 
 	loggedInPages: PageInterface[] = [
@@ -75,7 +79,10 @@ export class MyApp {
 		public toastCtrl: ToastController,
 		public platform: Platform,
 		// public confData: ConferenceData,
-		public storage: Storage
+		public storage: Storage,
+		private statusBar: StatusBar,
+		private splashScreen: SplashScreen,
+		private push: Push
 	) {
 
 		// Check if the user has already seen the tutorial
@@ -113,20 +120,20 @@ export class MyApp {
 
 			// StatusBar.styleDefault();
 
-			StatusBar.overlaysWebView(true);
-			StatusBar.styleDefault();
-			StatusBar.backgroundColorByName('black');
+			this.statusBar.overlaysWebView(true);
+			this.statusBar.styleDefault();
+			this.statusBar.backgroundColorByName('black');
 
-			Splashscreen.hide();
+			this.splashScreen.hide();
 
 			// if (Device.platform == 'android') {
-			StatusBar.backgroundColorByHexString("#353A3D");
+			this.statusBar.backgroundColorByHexString("#353A3D");
 			// }
 
 			var self = this;
-			
 
-			var push = Push.init({
+
+			const push: PushObject = this.push.init({
 				android: {
 					senderID: '707320332782',
 					// forceShow: true,
@@ -137,7 +144,7 @@ export class MyApp {
 					alert: 'true',
 					badge: true,
 					sound: 'false',
-					clearBadge:true
+					clearBadge: true
 				},
 				windows: {}
 			});
@@ -145,23 +152,23 @@ export class MyApp {
 			// alert(push);
 
 			if (push && typeof push.on === 'function') {
-				push.on('registration', data => {
-					// alert('registration:' + data.registrationId);
+				push.on('registration').subscribe(notification => {
+					// alert('registration:' + notification);
 					//update pushId
-					this.pushData.updatePushId(data.registrationId);
+					this.pushData.updatePushId((<RegistrationEventResponse>notification).registrationId);
+
 
 				});
 
-				push.on('error', function (e) {
-					alert(e.message);
+				push.on('error').subscribe(function (e) {
+					alert(JSON.stringify(e));
 				});
 
-				push.on('notification', function (data) {
+				push.on('notification').subscribe(function (data) {
 					// alert(JSON.stringify(data));
 					console.log(data);
-					if(data && data.message){
-						
-						self.showNotifyToast(data);
+					if (data) {
+						self.showNotifyToast((<NotificationEventResponse>data).message);
 					}
 				});
 
@@ -179,7 +186,7 @@ export class MyApp {
 		});
 	}
 
-	showNotifyToast(msg){
+	showNotifyToast(msg) {
 		let toast = this.toastCtrl.create({
 			message: msg.message,
 			duration: 4000,

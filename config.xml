@@ -92,7 +92,7 @@
     <engine name="ios" spec="4.3.1" />
     <engine name="android" spec="6.1.0" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
-    <plugin name="cordova-plugin-file-opener2" spec="~2.0.7" />
+    <plugin name="cordova-plugin-file-opener2" />
     <plugin name="com.borismus.webintent" spec="https://github.com/Initsogar/cordova-webintent.git" />
     <plugin name="phonegap-plugin-push" spec="https://github.com/phonegap/phonegap-plugin-push.git#v2.0.x" />
 </widget>

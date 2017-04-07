@@ -31,11 +31,11 @@
   </ion-refresher>
 
   <ion-list *ngIf="isLoading" class="loading-list">
-		<ion-item text-center>
-			<ion-spinner></ion-spinner>
-		</ion-item>
-	</ion-list>
-  
+    <ion-item text-center>
+      <ion-spinner></ion-spinner>
+    </ion-item>
+  </ion-list>
+
 
   <ion-card *ngFor="let torrent of torrents.list">
     <ion-card-header (click)="presentDetailPage(torrent)" [ngClass]="torrent.special">
@@ -51,34 +51,34 @@
         <ion-badge item-right *ngIf="torrent.isTop">置顶</ion-badge>
         <ion-badge item-right *ngIf="torrent.isHot">热门</ion-badge>
         <ion-badge style="float:right" color="orange" *ngIf="torrent.special">{{specialLabels[torrent.special]}}</ion-badge>
-</ion-label>
-{{torrent.subName}}
+      </ion-label>
+      {{torrent.subName}}
 
-<ion-row>
-  <ion-col text-left no-padding>
-    <ion-label>
-      <ion-badge item-right color="gray">
-        <ion-icon name="arrow-round-up"></ion-icon>
-        {{torrent.seedersNumber}}
-      </ion-badge>
-      <ion-badge item-right color="gray">
-        <ion-icon name="arrow-round-down"></ion-icon>
-        {{torrent.downloadersNumber}}
-      </ion-badge>
-      <ion-badge item-right color="gray">
-        <ion-icon name="checkmark"></ion-icon>
-        {{torrent.downloadedsNumber}}
-      </ion-badge>
-    </ion-label>
+      <ion-row>
+        <ion-col text-left no-padding>
+          <ion-label>
+            <ion-badge item-right color="gray">
+              <ion-icon name="arrow-round-up"></ion-icon>
+              {{torrent.seedersNumber}}
+            </ion-badge>
+            <ion-badge item-right color="gray">
+              <ion-icon name="arrow-round-down"></ion-icon>
+              {{torrent.downloadersNumber}}
+            </ion-badge>
+            <ion-badge item-right color="gray">
+              <ion-icon name="checkmark"></ion-icon>
+              {{torrent.downloadedsNumber}}
+            </ion-badge>
+          </ion-label>
 
-  </ion-col>
-  <ion-col center text-right>
-    <button ion-button (click)="presentCommentPage(torrent)" color="primary" round small icon-left>
+        </ion-col>
+        <ion-col center text-right>
+          <button ion-button (click)="presentCommentPage(torrent)" color="primary" round small icon-left>
           <ion-icon name="chatboxes"></ion-icon>
           {{torrent.commentsNumber}}
         </button>
 
-    <!--<ion-fab right bottom>
+          <!--<ion-fab right bottom>
       <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
       <ion-fab-list side="left">
         <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
@@ -87,22 +87,22 @@
         <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
       </ion-fab-list>
     </ion-fab>-->
-  </ion-col>
-</ion-row>
+        </ion-col>
+      </ion-row>
 
-</ion-card-content>
-
-
-</ion-card>
-
-<ion-fab right bottom [ngClass]="showScrollToTop?'show-scroll-button':'hide-scroll-button'">
-    <button ion-fab color="primary"  (click)='scrollToTop()'><ion-icon name="arrow-up"></ion-icon></button>
-</ion-fab>
+    </ion-card-content>
 
 
-<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-  <ion-infinite-scroll-content loadingText="正在加载..." threshold="20%">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  </ion-card>
+
+  <ion-fab right bottom [ngClass]="showScrollToTop?'show-scroll-button':'hide-scroll-button'">
+    <button ion-fab color="primary" (click)='scrollToTop()'><ion-icon name="arrow-up"></ion-icon></button>
+  </ion-fab>
+
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingText="正在加载..." threshold="20%">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

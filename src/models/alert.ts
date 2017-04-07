@@ -1,6 +1,7 @@
 
 import moment from 'moment';
-import { Device } from 'ionic-native';
+
+
 
 export class AlertRule {
 
@@ -16,7 +17,7 @@ export class AlertRule {
 
     constructor(data) {
         this.expirate = moment().add(90, 'days').format('YYYY-MM-DD');
-        this.platform = Device.platform;
+        this.platform = data.platform;
         this.mode = 'production';
 
         if (typeof data === 'string') {

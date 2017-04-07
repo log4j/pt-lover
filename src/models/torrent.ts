@@ -322,9 +322,11 @@ export class TorrentList {
                 }
             }
 
-            if (item1.id > item2.id) {
+            let result = parseInt(item1.id) - parseInt(item2.id);
+
+            if (result > 0) {
                 return -1;
-            } else if (item1.id < item2.id) {
+            } else if (result < 0) {
                 return 1;
             } else {
                 return 0;
