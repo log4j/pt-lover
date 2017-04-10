@@ -68,9 +68,9 @@ export class RemoteServerChoosePage {
 			this.remote.servers.forEach(item => {
 				if (item.id === this.choice) {
 					this.server = item;
-					if(this.server.folders && this.server.folders.length){
+					if (this.server.folders && this.server.folders.length) {
 						this.target = this.server.folders[0].value;
-					}else{
+					} else {
 						this.target = '';
 					}
 				}
@@ -102,14 +102,16 @@ export class RemoteServerChoosePage {
 			this.isUploading = true;
 		});
 
+		console.log(this.torrent);
 		//upload torrent!!!
 		this.remoteData.postRemoteServerTorrent({
 			torrent: this.torrent,
 			server: this.choice,
 			target: this.target
 		}).then(res => {
+			console.log('b============================');
 			console.log(res);
-
+			console.log('b============================');
 			this.isUploading = true;
 
 			if (res && res.result) {
@@ -140,6 +142,15 @@ export class RemoteServerChoosePage {
 						alert.present();
 					}
 
+					else {
+						let alert = this.alertCtrl.create({
+							title: '上传失败',
+							subTitle: '客户端返回错误提示:' + res.data.result,
+							buttons: ['确定']
+						});
+						alert.present();
+					}
+
 				} else {
 					//something happened, make a alert
 					let alert = this.alertCtrl.create({
@@ -154,11 +165,15 @@ export class RemoteServerChoosePage {
 				//something happened, make a alert
 				let alert = this.alertCtrl.create({
 					title: '上传失败',
-					subTitle: '服务器返回错误提示:' + res.err,
+					subTitle: '服务器返回错误提示:' + res ? res.err : '',
 					buttons: ['确定']
 				});
 				alert.present();
 			}
+		}, (err) => {
+			console.log('--------------');
+			console.log(err);
+			console.log('--------------');
 		})
 	}
 }

@@ -18,7 +18,7 @@ export class HomePage {
 
 	@ViewChild(Refresher) refresher: Refresher;
 
-	segment = 'notice';
+	segment = 'chat';
 	notices: Notice[] = [];
 	messages: Message[] = [];
 
@@ -44,10 +44,26 @@ export class HomePage {
 	}
 
 	ngAfterViewInit() {
-		console.log('start!!!');
+		// console.log('start!!!');
 		// this.refresher.
-		this.refresher._beginRefresh();
+		// this.refresher._beginRefresh();
+
+		if (!this.userData.user || !this.userData.user.name) {
+			this.loader = this.loadingCtrl.create({
+				content: "正在验证登录信息,请稍等..."
+			});
+			this.loader.present();
+		}
+
 		this.showLoading();
+
+		this.loadHomePageData().then(res => {
+			if (res && res.user && res.user.name) {
+				this.loadChatData().then(() => {
+					this.hideLoading();
+				})
+			}
+		})
 	}
 
 	loadHomePageData() {
@@ -81,7 +97,7 @@ export class HomePage {
 				// 	}
 				// })
 				// modal.present();
-
+				this.hideLoading();
 				this.navCtrl.parent.parent.setRoot(LoginPage);
 			}
 
@@ -113,6 +129,7 @@ export class HomePage {
 		// else
 		// 	this.slides.slideTo(1);
 
+		this.content.scrollToTop();
 		// this.content.scrollToBottom();
 
 	}

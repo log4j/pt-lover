@@ -262,11 +262,11 @@ export class UserData {
 	}
 
 	loadQuestions(): Promise<QuestionSet> {
-
+		this.questionSet = null;
 		if (this.questionSet) {
 			return new Promise<QuestionSet>(resolve => {
-				resolve(this.questionSet);
-			})
+				return resolve(this.questionSet);
+			});
 		}
 		else
 			return this.webHttp.get('faq.php').then(data => {

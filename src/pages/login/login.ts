@@ -83,7 +83,13 @@ export class LoginPage {
 				let alert = this.alertCtrl.create({
 					title: '登录失败!',
 					subTitle: data.error,
-					buttons: ['确定']
+					buttons: [{
+						text: '确定',
+						role: 'cancel',
+						handler: () => {
+							this.prepareLogin();
+						}
+					}]
 				});
 				alert.present();
 			}

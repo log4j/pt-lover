@@ -8,6 +8,8 @@ import { Transfer } from '@ionic-native/transfer';
 import { Push } from '@ionic-native/push';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FileOpener } from '@ionic-native/file-opener';
+import { WebIntent } from '@ionic-native/web-intent';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
@@ -81,6 +83,7 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     HttpModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp, {
+      autoFocusAssist: false,
       backButtonText: '',
       monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
       monthShortNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
@@ -119,7 +122,9 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     StatusBar,
     SplashScreen,
     Transfer,
+    FileOpener,
     WebHttp,
+    WebIntent,
     TorrentData,
     UserData,
     ForumData,

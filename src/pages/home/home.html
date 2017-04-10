@@ -5,19 +5,20 @@
     </button>
 
 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSegment()">
-			<ion-segment-button value="notice">
-				公告
-			</ion-segment-button>
 			<ion-segment-button value="chat">
 				群聊
 			</ion-segment-button>
+			<ion-segment-button value="notice">
+				公告
+			</ion-segment-button>
+
 		</ion-segment>
 
 
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
 	<ion-refresher (ionRefresh)="doRefresh($event)">
 		<ion-refresher-content></ion-refresher-content>
@@ -30,7 +31,7 @@
 	</ion-list>
 
 	<div [ngSwitch]="segment">
-		<ion-list *ngSwitchCase="'notice'">
+		<ion-list *ngSwitchCase="'notice'" padding>
 			<ion-card *ngFor="let notice of notices" class="card-notice">
 				<ion-card-header>
 					{{notice.title}}
@@ -59,9 +60,9 @@
 		</ion-list>
 
 
-		<ion-list *ngSwitchCase="'chat'" class="message-list">
-			<ion-item *ngFor="let message of messages" >
-				
+		<ion-list *ngSwitchCase="'chat'" class="message-list" padding>
+			<ion-item *ngFor="let message of messages">
+
 				<h2 [ngClass]='message.userClass'><b>{{message.name}}</b>
 					<img *ngIf='message.hasStar' src='assets/smilies/star.gif'>
 					<ion-note>{{message.date}}</ion-note>
@@ -73,7 +74,7 @@
 			</ion-item>
 
 
-			
+
 		</ion-list>
 	</div>
 

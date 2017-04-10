@@ -18,7 +18,7 @@ export class WebHttp {
 
 	isLocal: boolean = false;
 	useProxy: boolean = false;
-	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.test/' : 'https://pt.sjtu.edu.cn/');
+	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 

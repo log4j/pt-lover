@@ -63,7 +63,7 @@ export class MyApp {
 		{ title: '退出', component: TabsPage, icon: 'log-out', index: 0, logsOut: true }
 	];
 	loggedOutPages: PageInterface[] = [
-		{ title: 'Login', component: LoginPage, icon: 'log-in' },
+		{ title: '登录', component: LoginPage, icon: 'log-in' },
 		// { title: 'Support', component: SupportPage, icon: 'help' },
 		// { title: 'Signup', component: SignupPage, icon: 'person-add' }
 	];
@@ -166,8 +166,9 @@ export class MyApp {
 
 				push.on('notification').subscribe(function (data) {
 					// alert(JSON.stringify(data));
-					console.log(data);
+					// console.log(data);
 					if (data) {
+						// console.log((<NotificationEventResponse>data).message);
 						self.showNotifyToast((<NotificationEventResponse>data).message);
 					}
 				});
@@ -188,7 +189,7 @@ export class MyApp {
 
 	showNotifyToast(msg) {
 		let toast = this.toastCtrl.create({
-			message: msg.message,
+			message: msg,
 			duration: 4000,
 			position: 'top'
 		});
@@ -235,6 +236,10 @@ export class MyApp {
 		// }
 
 
+	}
+
+	pushPage = (page: PageInterface) => {
+		this.nav.push(page.component);
 	}
 
 	openTutorial() {

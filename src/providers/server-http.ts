@@ -24,7 +24,7 @@ export class ServerHttp {
 		console.log('Hello ServerHttp Provider');
 	}
 
-	
+
 
 	get(url): Promise<any> {
 		return new Promise<any>(resolve => {
@@ -44,7 +44,7 @@ export class ServerHttp {
 			this.http.post(this.host + url, postBody, { withCredentials: true })
 				.subscribe(
 				response => resolve(response.json()),
-				error => resolve(null)
+				error => resolve({ result: false, err: error })
 				);
 		});
 	};
@@ -69,8 +69,8 @@ export class ServerHttp {
 		});
 	};
 
-	
 
-	
+
+
 
 }

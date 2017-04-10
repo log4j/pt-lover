@@ -65,9 +65,9 @@ export class FaqPage {
   }
 
   doFilter(value) {
-    if (value) {
-
-    }
+    // if (value) {
     this.questions.searchByKeyword(value);
+    // }
+
   }
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="site.mangs.ptlover" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="site.mangs.ptlover" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PTLover</name>
     <description>给葡萄爱好者的app!</description>
     <author email="yangmang@msn.com" href="http://mangs.site">Mang Yang</author>
@@ -11,6 +11,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://*/*"/>
+  <allow-navigation href="tel:*"/>
+  <allow-navigation href="mailto:*"/>
     <platform name="android">
         <allow-intent href="market:*" />
         <allow-intent href="file://*/*" />
@@ -66,7 +69,7 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
-    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <preference name="CordovaWebViewEngine" value="-disable-CDVWKWebViewEngine" />
     <preference name="iosExtraFilesystems" value="library,library-nosync,documents,documents-nosync,cache,bundle,root" />
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,assets,root" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
@@ -77,6 +80,9 @@
         <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
     <plugin name="ionic-plugin-keyboard" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0"/>
+    <plugin name="cordova-plugin-wkwebview-engine" spec="https://github.com/driftyco/cordova-plugin-wkwebview-engine.git"/>
+  
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />

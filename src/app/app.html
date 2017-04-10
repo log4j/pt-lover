@@ -3,39 +3,18 @@
 
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>请登录</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content class="outer-content">
 
-    <ion-list>
-      <ion-list-header>
-        Navigate
-      </ion-list-header>
-      <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
-        <ion-icon item-left [name]="p.icon"></ion-icon>
-        {{p.title}}
-      </button>
-    </ion-list>
+
 
     <ion-list>
-      <ion-list-header>
-        Account
-      </ion-list-header>
       <button ion-item menuClose *ngFor="let p of loggedOutPages" (click)="openPage(p)">
         <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
-      </button>
-    </ion-list>
-
-    <ion-list>
-      <ion-list-header>
-        Tutorial
-      </ion-list-header>
-      <button ion-item menuClose (click)="openTutorial()">
-        <ion-icon item-left name="hammer"></ion-icon>
-        Show Tutorial
       </button>
     </ion-list>
   </ion-content>
@@ -72,7 +51,7 @@
       <ion-list-header>
         测试功能
       </ion-list-header>
-      <button ion-item menuClose *ngFor="let p of betaPages" (click)="openPage(p)">
+      <button ion-item menuClose *ngFor="let p of betaPages" (click)="pushPage(p)">
         <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
