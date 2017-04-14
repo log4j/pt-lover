@@ -72,13 +72,12 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="StatusBarBackgroundColor" value="#353A3D" />
-    <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="FadeSplashScreenDuration" value="500" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
-    <preference name="AutoHideSplashScreen" value="true"/>
-    <preference name="SplashScreenDelay" value="2000"/>
+    <preference name="AutoHideSplashScreen" value="false"/>
+    <preference name="SplashScreenDelay" value="0"/>
+    <preference name="FadeSplashScreen" value="false"/>
+    <preference name="FadeSplashScreenDuration" value="0"/>
     <preference name="CordovaWebViewEngine" value="-disable-CDVWKWebViewEngine" />
     <preference name="iosExtraFilesystems" value="library,library-nosync,documents,documents-nosync,cache,bundle,root" />
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,assets,root" />

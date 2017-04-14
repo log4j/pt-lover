@@ -120,8 +120,8 @@ export class MyApp {
 
 			// StatusBar.styleDefault();
 
-			this.statusBar.overlaysWebView(true);
-			// this.statusBar.styleDefault();
+			// this.statusBar.overlaysWebView(true);
+			this.statusBar.styleDefault();
 			// this.statusBar.backgroundColorByName('black');
 
 			this.splashScreen.hide();
