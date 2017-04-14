@@ -32,7 +32,9 @@ export class WebHttp {
 
 
 		console.log('Hello WebHttp Provider');
+
 		console.log(device.platform);
+
 
 		const fileTransfer: TransferObject = this.transfer.create();
 	}
@@ -141,12 +143,23 @@ export class WebHttp {
 		if (this.isLocal) {
 			url = url.replace('php', 'html')
 		}
+		if (!this.device.platform) {
+			this.useProxy = true;
+		}
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+
+
+
 		return new Promise<any>(resolve => {
 			this.http.get(this.host + url, { withCredentials: true })
 				.subscribe(
-				response => this.parseHtml(response.text(), resolve),
+				response => {
+					// console.log(response.text());
+					this.parseHtml(response.text(), resolve);
+				},
 				error => {
 					// alert(error);
+
 					resolve(null);
 				});
 		});
@@ -157,6 +170,12 @@ export class WebHttp {
 		if (this.isLocal) {
 			url = url.replace('php', 'html')
 		}
+
+		if (!this.device.platform) {
+			this.useProxy = true;
+		}
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+
 
 		let body = new URLSearchParams();
 		for (let key in postBody)
@@ -178,6 +197,13 @@ export class WebHttp {
 		if (this.isLocal) {
 			url = url.replace('php', 'html')
 		}
+
+		if (!this.device.platform) {
+			this.useProxy = true;
+		}
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+
+
 		return new Promise<any>(resolve => {
 			this.http.get(this.host + url, { withCredentials: true })
 				.subscribe(
@@ -200,6 +226,12 @@ export class WebHttp {
 
 	//target directory depends on which platform
 	download(url: string, name: string) {
+
+		if (!this.device.platform) {
+			this.useProxy = true;
+		}
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+
 
 		let fileTransfer: TransferObject = this.transfer.create();
 		// let url = 'http://www.example.com/file.pdf';
