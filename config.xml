@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="site.mangs.ptlover" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="site.mangs.ptlover" version="0.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PTLover</name>
     <description>给葡萄爱好者的app!</description>
     <author email="yangmang@msn.com" href="http://mangs.site">Mang Yang</author>

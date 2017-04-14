@@ -263,9 +263,9 @@ export class TorrentDetailPage {
 							//user click
 							this.fileOpener.open(entry.toURL(), 'application/x-bittorrent')
 								.then((event1) => {
-									alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
+									console.log(entry.toURL() + ' event1 ' + JSON.stringify(event1));
 								}, (event2) => {
-									alert(entry.toURL() + ' event2 ' + JSON.stringify(event2));
+									console.log(entry.toURL() + ' event2 ' + JSON.stringify(event2));
 								}).catch(e => alert('Error openening file' + JSON.stringify(e)));;
 						}
 
