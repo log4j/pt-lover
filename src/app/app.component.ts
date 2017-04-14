@@ -121,14 +121,16 @@ export class MyApp {
 			// StatusBar.styleDefault();
 
 			this.statusBar.overlaysWebView(true);
-			this.statusBar.styleDefault();
-			this.statusBar.backgroundColorByName('black');
+			// this.statusBar.styleDefault();
+			// this.statusBar.backgroundColorByName('black');
 
 			this.splashScreen.hide();
 
 			// if (Device.platform == 'android') {
 			this.statusBar.backgroundColorByHexString("#353A3D");
 			// }
+
+			// document.getElementById('splashAd').style.display = 'none';
 
 			var self = this;
 
