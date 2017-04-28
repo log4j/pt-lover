@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>登录</ion-title>
+    <ion-title></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,6 +16,10 @@
 <ion-content padding>
 
   <ion-list>
+
+    <ion-item class="logo">
+      <img src="assets/icon/icon.png" />
+    </ion-item>
 
     <ion-item>
       <ion-label stacked>用户名</ion-label>
@@ -29,16 +33,16 @@
 
     <ion-item *ngIf='checkcodeNeeded'>
       <ion-label stacked>验证码</ion-label>
-      <ion-input type="text" [(ngModel)]='checkcode' required></ion-input>
+      <ion-input type="text" [(ngModel)]='checkcode' placeholder="请输入验证码" required></ion-input>
     </ion-item>
 
     <ion-item *ngIf='checkcodeNeeded'>
-      <img [src]='checkcodeUrl'/>
+      <img [src]='checkcodeUrl' />
       <ion-note item-right><button ion-button small outline (click)="prepareLogin()">获取新验证码</button></ion-note>
     </ion-item>
 
     <ion-item>
-      <button ion-button block (click)="login()">登录</button>
+      <button ion-button outline round block (click)="login()">登录</button>
     </ion-item>
 
   </ion-list>

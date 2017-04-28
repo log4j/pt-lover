@@ -12,9 +12,9 @@
     </button>-->
 		<ion-title>个人信息</ion-title>
 
-		<ion-buttons end >
-      <button ion-button (click)="dismiss()" color="primary">返回</button>
-    </ion-buttons>
+		<ion-buttons end>
+			<button ion-button (click)="dismiss()" color="primary">返回</button>
+		</ion-buttons>
 	</ion-navbar>
 
 </ion-header>
@@ -63,6 +63,13 @@
 			<ion-note item-right>
 				{{user.bonus}}
 			</ion-note>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="color-palette" item-left></ion-icon>
+			<ion-label>主题</ion-label>
+			<ion-select [(ngModel)]="theme" (ionChange)="themeChanged($event)" interface="popover">
+				<ion-option value="{{t.value}}" *ngFor="let t of themeOptions">{{t.label}}</ion-option>
+			</ion-select>
 		</ion-item>
 	</ion-list>
 </ion-content>

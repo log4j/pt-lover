@@ -50,9 +50,9 @@
     </ion-item>
   </ion-list>
 
-  <ion-list  *ngIf='!torrent.basicInfos || torrent.basicInfos.length==0'>
+  <ion-list *ngIf='!torrent.basicInfos || torrent.basicInfos.length==0'>
     <ion-item text-center>
-      <button ion-button block (click)="loadDetail()" *ngIf="!isLoadingDetail">加载简介</button>
+      <button ion-button block (click)="loadDetail()" outline *ngIf="!isLoadingDetail">加载简介</button>
       <ion-spinner *ngIf="isLoadingDetail"></ion-spinner>
     </ion-item>
   </ion-list>
@@ -65,11 +65,13 @@
       <ion-avatar item-left *ngIf='showAvatar'>
         <img [attr.src]='comment.userAvatar'>
       </ion-avatar>
-      <h2 [ngClass]='comment.userClass'><b>{{comment.userName}}</b><ion-note>{{comment.date}}</ion-note></h2>
+      <h2 [ngClass]='comment.userClass'><b>{{comment.userName}}</b>
+        <ion-note>{{comment.date}}</ion-note>
+      </h2>
       <p *ngFor='let p of comment.contents' [ngClass]='"comment-"+p.type+" quote-"+p.quote'>
         {{p.type==='text'||p.type==='legend'?p.content:''}}
         <img [src]='p.content' *ngIf="p.type==='smilies'" />
-        </p>
+      </p>
       <ion-note style="float:right;"><button ion-button outline small (click)='postComment(comment)'>引用</button></ion-note>
     </ion-item>
     <ion-item *ngIf="torrent.comments.length==0">
@@ -77,9 +79,9 @@
     </ion-item>
   </ion-list>
 
-  <ion-list  *ngIf='!torrent.comments'>
+  <ion-list *ngIf='!torrent.comments'>
     <ion-item text-center>
-      <button ion-button block (click)="loadComments()" *ngIf="!isLoadingComment">加载评论({{torrent.commentsNumber}}条)</button>
+      <button ion-button block (click)="loadComments()" outline *ngIf="!isLoadingComment">加载评论({{torrent.commentsNumber}}条)</button>
       <ion-spinner *ngIf="isLoadingComment"></ion-spinner>
     </ion-item>
   </ion-list>
@@ -100,7 +102,7 @@
     <ion-fab-list side="left">
       <button ion-fab color="secondary" (click)='postComment()'><ion-icon name="chatbubbles"></ion-icon></button>
     </ion-fab-list>
-    
+
   </ion-fab>
 
 </ion-content>

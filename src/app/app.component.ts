@@ -2,9 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Events, MenuController, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
 
 import { Device } from '@ionic-native/device';
+import { StatusBar } from '@ionic-native/status-bar';
+
+
 import { Push, PushObject, PushOptions, RegistrationEventResponse, NotificationEventResponse } from '@ionic-native/push';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+
 
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -59,7 +62,7 @@ export class MyApp {
 
 	loggedInPages: PageInterface[] = [
 		// { title: 'Account', component: AccountPage, icon: 'person' },
-		{ title: '我', component: ProfilePage, icon: 'information-circle', isModal: true },
+		{ title: '个人信息和设置', component: ProfilePage, icon: 'information-circle', isModal: true },
 		{ title: '退出', component: TabsPage, icon: 'log-out', index: 0, logsOut: true }
 	];
 	loggedOutPages: PageInterface[] = [
@@ -132,6 +135,22 @@ export class MyApp {
 
 			// document.getElementById('splashAd').style.display = 'none';
 
+			switch (localStorage.getItem('theme')) {
+				case ('theme-default'):
+					// if(this.device.platform === 'ios'){
+
+					// }
+					this.statusBar.styleDefault();
+
+					break;
+
+				case ('theme-dark'):
+
+					this.statusBar.styleBlackTranslucent();
+
+					break;
+			}
+
 			var self = this;
 
 
@@ -185,8 +204,13 @@ export class MyApp {
 			// Push.hasPermission().then(res => {
 			// 	// alert('permission:' + JSON.stringify(res));
 			// })
+			if (document.getElementById('splashAd')) {
+				document.getElementById('splashAd').style.display = 'none';
+			}
+
 
 		});
+
 	}
 
 	showNotifyToast(msg) {

@@ -14,8 +14,6 @@
 
 
 <ion-content padding>
-
-
 	<ion-list class="comments-list">
 		<ion-item *ngFor='let comment of topic.messages'>
 			<h2><span class="comment-level">{{comment.level}}</span><b [ngClass]='comment.userClass'>{{comment.userName}}</b>
@@ -28,25 +26,25 @@
 				<a href="" *ngIf="p.type==='link'">{{p.content}}</a>
 			</p>
 			<ion-note style="float:right;"><button ion-button outline small (click)='postComment(comment)'>引用</button></ion-note>
-</ion-item>
-</ion-list>
+		</ion-item>
+	</ion-list>
 
-<ion-fab right bottom #fab>
-	<button ion-fab color="primary">
+	<ion-fab right bottom #fab>
+		<button ion-fab color="primary">
 		<ion-icon name="book" *ngIf="!isLoading"></ion-icon>
 		<!--<ion-label *ngIf="!isLoading">{{topic.page}}</ion-label>-->
 		<ion-spinner color="gray" *ngIf="isLoading"></ion-spinner>
 	</button>
-	<ion-fab-list side="left">
-		
-		<button ion-fab color="primary" *ngIf='topic.hasNext' (click)='nextPage(fab)'><ion-icon name="arrow-dropright"></ion-icon></button>
-		<button ion-fab color="primary" *ngIf='topic.hasPrevious' (click)='previousPage(fab)'><ion-icon name="arrow-dropleft"></ion-icon></button>
-		
-	</ion-fab-list>
-	<ion-fab-list side="top">
-		<button ion-fab color="primary"  (click)='postComment(null, fab)'><ion-icon name="chatbubbles"></ion-icon></button>
-		<button ion-fab color="primary" *ngIf='!topic.isLast' (click)='lastPage(fab)'><ion-icon name="skip-forward"></ion-icon></button>
-		<button ion-fab color="primary" *ngIf='!topic.isFirst' (click)='firstPage(fab)'><ion-icon name="skip-backward"></ion-icon></button>
-	</ion-fab-list>
-</ion-fab>
+		<ion-fab-list side="left">
+
+			<button ion-fab color="primary" *ngIf='topic.hasNext' (click)='nextPage(fab)'><ion-icon name="arrow-dropright"></ion-icon></button>
+			<button ion-fab color="primary" *ngIf='topic.hasPrevious' (click)='previousPage(fab)'><ion-icon name="arrow-dropleft"></ion-icon></button>
+
+		</ion-fab-list>
+		<ion-fab-list side="top">
+			<button ion-fab color="primary" (click)='postComment(null, fab)'><ion-icon name="chatbubbles"></ion-icon></button>
+			<button ion-fab color="primary" *ngIf='!topic.isLast' (click)='lastPage(fab)'><ion-icon name="skip-forward"></ion-icon></button>
+			<button ion-fab color="primary" *ngIf='!topic.isFirst' (click)='firstPage(fab)'><ion-icon name="skip-backward"></ion-icon></button>
+		</ion-fab-list>
+	</ion-fab>
 </ion-content>

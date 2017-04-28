@@ -1,19 +1,48 @@
-page-forum-list {
+
+body.theme-default{
+    page-forum-list {
 
 
-    .forum-list{
-        margin: 10px 10px 30px 10px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.09);
-        ion-list-header{
-            background: #F8FBFC;
-            border:none;
+        .forum-list{
+            margin: 10px 10px 30px 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.09);
+            ion-list-header{
+                background: #F8FBFC;
+                border:none;
 
-        }
+            }
 
-        button.item{
-            .item-inner{
-                padding-left: 10px;
+            button.item{
+                .item-inner{
+                    padding-left: 10px;
+                }
             }
         }
     }
 }
+
+body.theme-dark {
+    page-forum-list {
+
+
+        .forum-list{
+            margin: 10px 10px 30px 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.09);
+            ion-list-header{
+                // background: #F8FBFC;
+                border:none;
+                color: #A6AAB3;
+                ion-label{
+                    color:#A6AAB3;
+                }
+            }
+
+            button.item{
+                .item-inner{
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+}
+

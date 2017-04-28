@@ -49,7 +49,7 @@ $content-ios-outer-background: #EAEFF5;
 $content-ios-transition-background: #EAEFF5;
 
 ion-content.content-ios{
-  background:-webkit-linear-gradient(#FAFBFC,#ECF1F5);
+  // background:-webkit-linear-gradient(#FAFBFC,#ECF1F5);
 }
 
 ion-card.card-ios{
@@ -78,6 +78,10 @@ ion-tabs.tabs-ios{
   ion-item.item-block:last-child{
     border-bottom: none;
   }
+}
+
+[padding] h2:first-child{
+  margin-top:0px !important;
 }
 
 // App Material Design Variables

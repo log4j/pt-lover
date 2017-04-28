@@ -43,6 +43,9 @@
     document.addEventListener('deviceready', function () {
       document.getElementById('splashAd').style.display = 'none';
     });
+
+    // localStorage.setItem("theme", "theme-dark");
+    document.getElementsByTagName('body')[0].className = localStorage.getItem("theme");
   </script>
 
 

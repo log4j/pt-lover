@@ -70,3 +70,17 @@ page-forum-topic {
         }
     }
 }
+
+
+
+body.theme-dark{
+    page-forum-topic {
+        .comments-list{
+            .item.item-block{
+                h2{
+                    margin-bottom: 10px !important;
+                }
+            }
+        }
+    }
+}

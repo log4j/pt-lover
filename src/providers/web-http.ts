@@ -18,7 +18,7 @@ export class WebHttp {
 
 	isLocal: boolean = false;
 	useProxy: boolean = false;
-	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+	host: string = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 
@@ -146,7 +146,7 @@ export class WebHttp {
 		if (!this.device.platform) {
 			this.useProxy = true;
 		}
-		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 
@@ -174,7 +174,7 @@ export class WebHttp {
 		if (!this.device.platform) {
 			this.useProxy = true;
 		}
-		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 		let body = new URLSearchParams();
@@ -201,7 +201,7 @@ export class WebHttp {
 		if (!this.device.platform) {
 			this.useProxy = true;
 		}
-		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt-proxy.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 		return new Promise<any>(resolve => {
