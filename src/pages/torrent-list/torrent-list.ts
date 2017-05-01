@@ -34,7 +34,7 @@ export class TorrentListPage {
 	torrentFilter: TorrentFilter;
 
 	loader: Loading;
-	isLoading:boolean = true;
+	isLoading: boolean = true;
 
 	@Input() showScrollToTop: boolean = false;
 
@@ -168,8 +168,10 @@ export class TorrentListPage {
 
 		// this.torrentData.loadTorrentDatail(torrent).then(data => {
 		// this.hideLoading();
-		let modal = this.modalCtrl.create(TorrentDetailPage, { torrent: torrent, load: 'detail' });
-		modal.present();
+		//let modal = this.modalCtrl.create(TorrentDetailPage, { torrent: torrent, load: 'detail' });
+		//modal.present();
+
+		this.navCtrl.push(TorrentDetailPage, { torrent: torrent, load: 'detail' });
 		// });;
 
 	}
@@ -180,8 +182,10 @@ export class TorrentListPage {
 
 		// this.torrentData.loadTorrentComments(torrent).then(data => {
 		// this.hideLoading();
-		let modal = this.modalCtrl.create(TorrentDetailPage, { torrent: torrent, load: 'comments' });
-		modal.present();
+		// let modal = this.modalCtrl.create(TorrentDetailPage, { torrent: torrent, load: 'comments' });
+		// modal.present();
+
+		this.navCtrl.push(TorrentDetailPage, { torrent: torrent, load: 'comments' });
 		// });;
 
 	}

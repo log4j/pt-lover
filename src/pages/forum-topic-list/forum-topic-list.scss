@@ -16,3 +16,23 @@ body.theme-dark{
     }
 
 }
+
+
+body.theme-default{
+    page-forum-topic-list {
+        ion-list{
+            .item.item-block{
+                ion-label{
+                    p{
+                        margin-top:5px;
+                        ion-badge{
+                            font-size: 1.1rem;
+                            padding: 3px 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

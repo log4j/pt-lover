@@ -17,7 +17,7 @@ export class ForumMessage {
             // console.log(data);
             if (data.children) {
                 data.children.forEach(item => {
-                    if (item.tagName === 'a' && item.name) {
+                    if (item.tagName === 'a' && item.name && /\d+/g.test(item.name)) {
                         this.id = item.name;
                     }
                     else if (item.tagName === 'p' && item.children && item.children.length == 2 && item.children[0].tagName === 'text') {

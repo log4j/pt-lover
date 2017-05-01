@@ -32,7 +32,7 @@ export class ForumData {
 		});
 	}
 
-	loadForumTopicList(forum: Forum, option?: { next?: boolean,forceClear?:boolean }): Promise<Forum> {
+	loadForumTopicList(forum: Forum, option?: { next?: boolean, forceClear?: boolean }): Promise<Forum> {
 		let fetchUrl = 'forums.php' + forum.url;
 		if (option && option.next) {
 			fetchUrl += '&page=' + (forum.page + 1);
@@ -81,12 +81,12 @@ export class ForumData {
 		})
 	}
 
-	postTopic(forum: Forum,subject:string, content: string){
+	postTopic(forum: Forum, subject: string, content: string) {
 		let body = {
 			'id': forum.id,
 			'type': 'new',
 			'subject': subject,
-			'body':content
+			'body': content
 		};
 
 		console.log(forum, body);
@@ -100,28 +100,27 @@ export class ForumData {
 			let topic = new ForumTopic();
 			topic.loadMessages(data, this.webHttp);
 
-			if(topic.id){
+			if (topic.id) {
 				//posted!!
 				//still need to reload current forum(topic list)
-				return this.loadForumTopicList(forum,{forceClear:true}).then(forumData=>{
-					return topic.id;	
+				return this.loadForumTopicList(forum, { forceClear: true }).then(forumData => {
+					return topic.id;
 				});
-			}else{
+			} else {
 				return null;
 			}
-			
-		
+
+
 		})
 	}
 
-	postReply(topic: ForumTopic, content:string, comment?: ForumMessage){
+	postReply(topic: ForumTopic, content: string, comment?: ForumMessage) {
 		let body = {
 			'id': topic.id,
 			'type': 'reply',
-			'body':comment?('[quote=[@'+comment.userName+']]'+comment.getQuoteString()+'[/quote]'+content):content
+			'body': comment ? ('[quote=[@' + comment.userName + ']]' + comment.getQuoteString() + '[/quote]' + content) : content
 		};
 
-		console.log(ForumTopic, body);
 		return this.webHttp.post('forums.php?action=post', body).then(data => {
 			// console.log(data);
 
@@ -129,6 +128,30 @@ export class ForumData {
 
 			// return data;
 		})
+	}
+
+	postRewardViaForum(msg: ForumMessage, amount: number) {
+		let body = {
+			postid: msg.id,
+			rewards: amount
+		}
+
+		return this.webHttp.post('postreward.php', body).then(data => {
+			console.log(data);
+
+			let error = this.webHttp.findElement(data, (item) => {
+				return item.tagName === 'td' && item.children && item.children.length && item.children[0].tagName === 'h2' && item.children[0].text === 'Error';
+			})
+
+			if (error) {
+				return { result: false, err: this.webHttp.findElement(error, (item => { return item.tagName === 'td' && item.class === 'text' })).text };
+			} else {
+				return { result: true };
+			}
+
+
+		});
+
 	}
 
 	loadForumSection(forum: Forum, option?: { next?: boolean }) {

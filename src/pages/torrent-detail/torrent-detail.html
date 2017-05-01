@@ -4,19 +4,27 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!--<ion-header>
 
   <ion-toolbar>
 
 
-    <ion-title>
-      {{torrent.typeLabel}}
-    </ion-title>
+  <ion-title>
+    {{torrent.typeLabel}}
+  </ion-title>
 
-    <ion-buttons end>
+  <ion-buttons end>
       <button ion-button (click)="dismiss()" strong>返回</button>
     </ion-buttons>
   </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{torrent.typeLabel}}</ion-title>
+  </ion-navbar>
+
 </ion-header>
 
 
@@ -87,13 +95,10 @@
   </ion-list>
 
   <ion-fab right bottom>
-    <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
-    <ion-fab-list side="top">
-      <!--<a ion-fab color="pink" [attr.href]='torrent.fullUrl'>
-        <ion-icon name="download"></ion-icon>
-      </a>-->
+    <button ion-fab color="primary" (click)='viewMoreOptions()'><ion-icon name="more" ></ion-icon></button>
+    <!--<ion-fab-list side="top">
       <button ion-fab color="pink" (click)='download("file")'>
-        <ion-icon name="download"></ion-icon>
+        <ion-icon name="download"></ion-icon> 下载
       </button>
       <button ion-fab color="pink" (click)='download("remote")'>
         <ion-icon name="desktop"></ion-icon>
@@ -101,8 +106,9 @@
     </ion-fab-list>
     <ion-fab-list side="left">
       <button ion-fab color="secondary" (click)='postComment()'><ion-icon name="chatbubbles"></ion-icon></button>
-    </ion-fab-list>
+    </ion-fab-list>-->
 
   </ion-fab>
+
 
 </ion-content>

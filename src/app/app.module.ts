@@ -35,6 +35,7 @@ import { ForumTopicPage } from '../pages/forum-topic/forum-topic';
 import { RemotePage } from '../pages/remote/remote';
 import { RemoteServerPage } from '../pages/remote-server/remote-server';
 import { RemoteServerChoosePage } from '../pages/remote-server-choose/remote-server-choose';
+import { RewardOptions } from '../pages/reward-options/reward-options';
 
 import { TorrentData } from '../providers/torrent-data';
 import { UserData } from '../providers/user-data';
@@ -73,6 +74,7 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     ForumTopicPostPage,
     RemotePage,
     RemoteServerPage,
+    RewardOptions,
     RemoteServerChoosePage,
     CategoryPipe,
     TorrentStatusPipe,
@@ -114,7 +116,8 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     ForumTopicPostPage,
     RemotePage,
     RemoteServerPage,
-    RemoteServerChoosePage
+    RemoteServerChoosePage,
+    RewardOptions
   ],
   providers: [
     Device,

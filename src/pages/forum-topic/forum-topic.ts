@@ -1,8 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, Loading, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Content, ToastController, Loading, LoadingController, AlertController, PopoverController } from 'ionic-angular';
 
 import { ForumData } from '../../providers/forum-data';
+import { UserData } from '../../providers/user-data';
+import { User } from '../../models/user';
 import { ForumTopic, ForumMessage } from '../../models/forum';
+import { RewardOptions } from '../reward-options/reward-options';
 /*
   Generated class for the ForumTopic page.
 
@@ -18,18 +21,22 @@ export class ForumTopicPage {
 
 	topic: ForumTopic;
 	isLoading: boolean = false;
-
+	user: User;
 	loader: Loading;
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public forumData: ForumData,
+		public userData: UserData,
 		public loadingCtrl: LoadingController,
-		public alertCtrl: AlertController
+		public alertCtrl: AlertController,
+		public popoverCtrl: PopoverController,
+		public toastCtrl: ToastController
 	) {
 
 		this.topic = this.navParams.data.topic;
+		this.user = this.userData.user;
 
 		this.loadTopicMessages();
 
@@ -162,6 +169,38 @@ export class ForumTopicPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ForumTopicPage');
+		console.log(this.user);
+	}
+
+	postRewardSheet($event, comment) {
+		console.log(comment);
+		let popover = this.popoverCtrl.create(RewardOptions);
+		popover.onDidDismiss((amount) => {
+			if (amount) {
+				this.isLoading = true;
+				this.forumData.postRewardViaForum(comment, amount).then(data => {
+					this.isLoading = false;
+					if (data && data.result) {
+						this.toastCtrl.create({
+							message: '魔力已送出',
+							duration: 2000,
+							position: 'top'
+						}).present();
+					} else {
+						this.toastCtrl.create({
+							message: '魔力发送失败,' + data.err,
+							duration: 2000,
+							position: 'top'
+						}).present();
+					}
+
+				})
+			}
+
+		});
+		popover.present({
+			ev: $event
+		});
 	}
 
 }

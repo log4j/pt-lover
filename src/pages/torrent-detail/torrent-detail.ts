@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController, AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Platform, ActionSheetController, ToastController, AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { WebHttp } from '../../providers/web-http';
@@ -8,7 +8,6 @@ import { FileOpener } from '@ionic-native/file-opener';
 
 import { RemoteServerChoosePage } from '../remote-server-choose/remote-server-choose';
 import { WebIntent } from '@ionic-native/web-intent';
-
 
 
 declare var window: any;
@@ -44,8 +43,10 @@ export class TorrentDetailPage {
 		public loadingCtrl: LoadingController,
 		public modalCtrl: ModalController,
 		public ngZone: NgZone,
+		public actionSheetCtrl: ActionSheetController,
 		private fileOpener: FileOpener,
-		private webIntent: WebIntent
+		private webIntent: WebIntent,
+		private platform: Platform
 	) {
 
 		this.torrent = this.navParams.data.torrent;
@@ -284,6 +285,43 @@ export class TorrentDetailPage {
 		});
 	}
 
+
+	viewMoreOptions() {
+		console.log('hello');
+		let actionSheet = this.actionSheetCtrl.create({
+			// title: 'Modify your album',
+			buttons: [
+				{
+					text: '上传下载任务',
+					role: 'destructive',
+					icon: !this.platform.is('ios') ? 'clipboard' : null,
+					handler: () => {
+						this.download('remote');
+					}
+				}, {
+					text: '下载种子',
+					icon: !this.platform.is('ios') ? 'download' : null,
+					handler: () => {
+						this.download('file');
+					}
+				}, {
+					text: '评论',
+					icon: !this.platform.is('ios') ? 'chatboxes' : null,
+					handler: () => {
+						this.postComment();
+					}
+				}, {
+					text: '取消',
+					icon: 'close',
+					role: !this.platform.is('ios') ? 'cancel' : null,
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				}
+			]
+		});
+		actionSheet.present();
+	}
 
 	presentRemoteServerChoosePage(torrent: String) {
 		return new Promise(resolve => {

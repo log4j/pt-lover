@@ -26,6 +26,7 @@
 				<a href="" *ngIf="p.type==='link'">{{p.content}}</a>
 			</p>
 			<ion-note style="float:right;"><button ion-button outline small (click)='postComment(comment)'>引用</button></ion-note>
+			<ion-note style="float:right;" [hidden]="comment.userName === user.name"><button ion-button outline small (click)='postRewardSheet($event, comment)'>赠送魔力</button></ion-note>
 		</ion-item>
 	</ion-list>
 
