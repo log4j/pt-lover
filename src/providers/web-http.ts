@@ -45,6 +45,8 @@ export class WebHttp {
 
 
 		let html = text.replace(/>(\s|\r|\n)+</g, '><');
+
+
 		let root: any = {};
 		let current: any = root;
 		let parent = root;

@@ -1,15 +1,24 @@
-body.theme-default {
-    page-login {
-
-    }
-
-}
-
 
 body.theme-default {
     page-login {
         ion-header{
             opacity: 0;
+        }
+
+        ion-list{
+            background:none;
+
+            ion-item{
+                background:none !important;
+            }
+        }
+
+        .logo{
+            text-align: center;
+
+            img{
+                max-width: 20%;
+            }
         }
     }
 }

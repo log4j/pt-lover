@@ -248,7 +248,7 @@ export class UserData {
 
 		return this.webHttp.getJson('shoutboxnew.php?action=show&mid=' + mid).then(data => {
 			// return this.webHttp.getJson('assets/data/pages/shoutboxnew.json').then(data=>{
-			// console.log(data);
+			console.log(data);
 			let list = new MessageList(data);
 			if (this.messageList) {
 				//append to front

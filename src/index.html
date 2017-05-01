@@ -44,7 +44,8 @@
       document.getElementById('splashAd').style.display = 'none';
     });
 
-    // localStorage.setItem("theme", "theme-dark");
+    if (!localStorage.getItem("theme"))
+      localStorage.setItem("theme", "theme-default");
     document.getElementsByTagName('body')[0].className = localStorage.getItem("theme");
   </script>
 

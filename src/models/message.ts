@@ -35,7 +35,7 @@ export class Message {
             if (classes) {
                 classes.forEach(item => {
                     if (/Name/g.test(item)) {
-                        this.userClass = item.substring(7, item.length-1);
+                        this.userClass = item.substring(7, item.length - 1);
                     }
                 });
             }
@@ -55,15 +55,22 @@ export class Message {
             if (this.replyId != 'no') {
                 // console.log(this.content);
 
-                let replyPart = this.content.match(/回复 <span class=(\w|\d|\s|\'|=|_|<|>|\/|\.|\?|\"|\:|-)+span>(\s)*/g);
-                if (replyPart && replyPart.length) {
+
+
+                // let replyPart = this.content.match(/回复 <span class=(\w|\d|\s|\'|=|_|<|>|\/|\.|\?|\"|\:|-)+span>(\s)*/g);
+
+                let index = this.content.indexOf('</a></span>');
+                // var firstPart = str.substr(0, index);
+                // var lastPart = str.substr(index);
+                if (index >= 0) {
                     // console.log(replyPart, this.content);
                     //get the reply title
-                    this.content = this.content.substring(replyPart[0].length);
-                    this.replyTo = this.getNameFromHtml(replyPart[0]);
+                    this.replyTo = this.getNameFromHtml(this.content.substr(0, index));
+                    this.content = this.content.substring(index + 11);
+
                     // console.log(replyPart[0], this);
-                    if(this.replyTo){
-                        this.content = '回复 <b>'+this.replyTo+'</b>: '+this.content;
+                    if (this.replyTo) {
+                        this.content = '回复 <b>' + this.replyTo + '</b>: ' + this.content;
                     }
                 } else {
                     // console.log(replyPart, this.content);
@@ -107,14 +114,14 @@ export class MessageList {
         }
     }
 
-    append(msgs:Message[]){
-        if(msgs){
-            msgs.forEach(item=>this.messages.push(item));
+    append(msgs: Message[]) {
+        if (msgs) {
+            msgs.forEach(item => this.messages.push(item));
         }
     }
 
-    appendInFront(msgs:Message[]){
-        if(msgs){
+    appendInFront(msgs: Message[]) {
+        if (msgs) {
             this.messages = msgs.concat(this.messages);
         }
     }

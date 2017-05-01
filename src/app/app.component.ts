@@ -123,6 +123,11 @@ export class MyApp {
 
 			// StatusBar.styleDefault();
 
+			console.log('platform rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+			console.log('platform rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+			console.log('platform rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+			console.log('platform rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+
 			// this.statusBar.overlaysWebView(true);
 			this.statusBar.styleDefault();
 			// this.statusBar.backgroundColorByName('black');

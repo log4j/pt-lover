@@ -73,6 +73,8 @@ export class HomePage {
 
 		return this.userData.loadHomeData().then(data => {
 
+			// console.log(JSON.stringify(data));
+
 			if (data && data.user.name) {
 
 				// alert(data.user.name);
@@ -107,7 +109,14 @@ export class HomePage {
 	}
 
 	loadChatData() {
+
+		// return new Promise(resolve => {
+		// 	this.messages = [];
+		// 	return resolve(null);
+		// });
+
 		return this.userData.loadMessages().then(data => {
+			console.log(data);
 			this.messages = data.messages;
 			return data;
 		});
