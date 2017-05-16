@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
 import { WebHttp } from './web-http';
+import { ServerHttp } from './server-http';
 import { User } from '../models/user';
 import { NoticeList } from '../models/notice';
 import { MessageList } from '../models/message';
@@ -38,7 +39,8 @@ export class UserData {
 		public events: Events,
 		public storage: Storage,
 		public http: Http,
-		public webHttp: WebHttp
+		public webHttp: WebHttp,
+		public serverHttp: ServerHttp
 	) { }
 
 	hasFavorite(sessionName) {
@@ -226,6 +228,8 @@ export class UserData {
 			// return this.webHttp.get('http://pt.test/index.php').then(data => {
 			return this.webHttp.get('index.php').then(data => {
 				if (data) {
+
+					this.fecthLatestSplash();
 					//already in
 					return this.parseIndexPage(data);
 				} else {
@@ -276,6 +280,21 @@ export class UserData {
 				return questionSet;
 			});
 
+	}
+
+	fecthLatestSplash(): Promise<any> {
+		return new Promise<any>(resolve => {
+			return this.serverHttp.post('splash', { id: localStorage.getItem('splashId') }).then(data => {
+				console.log(data);
+
+				if (data && data.result && data.data) {
+					localStorage.setItem('splashId', data.data.id);
+					localStorage.setItem('splash', data.data.data);
+				}
+
+				return resolve(data);
+			})
+		});
 	}
 
 

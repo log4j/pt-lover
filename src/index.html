@@ -12,7 +12,7 @@
 
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4e8ef7">
+  <meta name="theme-color" content="#353A3D">
 
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
@@ -34,15 +34,15 @@
 
   <div id="splashAd" style="position: fixed;z-index:10000;top:0;bottom:0;left:0px;right:0px;
     background-size: cover;
-    display: none;
+    
     background-repeat: no-repeat;
     background-position: center center;">
 
   </div>
   <script>
-    document.getElementById('splashAd').style.backgroundImage = "url('assets/images/loading1.jpg')";
+    document.getElementById('splashAd').style.backgroundImage = localStorage.getItem("splash");
     document.addEventListener('deviceready', function () {
-      document.getElementById('splashAd').style.display = 'none';
+      // document.getElementById('splashAd').style.display = 'none';
     });
 
     if (!localStorage.getItem("theme"))

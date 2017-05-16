@@ -160,7 +160,7 @@ export class MyApp {
 				android: {
 					senderID: '707320332782',
 					// forceShow: true,
-					icon: "mipmap",
+					icon: "screen",
 					// iconColor: "blue"
 				},
 				ios: {

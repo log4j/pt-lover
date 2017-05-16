@@ -73,6 +73,18 @@ export class ProfilePage {
 			localStorage.setItem('theme', this.theme);
 			document.getElementsByTagName('body')[0].className = localStorage.getItem("theme");
 
+			let allMetaElements = document.getElementsByTagName('meta');
+			let targetMeta;
+			//loop through and find the element you want
+			for (var i = 0; i < allMetaElements.length; i++) {
+				if (allMetaElements[i].getAttribute("name") == "theme-color") {
+					//make necessary changes
+					targetMeta = allMetaElements[i];
+
+					//no need to continue loop after making changes.
+					break;
+				}
+			}
 
 			switch (this.theme) {
 				case ('theme-default'):
@@ -81,11 +93,14 @@ export class ProfilePage {
 					// }
 					this.statusBar.styleDefault();
 
+					// targetMeta.setAttribute('content', "#FFFFFF");
+
 					break;
 
 				case ('theme-dark'):
 
 					this.statusBar.styleBlackTranslucent();
+					// targetMeta.setAttribute('content', "#353A3D");
 
 					break;
 			}

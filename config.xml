@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="site.mangs.ptlover" version="0.0.11" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="site.mangs.ptlover" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PTLover</name>
     <description>给葡萄爱好者的app!</description>
     <author email="yangmang@msn.com" href="http://mangs.site">Mang Yang</author>
@@ -74,10 +74,10 @@
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
-    <preference name="AutoHideSplashScreen" value="false"/>
-    <preference name="SplashScreenDelay" value="0"/>
-    <preference name="FadeSplashScreen" value="false"/>
-    <preference name="FadeSplashScreenDuration" value="0"/>
+    <preference name="AutoHideSplashScreen" value="true"/>
+    <preference name="SplashScreenDelay" value="3000"/>
+    <preference name="FadeSplashScreen" value="true"/>
+    <preference name="FadeSplashScreenDuration" value="300"/>
     <preference name="CordovaWebViewEngine" value="-disable-CDVWKWebViewEngine" />
     <preference name="iosExtraFilesystems" value="library,library-nosync,documents,documents-nosync,cache,bundle,root" />
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,assets,root" />
