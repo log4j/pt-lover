@@ -19,13 +19,13 @@ export class TorrentFilterPage {
 
   torrentFilter: TorrentFilter;
 
-  enableTop:boolean = true;
-  enableHot:boolean = true;
-  showAvatar:boolean = true;
+  enableTop: boolean = false;
+  enableHot: boolean = false;
+  showAvatar: boolean = true;
 
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public torrentData: TorrentData
@@ -37,12 +37,12 @@ export class TorrentFilterPage {
     this.showAvatar = this.torrentData.showAvatar;
   }
 
-  resetFilters(){
-    this.torrentFilter.types.forEach(filter=>{
+  resetFilters() {
+    this.torrentFilter.types.forEach(filter => {
       filter.checked = true;
     })
-    this.enableHot = true;
-    this.enableTop = true;
+    this.enableHot = false;
+    this.enableTop = false;
     this.showAvatar = true;
   }
 

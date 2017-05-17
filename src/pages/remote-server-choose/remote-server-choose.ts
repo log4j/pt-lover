@@ -31,6 +31,7 @@ export class RemoteServerChoosePage {
 	remote: Remote;
 	torrent: string;
 	target: string;
+	noServer: boolean = false;
 	isUploading: boolean = false;
 
 	constructor(
@@ -57,6 +58,10 @@ export class RemoteServerChoosePage {
 			if (this.remote && this.remote.servers && this.remote.servers.length) {
 				this.choice = this.remote.servers[0].id;
 				this.server = this.remote.servers[0];
+			}
+
+			if (!(this.remote && this.remote.servers && this.remote.servers.length)) {
+				this.noServer = true;
 			}
 			return this.remote;
 		})

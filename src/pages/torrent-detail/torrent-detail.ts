@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ViewController, Platform, ActionSheetController, ToastController, AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
+import { UserData } from '../../providers/user-data';
 import { WebHttp } from '../../providers/web-http';
 import { Comment, Torrent, TorrentList } from '../../models/torrent';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -37,6 +38,7 @@ export class TorrentDetailPage {
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
 		public torrentData: TorrentData,
+		public userData: UserData,
 		public webHttp: WebHttp,
 		public toastCtrl: ToastController,
 		public alertCtrl: AlertController,
@@ -193,7 +195,7 @@ export class TorrentDetailPage {
 		}
 
 		let toast = this.toastCtrl.create({
-			message: '开始下载...',
+			message: type == 'remote' ? '正在获取种子信息...' : '开始下载...',
 			duration: 2000
 		});
 
@@ -287,40 +289,61 @@ export class TorrentDetailPage {
 
 
 	viewMoreOptions() {
-		console.log('hello');
-		let actionSheet = this.actionSheetCtrl.create({
-			// title: 'Modify your album',
-			buttons: [
-				{
-					text: '上传下载任务',
-					role: 'destructive',
-					icon: !this.platform.is('ios') ? 'clipboard' : null,
-					handler: () => {
-						this.download('remote');
+		if (this.platform.is('ios') && this.userData.user && this.userData.user.greenMode) {
+			let actionSheet = this.actionSheetCtrl.create({
+				title: '根据AppStore相关规定, PTLover不提供任何资源下载功能',
+				buttons: [
+					{
+						text: '评论',
+						icon: !this.platform.is('ios') ? 'chatboxes' : null,
+						handler: () => {
+							this.postComment();
+						}
+					}, {
+						text: '取消',
+						role: 'destructive',
+						icon: !this.platform.is('ios') ? 'close' : null,
+						handler: () => {
+							console.log('Cancel clicked');
+						}
 					}
-				}, {
-					text: '下载种子',
-					icon: !this.platform.is('ios') ? 'download' : null,
-					handler: () => {
-						this.download('file');
+				]
+			});
+			actionSheet.present();
+		} else {
+			let actionSheet = this.actionSheetCtrl.create({
+				title: 'PTLover不提供任何资源内容下载功能',
+				buttons: [
+					{
+						text: '上传下载任务',
+						icon: !this.platform.is('ios') ? 'clipboard' : null,
+						handler: () => {
+							this.download('remote');
+						}
+					}, {
+						text: '下载种子',
+						icon: !this.platform.is('ios') ? 'download' : null,
+						handler: () => {
+							this.download('file');
+						}
+					}, {
+						text: '评论',
+						icon: !this.platform.is('ios') ? 'chatboxes' : null,
+						handler: () => {
+							this.postComment();
+						}
+					}, {
+						text: '取消',
+						role: 'destructive',
+						icon: !this.platform.is('ios') ? 'close' : null,
+						handler: () => {
+							console.log('Cancel clicked');
+						}
 					}
-				}, {
-					text: '评论',
-					icon: !this.platform.is('ios') ? 'chatboxes' : null,
-					handler: () => {
-						this.postComment();
-					}
-				}, {
-					text: '取消',
-					icon: 'close',
-					role: !this.platform.is('ios') ? 'cancel' : null,
-					handler: () => {
-						console.log('Cancel clicked');
-					}
-				}
-			]
-		});
-		actionSheet.present();
+				]
+			});
+			actionSheet.present();
+		}
 	}
 
 	presentRemoteServerChoosePage(torrent: String) {

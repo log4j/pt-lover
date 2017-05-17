@@ -10,6 +10,9 @@ body.theme-default {
 
             ion-item{
                 background:none !important;
+                ion-input{
+                    border-bottom: 0.55px solid #c8c7cc !important;
+                }
             }
         }
 
@@ -34,6 +37,7 @@ body.theme-dark {
 
             ion-item{
                 background:none !important;
+                
             }
         }
 

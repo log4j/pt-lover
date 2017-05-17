@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login';
 import { Notice } from '../../models/notice';
 import { Message } from '../../models/message';
 
+
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'

@@ -81,6 +81,7 @@ export class MyApp {
 		public modalCtrl: ModalController,
 		public toastCtrl: ToastController,
 		public platform: Platform,
+		public device: Device,
 		// public confData: ConferenceData,
 		public storage: Storage,
 		private statusBar: StatusBar,
@@ -131,9 +132,13 @@ export class MyApp {
 
 			this.splashScreen.hide();
 
-			// if (Device.platform == 'android') {
-			this.statusBar.backgroundColorByHexString("#353A3D");
+
+			// if (cordova && cordova.InAppBrowser) {
+			// window.open = (url, target?, opts?) => {
+			// this.inAppBrowser.create(url, target, opts).show();
+			// };
 			// }
+
 
 			// document.getElementById('splashAd').style.display = 'none';
 
@@ -143,13 +148,18 @@ export class MyApp {
 
 					// }
 					this.statusBar.styleDefault();
-
+					if (this.device.platform == 'android') {
+						this.statusBar.backgroundColorByHexString("#DDDEDE");
+					}
 					break;
 
 				case ('theme-dark'):
 
 					this.statusBar.styleBlackTranslucent();
 
+					if (this.device.platform == 'android') {
+						this.statusBar.backgroundColorByHexString("#353A3D");
+					}
 					break;
 			}
 

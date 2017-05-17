@@ -26,7 +26,7 @@
 
 	<ion-list radio-group *ngIf='remote' [(ngModel)]='choice' (ionChange)='choiceChange()'>
 		<ion-list-header>
-			请选择一个客户端
+			PTLover不提供任何资源内容下载功能, 请选择一个客户端
 		</ion-list-header>
 
 		<ion-item *ngFor='let s of remote.servers'>
@@ -36,24 +36,35 @@
 
 	</ion-list>
 
-	<ion-list radio-group *ngIf='server && server.folders && server.folders.length' [(ngModel)]='target'>
+	<ion-list radio-group *ngIf='server && server.folders && server.folders.length && !noServer' [(ngModel)]='target'>
 		<ion-list-header>
 			请选择一个下载路径
 		</ion-list-header>
 
 		<ion-item *ngFor='let s of server.folders'>
-			<ion-label>{{s.label}}<p>{{s.value}}</p></ion-label>
-			
+			<ion-label>{{s.label}}
+				<p>{{s.value}}</p>
+			</ion-label>
+
 			<ion-radio value="{{s.value}}"></ion-radio>
 		</ion-item>
 
 	</ion-list>
 
-	
+	<ion-list padding [hidden]='!noServer'>
+		<ion-list-header>
+			没有找到可使用的PtSideLoader
+		</ion-list-header>
+		<ion-item>
+			<p>请在你的电脑上启动PTSideLoader</p>
+		</ion-item>
+	</ion-list>
+
+
 
 	<ion-list padding>
 
-		<button ion-button block (click)='confirm()' [disabled]='isUploading'>
+		<button ion-button block (click)='confirm()' [disabled]='isUploading || !choice'>
 			{{isUploading?'上传中 ':'上传下载任务'}}
 			<ion-spinner *ngIf='isUploading'></ion-spinner>	
 		</button>

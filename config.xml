@@ -11,9 +11,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="http://*/*"/>
-  <allow-navigation href="tel:*"/>
-  <allow-navigation href="mailto:*"/>
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="tel:*" />
+    <allow-navigation href="mailto:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <allow-intent href="file://*/*" />
@@ -36,7 +36,6 @@
         <splash density="port-xhdpi" src="resources/android/splash/screen-xhdpi-portrait.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/screen-xxhdpi-portrait.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/screen-xxxhdpi-portrait.png" />
-
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -89,9 +88,7 @@
         <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
     <plugin name="ionic-plugin-keyboard" />
-    <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0"/>
-    <plugin name="cordova-plugin-wkwebview-engine" spec="https://github.com/driftyco/cordova-plugin-wkwebview-engine.git"/>
-  
+    <plugin name="cordova-plugin-wkwebview-engine" spec="https://github.com/driftyco/cordova-plugin-wkwebview-engine.git" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
@@ -110,4 +107,5 @@
     <plugin name="cordova-plugin-file-opener2" />
     <plugin name="com.borismus.webintent" spec="https://github.com/Initsogar/cordova-webintent.git" />
     <plugin name="phonegap-plugin-push" spec="https://github.com/phonegap/phonegap-plugin-push.git#v2.0.x" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0" />
 </widget>

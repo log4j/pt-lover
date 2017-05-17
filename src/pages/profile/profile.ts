@@ -67,9 +67,7 @@ export class ProfilePage {
 
 	themeChanged($event) {
 		if ($event && typeof $event === 'string') {
-			console.log('theme changed:', $event, this.theme);
 
-			console.log(localStorage.getItem('theme'));
 			localStorage.setItem('theme', this.theme);
 			document.getElementsByTagName('body')[0].className = localStorage.getItem("theme");
 
@@ -86,6 +84,7 @@ export class ProfilePage {
 				}
 			}
 
+
 			switch (this.theme) {
 				case ('theme-default'):
 					// if(this.device.platform === 'ios'){
@@ -93,7 +92,12 @@ export class ProfilePage {
 					// }
 					this.statusBar.styleDefault();
 
+
 					// targetMeta.setAttribute('content', "#FFFFFF");
+
+					if (this.device.platform == 'android') {
+						this.statusBar.backgroundColorByHexString("#DDDEDE");
+					}
 
 					break;
 
@@ -102,6 +106,9 @@ export class ProfilePage {
 					this.statusBar.styleBlackTranslucent();
 					// targetMeta.setAttribute('content', "#353A3D");
 
+					if (this.device.platform == 'android') {
+						this.statusBar.backgroundColorByHexString("#353A3D");
+					}
 					break;
 			}
 		}

@@ -113,7 +113,7 @@ export class Torrent {
                 this.seedersNumber = 0;
             } else {
                 this.seedersUrl = data.children[5].children["0"].children["0"].href;
-                this.seedersNumber = parseInt(data.children[5].children[0].children[0].children[0].text);
+                this.seedersNumber = parseInt(data.children[5].children[0].children[0].children[0].text.replace(/,/g, ''));
             }
 
 
@@ -123,7 +123,7 @@ export class Torrent {
                 this.downloadersNumber = 0;
             } else {
                 this.downloadersUrl = data.children[6].children["0"].children["0"].href;
-                this.downloadersNumber = parseInt(data.children[6].children["0"].children["0"].text);
+                this.downloadersNumber = parseInt(data.children[6].children["0"].children["0"].text.replace(/,/g, ''));
             }
 
 
@@ -133,7 +133,7 @@ export class Torrent {
                 this.downloadedsNumber = 0;
             } else {
                 this.downloadedsUrl = data.children[7].children["0"].href;
-                this.downloadedsNumber = parseInt(data.children[7].children["0"].children["0"].text);
+                this.downloadedsNumber = parseInt(data.children[7].children["0"].children["0"].text.replace(/,/g, ''));
             }
 
             //uploader

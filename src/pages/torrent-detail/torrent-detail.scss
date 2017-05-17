@@ -1,5 +1,6 @@
 page-torrent-detail {
 
+    
     .list-md + ion-list {
         ion-list-header{
             margin-top: 0;
@@ -19,6 +20,15 @@ page-torrent-detail {
             text-align: left;
         }
         
+    }
+
+    ion-item.torrent-descriptions{
+        font-size:1.4rem;        
+    }
+    ion-item.item.item-block{
+        ion-label{
+            font-size: 1.4rem;
+        }
     }
 
     .comments-list{
