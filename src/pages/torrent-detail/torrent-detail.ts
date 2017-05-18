@@ -291,7 +291,7 @@ export class TorrentDetailPage {
 	viewMoreOptions() {
 		if (this.platform.is('ios') && this.userData.user && this.userData.user.greenMode) {
 			let actionSheet = this.actionSheetCtrl.create({
-				title: '根据AppStore相关规定, PTLover不提供任何资源下载功能',
+				title: 'PTLover不提供任何资源下载功能',
 				buttons: [
 					{
 						text: '评论',

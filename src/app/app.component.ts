@@ -217,7 +217,13 @@ export class MyApp {
 			// 	// alert('permission:' + JSON.stringify(res));
 			// })
 			if (document.getElementById('splashAd')) {
-				document.getElementById('splashAd').style.display = 'none';
+				if (this.device.platform == 'android') {
+					document.getElementById('splashAd').style.display = 'none';
+				} else {
+					setTimeout(() => {
+						document.getElementById('splashAd').style.display = 'none';
+					}, 2000);
+				}
 			}
 
 

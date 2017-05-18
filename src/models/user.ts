@@ -25,7 +25,7 @@ export class User {
             this.name = data.children["0"].children["0"].children["0"].children["0"].children["0"].children["0"].text;
 
             if (this.name === 'yangmang') {
-                this.greenMode = false;
+                this.greenMode = true;
             }
 
             this.url = data.children["0"].children["0"].children["0"].children["0"].children["0"].href;
