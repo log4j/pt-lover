@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
 
 
+import { UserData } from '../../providers/user-data';
 import { RemoteData } from '../../providers/remote-data';
 
 import {
@@ -33,11 +34,13 @@ export class RemoteServerChoosePage {
 	target: string;
 	noServer: boolean = false;
 	isUploading: boolean = false;
+	style: string = 'primary';
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public remoteData: RemoteData,
+		public userData: UserData,
 		public toastCtrl: ToastController,
 		public alertCtrl: AlertController,
 		public viewCtrl: ViewController,
@@ -45,6 +48,14 @@ export class RemoteServerChoosePage {
 	) {
 		this.loadRemoteServers();
 		this.torrent = this.navParams.data.torrent;
+
+		userData.loadThemeSetting().then(data => {
+			if (data === 'theme-default') {
+				this.style = 'primary';
+			} else {
+				this.style = 'light';
+			}
+		})
 	}
 
 	ionViewDidLoad() {

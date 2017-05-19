@@ -140,9 +140,16 @@ ion-list.loading-list{
 }
 
 .theme-dark{
+    .spinner-md-crescent circle{
+        stroke: white;
+    }
     color: white;
     ion-label{
         color: #ECECEE;
+    }
+    ion-label.label, ion-label.label[floating]{
+        color: white;
+        
     }
     ion-input{
         color:#ECECEE;
@@ -170,10 +177,10 @@ ion-list.loading-list{
     
 
     ion-menu{
-        background:-webkit-linear-gradient(#393D44, #38425D);
-        background:-moz-linear-gradient(#393D44, #38425D);
-        background:-o-linear-gradient(#393D44, #38425D);
-        background:linear-gradient(#393D44, #38425D);
+        // background:-webkit-linear-gradient(#393D44, #38425D);
+        // background:-moz-linear-gradient(#393D44, #38425D);
+        // background:-o-linear-gradient(#393D44, #38425D);
+        // background:linear-gradient(#393D44, #38425D);
         ion-icon{
             color:#ECECEE;
         }
@@ -387,6 +394,9 @@ ion-list.loading-list{
 
             ion-item.item.item-block.item-radio-checked{
                 background:#FFFFFF;
+                button, ion-label{
+                    color:#373A41;
+                }
             }
         }
     }

@@ -11,6 +11,10 @@ import { NoticeList } from '../models/notice';
 import { MessageList } from '../models/message';
 import { QuestionSet } from '../models/question';
 
+
+import { Device } from '@ionic-native/device';
+import { StatusBar } from '@ionic-native/status-bar';
+
 /*
   Generated class for the UserData provider.
 
@@ -40,7 +44,9 @@ export class UserData {
 		public storage: Storage,
 		public http: Http,
 		public webHttp: WebHttp,
-		public serverHttp: ServerHttp
+		public serverHttp: ServerHttp,
+		private device: Device,
+		private statusBar: StatusBar
 	) { }
 
 	hasFavorite(sessionName) {
@@ -298,4 +304,31 @@ export class UserData {
 	}
 
 
+
+	loadThemeSetting() {
+		return new Promise<string>(resolve => {
+			switch (localStorage.getItem('theme')) {
+				case ('theme-default'):
+					// if(this.device.platform === 'ios'){
+
+					// }
+					this.statusBar.styleDefault();
+					if (this.device.platform == 'android') {
+						this.statusBar.backgroundColorByHexString("#DDDEDE");
+					}
+					break;
+
+				case ('theme-dark'):
+
+					this.statusBar.styleBlackTranslucent();
+
+					if (this.device.platform == 'android') {
+						this.statusBar.backgroundColorByHexString("#353A3D");
+					}
+					break;
+			}
+
+			return resolve(localStorage.getItem('theme'));
+		});
+	}
 }
