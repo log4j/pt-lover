@@ -97,6 +97,12 @@ export class TorrentListPage {
 
 	}
 
+
+	onInput($event) {
+		console.log($event);
+	}
+
+
 	onScroll() {
 
 

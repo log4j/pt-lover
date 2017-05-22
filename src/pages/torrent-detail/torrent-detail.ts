@@ -287,7 +287,21 @@ export class TorrentDetailPage {
 								.then((event1) => {
 									// alert(entry.toURL() + ' event1 ' + JSON.stringify(event1));
 								}, (event2) => {
-									alert('Err: file:' + target + entry.fullPath + ' err:' + JSON.stringify(event2));
+									//alert('Err: file:' + target + entry.fullPath + ' err:' + JSON.stringify(event2));
+
+									let message = '';
+									if (event2.status === 9) {
+										message = "未找到打开.torrent文件的应用."
+									} else {
+										message = event2.message;
+									}
+									let alert = this.alertCtrl.create({
+										title: '提示',
+										subTitle: '打开文件失败, 错误信息:' + message,
+										buttons: ['确定	']
+									});
+									alert.present();
+
 								}).catch(e => alert('Error openening file: ' + JSON.stringify(e)));;
 						}
 

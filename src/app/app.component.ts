@@ -222,7 +222,7 @@ export class MyApp {
 				} else {
 					setTimeout(() => {
 						document.getElementById('splashAd').style.display = 'none';
-					}, 2000);
+					}, 3000);
 				}
 			}
 

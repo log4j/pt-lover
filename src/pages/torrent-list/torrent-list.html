@@ -6,16 +6,21 @@
 -->
 <ion-header>
 
+  <!--<ion-toolbar color="primary">
+    <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>-->
+
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>种子</ion-title>
+    <ion-searchbar (ionClick)="onInput($event)">
+    </ion-searchbar>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      <button ion-button (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon> 全部
       </button>
     </ion-buttons>
 
