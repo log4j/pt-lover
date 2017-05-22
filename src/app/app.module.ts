@@ -22,6 +22,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { PeerListPopOverPage } from '../pages/peer-list-pop-over/peer-list-pop-over';
 import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
 import { TorrentDetailPage } from '../pages/torrent-detail/torrent-detail';
+import { TorrentSearchPage } from '../pages/torrent-search/torrent-search';
 import { TorrentAlertPage } from '../pages/torrent-alert/torrent-alert';
 import { TorrentAlertDetailPage } from '../pages/torrent-alert-detail/torrent-alert-detail';
 import { FaqPage } from '../pages/faq/faq';
@@ -78,7 +79,8 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     RemoteServerChoosePage,
     CategoryPipe,
     TorrentStatusPipe,
-    FileSizePipe
+    FileSizePipe,
+    TorrentSearchPage
   ],
   imports: [
     BrowserModule,
@@ -117,6 +119,7 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     RemotePage,
     RemoteServerPage,
     RemoteServerChoosePage,
+    TorrentSearchPage,
     RewardOptions
   ],
   providers: [

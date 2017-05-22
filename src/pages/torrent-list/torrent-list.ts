@@ -7,6 +7,7 @@ import { Torrent, TorrentList } from '../../models/torrent'
 
 import { PeerListPopOverPage } from '../peer-list-pop-over/peer-list-pop-over';
 import { TorrentFilterPage } from '../torrent-filter/torrent-filter';
+import { TorrentSearchPage } from '../torrent-search/torrent-search';
 import { TorrentDetailPage } from '../torrent-detail/torrent-detail';
 
 
@@ -99,7 +100,22 @@ export class TorrentListPage {
 
 
 	onInput($event) {
-		console.log($event);
+		console.log('trigger', $event);
+	}
+
+	showTorrentSearch($event) {
+		let modal = this.modalCtrl.create(TorrentSearchPage, this.torrentFilter);
+		modal.present();
+
+		modal.onWillDismiss((data: any) => {
+			if (data) {
+				// console.log(data);
+				// this.torrentData.enableHot = data.enableHot;
+				// this.torrentData.enableTop = data.enableTop;
+				// this.torrents.sortByRules(data.enableHot, data.enableTop);
+				// this.torrentData.saveFilterData(data);
+			}
+		});
 	}
 
 

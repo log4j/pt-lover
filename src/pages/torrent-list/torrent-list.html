@@ -15,8 +15,32 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-searchbar (ionClick)="onInput($event)">
+    <ion-searchbar (click)="showTorrentSearch($event)" [showCancelButton]="true" [cancelButtonText]="'取消'">
     </ion-searchbar>
+
+    <!--<div class="searchbar searchbar-ios searchbar-show-cancel searchbar-left-aligned searchbar-active searchbar-has-focus" style="    position: relative;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;">
+
+      <div class="searchbar-input-container">
+
+        <div class="searchbar-search-icon"></div>
+        <input class="searchbar-input" (click)="onInput($event)" placeholder="Search" type="search" autocomplete="off" autocorrect="off"
+          spellcheck="false">
+      </div>
+      <button class="searchbar-ios-cancel disable-hover button button-ios button-clear button-clear-ios" clear="" ion-button=""
+        mode="ios" type="button" ng-reflect-mode="ios" ng-reflect-clear="" tabindex="1">
+        <span class="button-inner">取消</span>
+        <div class="button-effect"></div>
+      </button>
+
+
+    </div>-->
 
     <ion-buttons end>
       <button ion-button (click)="presentFilter()">

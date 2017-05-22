@@ -5,14 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">取消</button>
+    </ion-buttons>
 
-  <ion-navbar>
-    <ion-title>torrent-search</ion-title>
-  </ion-navbar>
+    <ion-searchbar>
+    </ion-searchbar>
 
+    <ion-buttons end>
+      <button ion-button (click)="applyFilters()" strong>确定</button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let cat of category.types">
+        <ion-item>
+          <ion-label>{{cat.label}}</ion-label>
+          <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

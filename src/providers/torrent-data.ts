@@ -9,6 +9,8 @@ import 'rxjs/add/observable/of';
 // import * as Parser from "htmlparser2";
 
 import { Comment, Torrent, TorrentList } from '../models/torrent';
+import { Type } from '../models/type';
+import { TorrentFilter } from '../models/filter';
 
 import { WebHttp } from './web-http';
 
@@ -27,9 +29,13 @@ export class TorrentData {
 
 	torrentList: TorrentList;
 
+	searchCategory: TorrentFilter;
+
 	SETTING_ENABLE_HOT = 'SETTING_ENABLE_HOT';
 	SETTING_ENABLE_TOP = 'SETTING_ENABLE_TOP';
 	SETTING_SHOW_AVATAR = 'SETTING_SHOW_AVATAR';
+
+	SETTING_TORRENT_CATEGORY = 'SETTING_TORRENT_CATEGORY';
 
 	enableHot: boolean = true;
 	enableTop: boolean = true;
@@ -42,6 +48,8 @@ export class TorrentData {
 	) {
 
 		this.getTypes();
+
+		this.searchCategory = new TorrentFilter(Type.Types);
 		this.loadSettingsFromStorage();
 		// this.loadTorrentPage();
 	}
@@ -71,6 +79,14 @@ export class TorrentData {
 		this.storage.get(this.SETTING_SHOW_AVATAR).then(value => {
 			if (value != undefined) {
 				this.showAvatar = value;
+			}
+		});
+
+		this.storage.get(this.SETTING_TORRENT_CATEGORY).then(value => {
+			if (value != undefined) {
+				for (let i = 0; i < this.searchCategory.types.length; i++) {
+					this.searchCategory.types[i].checked = (value[this.searchCategory.types[i].type] === true)
+				}
 			}
 		});
 

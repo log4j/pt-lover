@@ -1,3 +1,19 @@
 page-torrent-search {
+    ion-col{
+        ion-item.item.item-block{
+            padding-left:4px;
+            font-size: 1.3rem;
+            height: 3rem;
+            min-height: 3rem;
 
+            ion-checkbox.checkbox-ios, ion-checkbox.checkbox-md{
+                margin: 2px 5px 2px 2px;
+            }
+
+            div.item-inner{
+                border: none;
+            }
+
+        }
+    }
 }

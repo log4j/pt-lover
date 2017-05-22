@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, Searchbar } from 'ionic-angular';
+
+
+import { TorrentData } from '../../providers/torrent-data';
+import { TorrentFilter } from '../../models/filter'
 
 /**
  * Generated class for the TorrentSearchPage page.
@@ -9,16 +13,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 @IonicPage()
 @Component({
-  selector: 'page-torrent-search',
-  templateUrl: 'torrent-search.html',
+	selector: 'page-torrent-search',
+	templateUrl: 'torrent-search.html',
 })
 export class TorrentSearchPage {
+	@ViewChild(Searchbar) searchbar: Searchbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	category: TorrentFilter;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TorrentSearchPage');
-  }
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public viewCtrl: ViewController,
+		public torrentData: TorrentData
+	) {
+		this.category = torrentData.searchCategory;
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad TorrentSearchPage');
+
+
+
+		this.searchbar.setFocus();
+	}
+
+	dismiss(data?: any) {
+		// using the injected ViewController this page
+		// can "dismiss" itself and pass back data
+		this.viewCtrl.dismiss(data);
+	}
 
 }
