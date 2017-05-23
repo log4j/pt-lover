@@ -34,6 +34,8 @@ export class TorrentListPage {
 
 	torrentFilter: TorrentFilter;
 
+	keyword: string = '';
+
 	loader: Loading;
 	isLoading: boolean = true;
 
@@ -114,10 +116,15 @@ export class TorrentListPage {
 				// this.torrentData.enableTop = data.enableTop;
 				// this.torrents.sortByRules(data.enableHot, data.enableTop);
 				// this.torrentData.saveFilterData(data);
+				this.keyword = data.keyword;
+				console.log(data);
 			}
 		});
 	}
 
+	resetSearch() {
+		this.keyword = '';
+	}
 
 	onScroll() {
 

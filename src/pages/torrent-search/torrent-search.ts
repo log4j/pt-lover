@@ -20,6 +20,7 @@ export class TorrentSearchPage {
 	@ViewChild(Searchbar) searchbar: Searchbar;
 
 	category: TorrentFilter;
+	keyword: string;
 
 	constructor(
 		public navCtrl: NavController,
@@ -28,6 +29,7 @@ export class TorrentSearchPage {
 		public torrentData: TorrentData
 	) {
 		this.category = torrentData.searchCategory;
+		this.keyword = torrentData.searchKeyword;
 	}
 
 	ionViewDidLoad() {
@@ -41,7 +43,17 @@ export class TorrentSearchPage {
 	dismiss(data?: any) {
 		// using the injected ViewController this page
 		// can "dismiss" itself and pass back data
-		this.viewCtrl.dismiss(data);
+		this.torrentData.searchKeyword = '';
+		this.viewCtrl.dismiss({
+			keyword: ''
+		});
+	}
+
+	applySearch() {
+		this.torrentData.searchKeyword = this.keyword;
+		this.viewCtrl.dismiss({
+			keyword: this.keyword
+		})
 	}
 
 }

@@ -10,11 +10,11 @@
       <button ion-button (click)="dismiss()">取消</button>
     </ion-buttons>
 
-    <ion-searchbar>
+    <ion-searchbar [placeholder]="'输入关键字搜索'" [debounce]="100000" [(ngModel)]="keyword">
     </ion-searchbar>
 
     <ion-buttons end>
-      <button ion-button (click)="applyFilters()" strong>确定</button>
+      <button ion-button (click)="applySearch()" strong>确定</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

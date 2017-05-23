@@ -15,7 +15,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-searchbar (click)="showTorrentSearch($event)" [showCancelButton]="true" [cancelButtonText]="'取消'">
+    <ion-searchbar [placeholder]="'输入关键字搜索'" (click)="showTorrentSearch($event)" [(ngModel)]="keyword" [showCancelButton]="true">
     </ion-searchbar>
 
     <!--<div class="searchbar searchbar-ios searchbar-show-cancel searchbar-left-aligned searchbar-active searchbar-has-focus" style="    position: relative;
@@ -43,8 +43,11 @@
     </div>-->
 
     <ion-buttons end>
-      <button ion-button (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon> 全部
+      <button ion-button (click)="resetSearch()" *ngIf="keyword">
+        取消
+      </button>
+      <button ion-button (click)="presentFilter()" *ngIf="!keyword">
+        分类
       </button>
     </ion-buttons>
 

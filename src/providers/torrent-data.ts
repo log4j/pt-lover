@@ -37,6 +37,8 @@ export class TorrentData {
 
 	SETTING_TORRENT_CATEGORY = 'SETTING_TORRENT_CATEGORY';
 
+	searchKeyword: string = '';
+
 	enableHot: boolean = true;
 	enableTop: boolean = true;
 	showAvatar: boolean = true;
