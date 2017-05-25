@@ -52,6 +52,7 @@ export class TorrentData {
 		this.getTypes();
 
 		this.searchCategory = new TorrentFilter(Type.Types);
+		console.log(this.searchCategory);
 		this.loadSettingsFromStorage();
 		// this.loadTorrentPage();
 	}
@@ -98,6 +99,16 @@ export class TorrentData {
 		this.storage.set(this.SETTING_ENABLE_HOT, this.enableHot);
 		this.storage.set(this.SETTING_ENABLE_TOP, this.enableTop);
 		this.storage.set(this.SETTING_SHOW_AVATAR, this.showAvatar);
+	}
+
+	saveCategoryData(filter) {
+		this.searchCategory = filter;
+		//save into localstorage
+		let map = {};
+		for (let i = 0; i < this.searchCategory.types.length; i++) {
+			map[this.searchCategory.types[i].type] = this.searchCategory.types[i].checked;
+		}
+		this.storage.set(this.SETTING_TORRENT_CATEGORY, map);
 	}
 
 	saveFilterData(options: any) {
@@ -149,6 +160,14 @@ export class TorrentData {
 					paras += '&search=' + options.keyword;
 				}
 			}
+
+			//build category query
+			for (let i = 0; i < this.searchCategory.types.length; i++) {
+				if (this.searchCategory.types[i].checked) {
+					paras += '&' + this.searchCategory.types[i].type + '=1';
+				}
+			}
+
 			return this.webHttp.get('torrents.php' + (paras ? "?" + paras : paras)).then(data => {
 
 				// let types = this.webHttp.findElement(data, item=>{
@@ -177,7 +196,13 @@ export class TorrentData {
 				let table = this.webHttp.findElement(data, item => {
 					return (item.tagName == 'table' && item.class == 'torrents');
 				});
-				let torrent = new TorrentList(table.children);
+				let torrent;
+				if (table && table.children) {
+					torrent = new TorrentList(table.children);
+				} else {
+					torrent = new TorrentList();
+				}
+
 				let keyword = (options && options.keyword) ? options.keyword : '';
 
 

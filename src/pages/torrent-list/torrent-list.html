@@ -15,7 +15,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-searchbar [placeholder]="'输入关键字搜索'" (click)="showTorrentSearch($event)" [(ngModel)]="keyword" [showCancelButton]="true">
+    <ion-searchbar [placeholder]="'输入关键字搜索'" (click)="showTorrentSearch(true)" [(ngModel)]="keyword" [showCancelButton]="true">
     </ion-searchbar>
 
     <!--<div class="searchbar searchbar-ios searchbar-show-cancel searchbar-left-aligned searchbar-active searchbar-has-focus" style="    position: relative;
@@ -46,7 +46,7 @@
       <button ion-button (click)="resetSearch()" *ngIf="keyword">
         取消
       </button>
-      <button ion-button (click)="presentFilter()" *ngIf="!keyword">
+      <button ion-button (click)="showTorrentSearch(false)" *ngIf="!keyword">
         分类
       </button>
     </ion-buttons>
@@ -68,6 +68,11 @@
     </ion-item>
   </ion-list>
 
+  <ion-card *ngIf="!isLoading && torrents && torrents.list && torrents.list.length==0">
+    <ion-card-header>
+      找不到资源
+    </ion-card-header>
+  </ion-card>
 
   <ion-card *ngFor="let torrent of torrents.list">
     <ion-card-header (click)="presentDetailPage(torrent)" [ngClass]="torrent.special">

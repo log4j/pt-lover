@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, NgZone } from '@angular/core';
-import { Content, NavController, PopoverController, ModalController, NavParams, List, Loading, LoadingController, Refresher } from 'ionic-angular';
+import { Content, NavController, PopoverController, ModalController, NavParams, Events, List, Loading, LoadingController, Refresher } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
@@ -58,7 +58,8 @@ export class TorrentListPage {
 		private popoverCtrl: PopoverController,
 		public modalCtrl: ModalController,
 		public loadingCtrl: LoadingController,
-		public ngZone: NgZone
+		public ngZone: NgZone,
+		public events: Events
 	) {
 
 		this.torrentData.getTypes().subscribe(data => {
@@ -70,6 +71,9 @@ export class TorrentListPage {
 		});
 
 
+		this.events.subscribe("filters:publish", () => {
+			this.torrents.sortByRules(this.torrentData.enableHot, this.torrentData.enableTop);
+		})
 
 	}
 
@@ -93,7 +97,7 @@ export class TorrentListPage {
 		// Close any open sliding items when the schedule updates
 		this.torrentList && this.torrentList.closeSlidingItems();
 
-		return this.torrentData.loadTorrentPage(force).then(data => {
+		return this.torrentData.loadTorrentPage(force, { keyword: this.keyword }).then(data => {
 			this.torrents = data;
 			return data;
 		});
@@ -105,8 +109,8 @@ export class TorrentListPage {
 		console.log('trigger', $event);
 	}
 
-	showTorrentSearch($event) {
-		let modal = this.modalCtrl.create(TorrentSearchPage, this.torrentFilter);
+	showTorrentSearch(enableKeyword) {
+		let modal = this.modalCtrl.create(TorrentSearchPage, { enableKeyword: enableKeyword });
 		modal.present();
 
 		modal.onWillDismiss((data: any) => {
@@ -116,14 +120,31 @@ export class TorrentListPage {
 				// this.torrentData.enableTop = data.enableTop;
 				// this.torrents.sortByRules(data.enableHot, data.enableTop);
 				// this.torrentData.saveFilterData(data);
-				this.keyword = data.keyword;
-				console.log(data);
+				// this.keyword = data.keyword;
+				this.refreshListDueToKeyword(data.keyword);
+			} else {
+				if (this.keyword) {
+					this.refreshListDueToKeyword('');
+				}
 			}
 		});
 	}
 
+
+	refreshListDueToKeyword(keyword) {
+		this.keyword = keyword;
+		this.torrentData.searchKeyword = keyword;
+		// this.torrents.clear();
+		this.showLoading();
+		this.scrollToTop();
+		this.updateTorrentList(true).then(() => {
+			this.hideLoading();
+		});
+	}
+
 	resetSearch() {
-		this.keyword = '';
+		// this.keyword = '';
+		this.refreshListDueToKeyword('');
 	}
 
 	onScroll() {
@@ -232,7 +253,7 @@ export class TorrentListPage {
 
 	doInfinite(infiniteScroll) {
 
-		this.torrentData.loadTorrentPage(true, { next: true }).then(data => {
+		this.torrentData.loadTorrentPage(true, { next: true, keyword: this.keyword }).then(data => {
 			if (data) {
 				infiniteScroll.complete();
 			} else {

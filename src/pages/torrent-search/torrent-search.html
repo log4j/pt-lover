@@ -10,7 +10,7 @@
       <button ion-button (click)="dismiss()">取消</button>
     </ion-buttons>
 
-    <ion-searchbar [placeholder]="'输入关键字搜索'" [debounce]="100000" [(ngModel)]="keyword">
+    <ion-searchbar *ngIf="enableKeyword" [placeholder]="'输入关键字搜索'" [debounce]="100000" [(ngModel)]="keyword">
     </ion-searchbar>
 
     <ion-buttons end>
@@ -23,10 +23,18 @@
 <ion-content>
   <ion-grid>
     <ion-row>
+      <ion-col col-6>
+        <button ion-button block outline small (click)="selectAll(true)">全选</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block outline small (click)="selectAll(false)">全不选</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4 *ngFor="let cat of category.types">
         <ion-item>
           <ion-label>{{cat.label}}</ion-label>
-          <ion-checkbox color="dark" checked="true"></ion-checkbox>
+          <ion-checkbox color="primary" [(ngModel)]="cat.checked"></ion-checkbox>
         </ion-item>
       </ion-col>
     </ion-row>

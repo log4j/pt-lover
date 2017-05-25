@@ -19,6 +19,7 @@ import { TorrentFilter } from '../../models/filter'
 export class TorrentSearchPage {
 	@ViewChild(Searchbar) searchbar: Searchbar;
 
+	enableKeyword: boolean;
 	category: TorrentFilter;
 	keyword: string;
 
@@ -28,7 +29,8 @@ export class TorrentSearchPage {
 		public viewCtrl: ViewController,
 		public torrentData: TorrentData
 	) {
-		this.category = torrentData.searchCategory;
+		this.enableKeyword = this.navParams.data.enableKeyword;
+		this.category = torrentData.searchCategory.clone();
 		this.keyword = torrentData.searchKeyword;
 	}
 
@@ -36,24 +38,31 @@ export class TorrentSearchPage {
 		console.log('ionViewDidLoad TorrentSearchPage');
 
 
+		if (this.enableKeyword) {
+			this.searchbar.setFocus();
+		}
 
-		this.searchbar.setFocus();
 	}
 
 	dismiss(data?: any) {
 		// using the injected ViewController this page
 		// can "dismiss" itself and pass back data
 		this.torrentData.searchKeyword = '';
-		this.viewCtrl.dismiss({
-			keyword: ''
-		});
+		this.viewCtrl.dismiss();
 	}
 
 	applySearch() {
 		this.torrentData.searchKeyword = this.keyword;
+		this.torrentData.saveCategoryData(this.category);
 		this.viewCtrl.dismiss({
 			keyword: this.keyword
 		})
+	}
+
+	selectAll(flag: boolean) {
+		for (let i = 0; i < this.category.types.length; i++) {
+			this.category.types[i].checked = flag;
+		}
 	}
 
 }

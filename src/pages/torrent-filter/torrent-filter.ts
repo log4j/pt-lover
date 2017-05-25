@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController, NavParams } from 'ionic-angular';
-
+import { NavController, ViewController, NavParams, Events } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
@@ -28,7 +27,8 @@ export class TorrentFilterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    public torrentData: TorrentData
+    public torrentData: TorrentData,
+    public events: Events
   ) {
     this.torrentFilter = navParams.data;
 
@@ -47,11 +47,16 @@ export class TorrentFilterPage {
   }
 
   applyFilters() {
-    this.viewCtrl.dismiss({
+
+    let data = {
       enableHot: this.enableHot,
       enableTop: this.enableTop,
       showAvatar: this.showAvatar
-    });
+    };
+
+    this.torrentData.saveFilterData(data);
+    this.events.publish('filters:publish');
+    this.viewCtrl.dismiss(data);
   }
 
   dismiss(data?: any) {

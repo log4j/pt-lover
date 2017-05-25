@@ -156,6 +156,7 @@ export class RemoteServerChoosePage {
 							buttons: ['确定']
 						});
 						alert.present();
+						this.isUploading = false;
 					}
 
 					else {
@@ -165,6 +166,7 @@ export class RemoteServerChoosePage {
 							buttons: ['确定']
 						});
 						alert.present();
+						this.isUploading = false;
 					}
 
 				} else {
@@ -175,6 +177,7 @@ export class RemoteServerChoosePage {
 						buttons: ['确定']
 					});
 					alert.present();
+					this.isUploading = false;
 				}
 			}
 			else {
@@ -185,6 +188,7 @@ export class RemoteServerChoosePage {
 					buttons: ['确定']
 				});
 				alert.present();
+				this.isUploading = false;
 			}
 		}, (err) => {
 			console.log('--------------');

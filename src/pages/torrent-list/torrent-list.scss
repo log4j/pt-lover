@@ -23,6 +23,11 @@ body.theme-default{
 
 body.theme-dark{
     page-torrent-list {
+        input.searchbar-input{
+            background-color: #6C738C;
+            color:white;
+        }
+        
         ion-card-header{
             text-overflow: inherit;
             white-space: normal;

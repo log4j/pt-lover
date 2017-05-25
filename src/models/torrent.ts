@@ -336,6 +336,9 @@ export class TorrentList {
         })
     }
 
+    clear() {
+        this.list = [];
+    }
 
 }
 

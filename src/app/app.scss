@@ -137,6 +137,38 @@ ion-list.loading-list{
         }
     }
 
+    ion-card{
+        
+        // border-radius: 0 20px 20px 0;
+
+        ion-card-header.card-header{
+            // background: #4E535F;
+            // color: white;
+            font-size: 1.5rem;
+            // display: block;
+            white-space: nowrap;
+            padding: 10px 10px 5px 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            ion-note{
+                float: left;
+                // padding-left: 5px;
+            }
+        }
+
+        ion-card-content{
+            ion-label{
+                margin: 8px 2px;
+                ion-badge{
+                    font-size: 1.1rem;
+                    padding: 3px 5px;
+                }
+            }
+        }
+
+    }
+
 }
 
 .theme-dark{
@@ -306,7 +338,15 @@ ion-list.loading-list{
         }
 
     }
+    ion-col{
+        button[ion-button]{
+            color:#ECECEE;
+        }
 
+        button[ion-button][outline]{
+            border-color: #ECECEE;
+        }
+    }
     ion-list{
         background: none;
 

@@ -19,6 +19,7 @@ import { AboutPage } from '../pages/about/about';
 import { ProfilePage } from '../pages/profile/profile';
 import { RemotePage } from '../pages/remote/remote';
 import { TorrentAlertPage } from '../pages/torrent-alert/torrent-alert';
+import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
 import { User } from '../models/user';
 
 import { UserData } from '../providers/user-data';
@@ -63,6 +64,7 @@ export class MyApp {
 	loggedInPages: PageInterface[] = [
 		// { title: 'Account', component: AccountPage, icon: 'person' },
 		{ title: '个人信息和设置', component: ProfilePage, icon: 'information-circle', isModal: true },
+		{ title: '资源显示设置', component: TorrentFilterPage, icon: 'information-circle', isModal: true },
 		{ title: '退出', component: TabsPage, icon: 'log-out', index: 0, logsOut: true }
 	];
 	loggedOutPages: PageInterface[] = [
