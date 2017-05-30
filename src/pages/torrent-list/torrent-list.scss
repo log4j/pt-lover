@@ -17,6 +17,28 @@ body.theme-default{
             right: -60px;
             opacity: 0;
         }
+
+
+        .search-keyword{
+            text-align: left;
+            background: rgba(0, 0, 0, 0.08);
+            padding: 2px 10px;
+            border-radius: 4px;
+
+            ion-icon{
+                font-size: 1.5rem;
+                color: #6C738C;
+            }
+            label{
+                font-weight: normal;
+                font-size: 1.5rem;
+                display: inline-block;
+                line-height: 20px;
+            }
+            label.search-keyword-placeholder{
+                color: #808080;
+            }
+        }
     }
 
 }
@@ -44,6 +66,30 @@ body.theme-dark{
         .hide-scroll-button{
             right: -60px;
             opacity: 0;
+        }
+
+
+        .search-keyword{
+            text-align: left;
+            background-color: #6C738C;
+            
+            padding: 2px 10px;
+            border-radius: 4px;
+
+            ion-icon{
+                font-size: 1.5rem;
+                color:white;
+            }
+            label{
+                font-weight: normal;
+                font-size: 1.5rem;
+                display: inline-block;
+                line-height: 20px;
+                color:white;
+            }
+            label.search-keyword-placeholder{
+                color:white;
+            }
         }
     }
 

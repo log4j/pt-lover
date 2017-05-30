@@ -97,14 +97,17 @@ export class WebHttp {
 							'link': true,
 							'meta': true
 						}
-						for (let i = node.children.length - 1; i >= 0; i--) {
-							//remove 'script', 'link', 'meta'
-							if (excludeMap[node.children[i].tagName]) {
-								node.children.splice(i, 1);
-								continue;
+						if (node.children.length) {
+							for (let i = node.children.length - 1; i >= 0; i--) {
+								//remove 'script', 'link', 'meta'
+								if (excludeMap[node.children[i].tagName]) {
+									node.children.splice(i, 1);
+									continue;
+								}
+								removeParent(node.children[i]);
 							}
-							removeParent(node.children[i]);
 						}
+
 					}
 				}
 				removeParent(root);
@@ -141,14 +144,14 @@ export class WebHttp {
 		return null;
 	}
 
-	get(url): Promise<any> {
-		if (this.isLocal) {
+	get(url, forceLocal?: boolean): Promise<any> {
+		if (this.isLocal || forceLocal) {
 			url = url.replace('php', 'html')
 		}
 		if (!this.device.platform) {
 			this.useProxy = true;
 		}
-		this.host = this.isLocal ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.mangs.site/' : 'https://pt.sjtu.edu.cn/');
+		this.host = (this.isLocal || forceLocal) ? 'assets/data/pages/' : (this.useProxy ? 'http://pt.mangs.site/' : 'https://pt.sjtu.edu.cn/');
 
 
 

@@ -15,8 +15,16 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-searchbar [placeholder]="'输入关键字搜索'" (click)="showTorrentSearch(true)" [(ngModel)]="keyword" [showCancelButton]="true">
-    </ion-searchbar>
+    <!--<ion-searchbar [placeholder]="'输入关键字搜索'" (click)="showTorrentSearch(true)" [(ngModel)]="keyword" [showCancelButton]="true">
+    </ion-searchbar>-->
+
+    <ion-title>
+      <div class="search-keyword" (click)="showTorrentSearch(true)">
+        <ion-icon name="search"></ion-icon>
+        <label class="search-keyword-placeholder" *ngIf="!keyword">输入关键字搜索</label>
+        <label class="search-keyword-content" *ngIf="keyword">{{keyword}}</label>
+      </div>
+    </ion-title>
 
     <!--<div class="searchbar searchbar-ios searchbar-show-cancel searchbar-left-aligned searchbar-active searchbar-has-focus" style="    position: relative;
     display: -webkit-flex;
@@ -46,7 +54,7 @@
       <button ion-button (click)="resetSearch()" *ngIf="keyword">
         取消
       </button>
-      <button ion-button (click)="showTorrentSearch(false)" *ngIf="!keyword">
+      <button ion-button (click)="showTorrentSearch(false)" *ngIf="!keyword && !greenMode">
         分类
       </button>
     </ion-buttons>

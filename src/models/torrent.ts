@@ -47,6 +47,7 @@ export class Torrent {
 
     fileName: string;
 
+    blackWords = ['抓自', '侵权', '侵删', '蝴蝶HUDBT'];
 
 
     constructor(data: any) {
@@ -273,6 +274,14 @@ export class Torrent {
             return this.fileName.replace(/\s/g, '');
         return '[PT][' + this.typeLabel + ']' + this.id + '.torrent';
     }
+
+    isGreen(): boolean {
+        for (let i = 0; i < this.blackWords.length; i++) {
+            if ((this.name && this.name.indexOf(this.blackWords[i]) >= 0) || (this.subName && this.subName.indexOf(this.blackWords[i]) >= 0))
+                return false;
+        }
+        return true;
+    }
 }
 
 export class TorrentList {
@@ -334,6 +343,16 @@ export class TorrentList {
 
 
         })
+    }
+
+    enableGreen() {
+        if (this.list && this.list.length) {
+            for (let i = this.list.length - 1; i >= 0; i--) {
+                if (!this.list[i].isGreen()) {
+                    this.list.splice(i, 1);
+                }
+            }
+        }
     }
 
     clear() {

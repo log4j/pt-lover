@@ -110,6 +110,13 @@ export class Type {
         }
     ];
 
+    public static TypesInGreen = [
+        {
+            label: "校园原创",
+            value: "cat451"
+        }
+    ];
+
     public static Codecs = [
         {
             label: "H.264",
@@ -179,31 +186,31 @@ export class Type {
         },
         {
             label: '已停止',
-            value:0
+            value: 0
         },
         {
             label: '准备检查',
-            value:1
+            value: 1
         },
         {
             label: '检查中',
-            value:2
+            value: 2
         },
         {
             label: '准备下载',
-            value:3
+            value: 3
         },
         {
             label: '下载中',
-            value:4
+            value: 4
         },
         {
             label: '准备做种',
-            value:5
+            value: 5
         },
         {
             label: '做种中',
-            value:6
+            value: 6
         }
     ]
 }

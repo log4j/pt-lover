@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, NgZone } from '@angular/core';
 import { Content, NavController, PopoverController, ModalController, NavParams, Events, List, Loading, LoadingController, Refresher } from 'ionic-angular';
 
 import { TorrentData } from '../../providers/torrent-data';
+import { UserData } from '../../providers/user-data';
 import { TorrentFilter } from '../../models/filter'
 import { Torrent, TorrentList } from '../../models/torrent'
 
@@ -35,6 +36,7 @@ export class TorrentListPage {
 	torrentFilter: TorrentFilter;
 
 	keyword: string = '';
+	greenMode: boolean;
 
 	loader: Loading;
 	isLoading: boolean = true;
@@ -55,6 +57,7 @@ export class TorrentListPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public torrentData: TorrentData,
+		public userData: UserData,
 		private popoverCtrl: PopoverController,
 		public modalCtrl: ModalController,
 		public loadingCtrl: LoadingController,
@@ -62,6 +65,8 @@ export class TorrentListPage {
 		public events: Events
 	) {
 
+
+		this.greenMode = this.userData.greenMode;
 		this.torrentData.getTypes().subscribe(data => {
 
 			this.torrentFilter = new TorrentFilter(data);
@@ -73,7 +78,11 @@ export class TorrentListPage {
 
 		this.events.subscribe("filters:publish", () => {
 			this.torrents.sortByRules(this.torrentData.enableHot, this.torrentData.enableTop);
-		})
+		});
+
+		this.events.subscribe("mode:greenMode", () => {
+			this.greenMode = this.userData.greenMode;
+		});
 
 	}
 

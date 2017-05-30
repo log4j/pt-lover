@@ -40,9 +40,9 @@ export class TorrentAlertDetailPage {
 			this.rule = this.navParams.data.rule;
 		} else {
 			this.rule = new AlertRule({
-				device: this.pushData.pushId,
+				device: this.pushData.pushId ? this.pushData.pushId : 'FAKE_PUSH_ID_' + this.userData.user.name,
 				username: this.userData.user.name,
-				platform: this.device.platform
+				platform: this.device.platform ? this.device.platform : 'test'
 			});
 		}
 

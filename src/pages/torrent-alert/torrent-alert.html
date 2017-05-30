@@ -38,7 +38,13 @@
 	<ion-list>
 		<button ion-item *ngFor='let r of rules' (click)="showTorrentAlertDetail(r)">
 			<h2>关键字:{{r.keyword}}</h2>
-			<p>{{r.category | category}} <ion-note style='float:right'>有效至:{{r.expirate | date:'yyyy/MM/dd'}}</ion-note></p>
+			<!--<p>{{r.category | category}} <ion-note style='float:right'>有效至:{{r.expirate | date:'yyyy/MM/dd'}}</ion-note></p>-->
 		</button>
+
+		<ion-item *ngFor="let c of category">
+			<ion-label>{{c.type.label}}</ion-label>
+			<ion-toggle color="dark" (ionChange)="toggleCategory(c)" [(ngModel)]="c.checked"></ion-toggle>
+		</ion-item>
+
 	</ion-list>
 </ion-content>

@@ -14,6 +14,8 @@ import { TorrentFilter } from '../models/filter';
 
 import { WebHttp } from './web-http';
 
+import { UserData } from './user-data';
+
 /*
   Generated class for the TorrentData provider.
 
@@ -46,16 +48,18 @@ export class TorrentData {
 	constructor(
 		public http: Http,
 		public webHttp: WebHttp,
-		public storage: Storage
+		public storage: Storage,
+		public userData: UserData
 	) {
 
 		this.getTypes();
 
-		this.searchCategory = new TorrentFilter(Type.Types);
-		console.log(this.searchCategory);
+		this.handlerModeChange();
 		this.loadSettingsFromStorage();
 		// this.loadTorrentPage();
 	}
+
+
 
 	load(): any {
 		if (this.data) {
@@ -63,6 +67,16 @@ export class TorrentData {
 		} else {
 			return this.http.get('assets/data/torrent-data.json')
 				.map(this.processData);
+		}
+	}
+
+	handlerModeChange() {
+		if (this.userData.greenMode) {
+			this.searchCategory = new TorrentFilter(Type.TypesInGreen);
+
+		} else {
+			this.searchCategory = new TorrentFilter(Type.Types);
+
 		}
 	}
 
@@ -215,6 +229,11 @@ export class TorrentData {
 					torrent.keyword = keyword;
 					this.torrentList = torrent;
 					this.torrentList.sortByRules(this.enableHot, this.enableTop);
+				}
+
+				//remove non-available item when greenMode
+				if (this.userData.greenMode) {
+					this.torrentList.enableGreen();
 				}
 
 				return this.torrentList;

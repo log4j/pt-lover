@@ -28,18 +28,18 @@
 			<ion-input type="text" [(ngModel)]='rule.keyword' #keywordInput text-right placeholder='请输入关键字'></ion-input>
 		</ion-item>
 
-		<ion-item>
+		<!--<ion-item>
 			<ion-label>分类</ion-label>
 			<ion-select [(ngModel)]='rule.category'>
 				<ion-option value="">不限</ion-option>
 				<ion-option value="{{opt.value}}" *ngFor='let opt of typeOptions'>{{opt.label}}</ion-option>
 			</ion-select>
-		</ion-item>
+		</ion-item>-->
 
-		<ion-item>
+		<!--<ion-item>
 			<ion-label>有效至</ion-label>
 			<ion-datetime displayFormat="MMM DD YYYY" cancelText='取消' max='2020-12-31' doneText='确定' pickerFormat="YYYY-MM-DD" [(ngModel)]="rule.expirate"></ion-datetime>
-		</ion-item>
+		</ion-item>-->
 
 		<!--<ion-item>
 			<ion-label>PushId: {{rule.device}}</ion-label>

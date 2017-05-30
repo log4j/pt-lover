@@ -324,7 +324,7 @@ export class TorrentDetailPage {
 
 
 	viewMoreOptions() {
-		if (this.platform.is('ios') && this.userData.user && this.userData.user.greenMode) {
+		if (this.platform.is('ios') && this.userData.user && this.userData.greenMode) {
 			let actionSheet = this.actionSheetCtrl.create({
 				title: 'PTLover不提供任何资源下载功能',
 				buttons: [

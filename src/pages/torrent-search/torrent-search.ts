@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Searchbar } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, ViewController, Searchbar, Events } from 'ionic-angular';
+import { UserData } from '../../providers/user-data';
 
 import { TorrentData } from '../../providers/torrent-data';
 import { TorrentFilter } from '../../models/filter'
@@ -22,12 +22,16 @@ export class TorrentSearchPage {
 	enableKeyword: boolean;
 	category: TorrentFilter;
 	keyword: string;
+	greenMode: boolean;
+
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
-		public torrentData: TorrentData
+		public userData: UserData,
+		public torrentData: TorrentData,
+		public events: Events
 	) {
 		this.enableKeyword = this.navParams.data.enableKeyword;
 		this.category = torrentData.searchCategory.clone();
@@ -37,6 +41,12 @@ export class TorrentSearchPage {
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TorrentSearchPage');
 
+
+		this.greenMode = this.userData.greenMode;
+		this.events.subscribe("mode:greenMode", () => {
+			this.greenMode = this.userData.greenMode;
+			this.category = this.torrentData.searchCategory.clone();
+		})
 
 		if (this.enableKeyword) {
 			this.searchbar.setFocus();

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { AlertRule } from '../models/alert';
 
 import { ServerHttp } from './server-http';
-
+import { UserData } from './user-data';
 /*
   Generated class for the PushData provider.
 
@@ -21,6 +21,7 @@ export class PushData {
 	constructor(
 		public http: Http,
 		public serverHttp: ServerHttp,
+		public userData: UserData
 	) {
 		console.log('Hello PushData Provider');
 	}
@@ -34,44 +35,57 @@ export class PushData {
 	getTorrentAlertRules(): Promise<AlertRule[]> {
 		//works only when pushId is available
 		if (this.pushId) {
-			return this.serverHttp.get('subscription/?device='+this.pushId).then(res=>{
-				if(res && res.result){
-					let results:AlertRule[] = [];
+			return this.serverHttp.get('subscription/?device=' + this.pushId).then(res => {
+				if (res && res.result) {
+					let results: AlertRule[] = [];
 
-					res.data.forEach(item=>results.push(new AlertRule(item)));
+					res.data.forEach(item => results.push(new AlertRule(item)));
 
-					return results; 
-				}else{
+					return results;
+				} else {
 					return [];
 				}
 			});
 		} else {
-			return new Promise(resolve => {
-				resolve([]);
+
+			return this.serverHttp.get('subscription/?device=FAKE_PUSH_ID_' + this.userData.user.name).then(res => {
+				if (res && res.result) {
+					let results: AlertRule[] = [];
+
+					res.data.forEach(item => results.push(new AlertRule(item)));
+
+					return results;
+				} else {
+					return [];
+				}
 			});
+			// return new Promise(resolve => {
+			// 	resolve([]);
+			// });
 		}
 	}
 
-	updateTorrentAlertRule(rule:AlertRule):Promise<AlertRule>{
+	updateTorrentAlertRule(rule: AlertRule): Promise<AlertRule> {
 		rule.truncateDate();
 		// console.log(rule);
-		if(rule.id){
+		if (rule.id) {
 			//update
-			return this.serverHttp.put('subscription/'+rule.id, rule).then(res=>{
-				if(res && res.result){
+			return this.serverHttp.put('subscription/' + rule.id, rule).then(res => {
+				if (res && res.result) {
 					return rule;
-				}else{
+				} else {
 					// alert(res);
 					// console.log(res);
 					return null;
 				}
 			});
-		}else{
+		} else {
 			//post
-			return this.serverHttp.post('subscription', rule).then(res=>{
-				if(res && res.result){
+			return this.serverHttp.post('subscription', rule).then(res => {
+				if (res && res.result) {
+					rule.id = res.data;
 					return rule;
-				}else{
+				} else {
 					// console.log(res);
 					// alert(JSON.stringify(res));
 					return null;
@@ -80,12 +94,12 @@ export class PushData {
 		}
 	}
 
-	removeTorrentAlertRule(rule:AlertRule):Promise<boolean>{
-		if(rule && rule.id){
-			return this.serverHttp.delete('subscription/'+rule.id).then(res=>{
-				if(res && res.result){
+	removeTorrentAlertRule(rule: AlertRule): Promise<boolean> {
+		if (rule && rule.id) {
+			return this.serverHttp.delete('subscription/' + rule.id).then(res => {
+				if (res && res.result) {
 					return true;
-				}else{
+				} else {
 					return false;
 				}
 			});

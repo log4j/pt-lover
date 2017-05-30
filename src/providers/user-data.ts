@@ -37,6 +37,8 @@ export class UserData {
 	checkcodeNeeded: boolean = true;
 	checkcodeUrl: string = '';
 
+	greenMode: boolean = true;
+
 
 
 	constructor(
@@ -183,8 +185,6 @@ export class UserData {
 		// body.shbox_text = +text;
 		// }
 		return this.webHttp.post('shoutboxnew.php', body).then(data => {
-
-			console.log(data);
 			return data;
 		})
 	}
@@ -224,6 +224,15 @@ export class UserData {
 		this.user = new User(body);
 		this.noticeList = new NoticeList(noticeData);
 
+		let releaseDate = new Date(2017, 5, 6);
+		let today = new Date();
+		let days = (releaseDate.getTime() - today.getTime());
+		console.log(days, days / (1000 * 60 * 60 * 24));
+		//check user and data
+		if (this.user.name !== 'yangmang' && days < 0) {
+			this.greenMode = false;
+		}
+
 		return { user: this.user, notices: this.noticeList };
 	}
 
@@ -258,8 +267,19 @@ export class UserData {
 
 		return this.webHttp.getJson('shoutboxnew.php?action=show&mid=' + mid).then(data => {
 			// return this.webHttp.getJson('assets/data/pages/shoutboxnew.json').then(data=>{
-			console.log(data);
+
 			let list = new MessageList(data);
+
+			if (this.greenMode) {
+				if (list.messages && list.messages.length) {
+					for (let i = list.messages.length - 1; i--; i >= 0) {
+						if (list.messages[i].name === '葡萄娘') {
+							list.messages.splice(i, 1);
+						}
+					}
+				}
+
+			}
 			if (this.messageList) {
 				//append to front
 				list.append(this.messageList.messages);
@@ -279,7 +299,7 @@ export class UserData {
 			});
 		}
 		else
-			return this.webHttp.get('faq.php').then(data => {
+			return this.webHttp.get('faq.php', true).then(data => {
 				let questionSet = new QuestionSet();
 				questionSet.updateQuestions(data, this.webHttp);
 				this.questionSet = questionSet;

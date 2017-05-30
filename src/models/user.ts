@@ -3,7 +3,6 @@ export class User {
     id: string;
     url: string;
 
-    greenMode: boolean = false;
 
     uploaded: string;
     downloaded: string;
@@ -23,11 +22,6 @@ export class User {
         // console.log(data);
         if (data && data.tagName == 'table') {
             this.name = data.children["0"].children["0"].children["0"].children["0"].children["0"].children["0"].text;
-
-            if (this.name === 'yangmang') {
-                this.greenMode = false;
-            }
-
             this.url = data.children["0"].children["0"].children["0"].children["0"].children["0"].href;
             this.id = this.url.substring(19);
 

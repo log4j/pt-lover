@@ -57,21 +57,21 @@ export class MyApp {
 	];
 
 	betaPages: PageInterface[] = [
-		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal: false },
-		{ title: '远程客户端', component: RemotePage, icon: 'desktop', isModal: false },
+		{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal: false }
 	];
 
 	loggedInPages: PageInterface[] = [
 		// { title: 'Account', component: AccountPage, icon: 'person' },
 		{ title: '个人信息和设置', component: ProfilePage, icon: 'information-circle', isModal: true },
-		{ title: '资源显示设置', component: TorrentFilterPage, icon: 'information-circle', isModal: true },
+		{ title: '资源显示设置', component: TorrentFilterPage, icon: 'map', isModal: true },
 		{ title: '退出', component: TabsPage, icon: 'log-out', index: 0, logsOut: true }
 	];
 	loggedOutPages: PageInterface[] = [
 		{ title: '登录', component: LoginPage, icon: 'log-in' },
-		// { title: 'Support', component: SupportPage, icon: 'help' },
-		// { title: 'Signup', component: SignupPage, icon: 'person-add' }
+		{ title: '常见问题', component: FaqPage, icon: 'bulb', isModal: true },
+		{ title: '关于', component: AboutPage, icon: 'information-circle', isModal: true }
 	];
+
 
 	constructor(
 		public events: Events,
@@ -108,6 +108,19 @@ export class MyApp {
 
 		this.events.subscribe('user:login', (user, time) => {
 			this.user = user;
+
+			if (this.userData.greenMode) {
+				this.betaPages = [
+					{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal: false },
+					{ title: 'PTSideLoader', component: RemotePage, icon: 'clock', isModal: false }
+				];
+			} else {
+				this.betaPages = [
+					{ title: '资源订阅', component: TorrentAlertPage, icon: 'film', isModal: false },
+					{ title: 'PTSideLoader', component: RemotePage, icon: 'clock', isModal: false }
+				];
+			}
+
 			this.enableMenu(true);
 		});
 
