@@ -37,7 +37,7 @@ export class UserData {
 	checkcodeNeeded: boolean = true;
 	checkcodeUrl: string = '';
 
-	greenMode: boolean = true;
+	greenMode: boolean = false;
 
 
 
@@ -228,7 +228,7 @@ export class UserData {
 		let today = new Date();
 		let days = (releaseDate.getTime() - today.getTime());
 		console.log(days, days / (1000 * 60 * 60 * 24));
-		//check user and data
+		//check user and date
 		if (this.user.name !== 'yangmang' && days < 0) {
 			this.greenMode = false;
 		}
