@@ -37,7 +37,7 @@ export class UserData {
 	checkcodeNeeded: boolean = true;
 	checkcodeUrl: string = '';
 
-	greenMode: boolean = false;
+	greenMode: boolean = true;
 
 
 
@@ -224,7 +224,7 @@ export class UserData {
 		this.user = new User(body);
 		this.noticeList = new NoticeList(noticeData);
 
-		let releaseDate = new Date(2017, 5, 6);
+		let releaseDate = new Date(2017, 5, 8);
 		let today = new Date();
 		let days = (releaseDate.getTime() - today.getTime());
 		console.log(days, days / (1000 * 60 * 60 * 24));
@@ -273,7 +273,14 @@ export class UserData {
 			if (this.greenMode) {
 				if (list.messages && list.messages.length) {
 					for (let i = list.messages.length - 1; i--; i >= 0) {
-						if (list.messages[i].name === '葡萄娘') {
+						if (list.messages[i].name === '葡萄娘'
+							|| list.messages[i].content.indexOf('美国') >= 0
+							|| list.messages[i].content.indexOf('米国') >= 0
+							|| list.messages[i].content.indexOf('美帝') >= 0
+							|| list.messages[i].content.indexOf('米帝') >= 0
+							|| list.messages[i].content.indexOf('PT') >= 0
+							|| list.messages[i].content.indexOf('BT') >= 0
+						) {
 							list.messages.splice(i, 1);
 						}
 					}

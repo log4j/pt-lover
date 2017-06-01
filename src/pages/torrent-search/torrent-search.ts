@@ -17,7 +17,8 @@ import { TorrentFilter } from '../../models/filter'
 	templateUrl: 'torrent-search.html',
 })
 export class TorrentSearchPage {
-	@ViewChild(Searchbar) searchbar: Searchbar;
+	// @ViewChild(Searchbar) searchbar: Searchbar;
+	@ViewChild('keywordInput') keywordInput;
 
 	enableKeyword: boolean;
 	category: TorrentFilter;
@@ -49,7 +50,12 @@ export class TorrentSearchPage {
 		})
 
 		if (this.enableKeyword) {
-			this.searchbar.setFocus();
+			// this.searchbar.setFocus();
+			// this.keywordInput.setFocus();
+
+			setTimeout(() => {
+				this.keywordInput.setFocus();
+			}, 250);
 		}
 
 	}

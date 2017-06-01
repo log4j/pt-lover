@@ -211,26 +211,7 @@ export class Torrent {
             if (desciption) {
                 // console.log(desciption);
                 desciption.children.forEach(item => {
-                    if (item.tagName === 'text') {
-                        this.descriptions.push({ text: item.value });
-                    } else if (item.tagName === 'br') {
-                        //do nothing   
-                    }
-                    else if (item.tagName === 'img') {
-                        this.descriptions.push({ img: item.src });
-                    }
-
-                    else if (item.tagName === 'a') {
-                        this.descriptions.push({ link: item.href });
-                    }
-
-                    else if (item.tagName === 'fieldset') {
-
-                    }
-
-                    else {
-                        console.log(item);
-                    }
+                    this.pushDescription(item);
                 });
             }
 
@@ -249,6 +230,35 @@ export class Torrent {
 
         this.fullUrl = webHttp.host + this.url;
 
+    }
+
+    pushDescription(item) {
+        if (item.tagName === 'text') {
+            this.descriptions.push({ text: item.value });
+        } else if (item.tagName === 'br') {
+            //do nothing   
+        }
+        else if (item.tagName === 'img') {
+            this.descriptions.push({ img: item.src });
+        }
+
+        else if (item.tagName === 'a') {
+            this.descriptions.push({ link: item.href });
+        }
+
+        else if (item.tagName === 'fieldset') {
+
+        }
+
+        else if (item.tagName === 'font' || item.tagName === 'div' || item.tagName === 'b' || item.tagName === 'span') {
+            item.children.forEach(innerItem => {
+                this.pushDescription(innerItem);
+            })
+        }
+
+        else {
+            console.log(item);
+        }
     }
 
     loadComments(data: any, webHttp: WebHttp) {

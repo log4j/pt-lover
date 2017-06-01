@@ -15,29 +15,38 @@ export class Notice {
 
             this.paragraphs = [];
             part2.children.forEach(item => {
-                if (item.tagName === 'text') {
-                    this.paragraphs.push({ text: item.value });
-                }
-                else if (item.tagName === 'a') {
-                    this.paragraphs.push({ link: item.href });
-                }
-                else if (item.tagName === 'img') {
-                    if (item.src.indexOf('gif')) {
-
-                        item.src = item.src.replace('pic/', 'assets/')
-                    }
-                    this.paragraphs.push({ img: item.src });
-                } else if (item.tagName === 'br') {
-                    //if last one is also br, do nothing
-                    if (this.paragraphs.length == 0 || this.paragraphs[this.paragraphs.length - 1].br != true)
-                        this.paragraphs.push({ br: true });
-                } else {
-                    // console.log(item);
-                }
+                this.pushParagraphs(item);
             })
 
             // console.log(this);
 
+        }
+    }
+
+    pushParagraphs(item) {
+        if (item.tagName === 'text') {
+            this.paragraphs.push({ text: item.value });
+        }
+        else if (item.tagName === 'a') {
+            this.paragraphs.push({ link: item.href });
+        }
+        else if (item.tagName === 'img') {
+            if (item.src.indexOf('gif')) {
+
+                item.src = item.src.replace('pic/', 'assets/')
+            }
+            this.paragraphs.push({ img: item.src });
+        } else if (item.tagName === 'br') {
+            //if last one is also br, do nothing
+            if (this.paragraphs.length == 0 || this.paragraphs[this.paragraphs.length - 1].br != true)
+                this.paragraphs.push({ br: true });
+        } else if (item.tagName === 'font' || item.tagName === 'div' || item.tagName === 'b' || item.tagName === 'span') {
+            item.children.forEach(innerItem => {
+                this.pushParagraphs(innerItem);
+            })
+        }
+        else {
+            // console.log(item);
         }
     }
 

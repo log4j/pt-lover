@@ -117,7 +117,6 @@ export class HomePage {
 		// });
 
 		return this.userData.loadMessages().then(data => {
-			console.log(data);
 			this.messages = data.messages;
 			return data;
 		});
