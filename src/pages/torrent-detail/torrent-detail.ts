@@ -4,7 +4,7 @@ import { NavController, NavParams, ViewController, Platform, ActionSheetControll
 import { TorrentData } from '../../providers/torrent-data';
 import { UserData } from '../../providers/user-data';
 import { WebHttp } from '../../providers/web-http';
-import { Comment, Torrent, TorrentList } from '../../models/torrent';
+import { Comment, Torrent } from '../../models/torrent';
 import { FileOpener } from '@ionic-native/file-opener';
 
 import { RemoteServerChoosePage } from '../remote-server-choose/remote-server-choose';
@@ -260,7 +260,7 @@ export class TorrentDetailPage {
 					showCloseButton: true,
 					closeButtonText: '打开'
 				});
-				let timeoutHandler = setTimeout(() => {
+				setTimeout(() => {
 					openToast.dismiss({ autoClose: true });
 				}, duration);
 				openToast.onDidDismiss(data => {

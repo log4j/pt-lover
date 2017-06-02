@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Searchbar, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
 import { UserData } from '../../providers/user-data';
 
 import { TorrentData } from '../../providers/torrent-data';

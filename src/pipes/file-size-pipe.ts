@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Type } from '../models/type'
 @Pipe({ name: 'fileSize' })
 export class FileSizePipe implements PipeTransform {
     transform(value: number, args: string[]): any {

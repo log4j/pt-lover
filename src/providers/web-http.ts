@@ -3,7 +3,7 @@ import { Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as Parser from "htmlparser2";
 import { Device } from '@ionic-native/device';
-import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
+import { Transfer, TransferObject } from '@ionic-native/transfer';
 declare var cordova: any;
 
 /*
@@ -30,13 +30,6 @@ export class WebHttp {
 	) {
 
 
-
-		console.log('Hello WebHttp Provider');
-
-		console.log(device.platform);
-
-
-		const fileTransfer: TransferObject = this.transfer.create();
 	}
 
 

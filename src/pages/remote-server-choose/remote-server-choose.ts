@@ -5,11 +5,7 @@ import { NavController, NavParams, ViewController, ToastController, AlertControl
 import { UserData } from '../../providers/user-data';
 import { RemoteData } from '../../providers/remote-data';
 
-import {
-	FormGroup,
-	FormControl
 
-} from '@angular/forms';
 
 
 

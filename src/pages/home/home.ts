@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { TorrentData } from '../../providers/torrent-data';
 import { UserData } from '../../providers/user-data';
-import { NavController, LoadingController, ModalController, Slides, Content, AlertController, Events, Refresher, Loading } from 'ionic-angular';
+import { NavController, LoadingController, ModalController, Content, AlertController, Events, Refresher, Loading } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 

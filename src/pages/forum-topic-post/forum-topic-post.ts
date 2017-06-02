@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ForumData } from '../../providers/forum-data';
 
@@ -21,9 +21,9 @@ export class ForumTopicPostPage {
 	@ViewChild('titleInput') titleInput;
 
 	constructor(
-		public navCtrl: NavController, 
+		public navCtrl: NavController,
 		public navParams: NavParams,
-		public viewCtrl:ViewController,
+		public viewCtrl: ViewController,
 		public forumData: ForumData) {
 
 		this.forum = navParams.data;
@@ -33,15 +33,15 @@ export class ForumTopicPostPage {
 	}
 
 	postTopic() {
-		this.forumData.postTopic(this.forum,this.title,this.content).then(data=>{
+		this.forumData.postTopic(this.forum, this.title, this.content).then(data => {
 			//should return a id
-			if(data){
+			if (data) {
 				this.viewCtrl.dismiss(data);
-			}else{
+			} else {
 				//alert: fail!
-				
+
 			}
-			
+
 		});
 	}
 
@@ -54,9 +54,9 @@ export class ForumTopicPostPage {
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ForumTopicPostPage');
 
-		setTimeout(()=>{
+		setTimeout(() => {
 			this.titleInput.setFocus();
-		},150);
+		}, 150);
 	}
 
 }

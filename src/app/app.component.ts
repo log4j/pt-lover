@@ -5,7 +5,7 @@ import { Device } from '@ionic-native/device';
 import { StatusBar } from '@ionic-native/status-bar';
 
 
-import { Push, PushObject, PushOptions, RegistrationEventResponse, NotificationEventResponse } from '@ionic-native/push';
+import { Push, PushObject, RegistrationEventResponse, NotificationEventResponse } from '@ionic-native/push';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
@@ -185,8 +185,10 @@ export class MyApp {
 				android: {
 					senderID: '707320332782',
 					// forceShow: true,
-					icon: "screen",
-					// iconColor: "blue"
+					// icon: "setting",
+					// icon: 'logo',
+					// iconColor: "blue",
+					clearBadge: true
 				},
 				ios: {
 					alert: 'true',
@@ -237,7 +239,7 @@ export class MyApp {
 				} else {
 					setTimeout(() => {
 						document.getElementById('splashAd').style.display = 'none';
-					}, 3000);
+					}, 2000);
 				}
 			}
 

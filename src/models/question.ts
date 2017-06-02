@@ -148,7 +148,6 @@ export class QuestionSet {
         let title;
         let lastTitle;
         let hasTitleToken = false;
-        let inAnswerCollecting = false;
         // let question;
         // let answers;
         list.forEach(item => {
