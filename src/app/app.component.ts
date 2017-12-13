@@ -183,7 +183,7 @@ export class MyApp {
 
 			const push: PushObject = this.push.init({
 				android: {
-					senderID: '707320332782',
+					// senderID: '707320332782',
 					// forceShow: true,
 					// icon: "setting",
 					// icon: 'logo',

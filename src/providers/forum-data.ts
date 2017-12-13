@@ -130,7 +130,7 @@ export class ForumData {
 		})
 	}
 
-	postRewardViaForum(msg: ForumMessage, amount: number) {
+	postRewardViaForum(msg: ForumMessage, amount: number) : Promise<{result:boolean,err?: any}> {
 		let body = {
 			postid: msg.id,
 			rewards: amount
