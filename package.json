@@ -18,11 +18,11 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
-    "@ionic-native/core": "4.4.0",
+    "@ionic-native/core": "^4.4.0",
     "@ionic-native/device": "4.4.0",
     "@ionic-native/file-opener": "4.4.0",
     "@ionic-native/in-app-browser": "4.4.0",
-    "@ionic-native/push": "4.4.0",
+    "@ionic-native/push": "^4.4.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
     "@ionic-native/three-dee-touch": "^4.5.2",
@@ -30,10 +30,9 @@
     "@ionic-native/web-intent": "4.4.0",
     "@ionic/storage": "2.1.3",
     "@types/htmlparser2": "^3.7.29",
-    "cordova-android": "6.1.0",
-    "cordova-ios": "4.3.1",
+    "cordova-ios": "^4.5.4",
+    "cordova-plugin-3dtouch": "^1.3.5",
     "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-crosswalk-webview": "^2.2.0",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-file": "^4.3.3",
@@ -49,11 +48,10 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
     "moment": "^2.17.1",
-    "phonegap-plugin-push": "git+https://github.com/phonegap/phonegap-plugin-push.git#v2.0.x",
+    "phonegap-plugin-push": "^2.1.2",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18",
-    "cordova-plugin-3dtouch": "~1.3.5"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.5",
@@ -74,13 +72,11 @@
   "description": "PTLover: An Ionic project",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "ios"
     ],
     "plugins": {
       "ionic-plugin-keyboard": {},
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-console": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-crosswalk-webview": {

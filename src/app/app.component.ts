@@ -251,58 +251,70 @@ export class MyApp {
 				}
 			}
 
+			if (this.threeDeeTouch) {
+				this.threeDeeTouch.isAvailable()
+					.then(isAvailable => {
+						console.log('3D Touch available? ' + isAvailable);
 
-			this.threeDeeTouch.isAvailable().then(isAvailable => console.log('3D Touch available? ' + isAvailable));
+						let actions: Array<ThreeDeeTouchQuickAction> = [
+							{
+								type: 'torrent',
+								title: '资源列表',
+								iconType: 'Date'
+							},
+							{
+								type: 'forum',
+								title: '论坛',
+								iconType: 'Message'
+							},
+							{
+								type: 'search',
+								title: '搜索资源',
+								iconType: 'Search'
+							}
+						];
 
-			// this.threeDeeTouch.watchForceTouches()
-			// 	.subscribe(
-			// 	(data: ThreeDeeTouchForceTouch) => {
-			// 		console.log('Force touch %' + data.force);
-			// 		console.log('Force touch timestamp: ' + data.timestamp);
-			// 		console.log('Force touch x: ' + data.x);
-			// 		console.log('Force touch y: ' + data.y);
-			// 	}
-			// 	);
+						this.threeDeeTouch.configureQuickActions(actions);
+
+						console.log('something 3D');
+						this.threeDeeTouch.onHomeIconPressed().subscribe(
+							(payload) => {
+								// returns an object that is the button you presed
+								console.log('Pressed the ${payload.title} button')
+								console.log(payload.type)
+								if (payload.type === 'search') {
+									this.nav.push(TorrentListPage, { openSearch: true });
+								}
+								else if (payload.type === 'forum') {
+									this.nav.push(ForumListPage);
+								}
+								else if (payload.type === 'torrent') {
+									this.nav.push(TorrentListPage);
+								}
+
+							}
+						);
+
+					})
+					.catch((e)=>{
+						console.log(e);	
+					});
+
+				// this.threeDeeTouch.watchForceTouches()
+				// 	.subscribe(
+				// 	(data: ThreeDeeTouchForceTouch) => {
+				// 		console.log('Force touch %' + data.force);
+				// 		console.log('Force touch timestamp: ' + data.timestamp);
+				// 		console.log('Force touch x: ' + data.x);
+				// 		console.log('Force touch y: ' + data.y);
+				// 	}
+				// 	);
 
 
-			let actions: Array<ThreeDeeTouchQuickAction> = [
-				{
-					type: 'torrent',
-					title: '资源列表',
-					iconType: 'Date'
-				},
-				{
-					type: 'forum',
-					title: '论坛',
-					iconType: 'Message'
-				},
-				{
-					type: 'search',
-					title: '搜索资源',
-					iconType: 'Search'
-				}
-			];
 
-			this.threeDeeTouch.configureQuickActions(actions);
+			}
 
-			console.log('something 3D');
-			this.threeDeeTouch.onHomeIconPressed().subscribe(
-				(payload) => {
-					// returns an object that is the button you presed
-					console.log('Pressed the ${payload.title} button')
-					console.log(payload.type)
-					if (payload.type === 'search') {
-						this.nav.push(TorrentListPage, { openSearch: true });
-					}
-					else if (payload.type === 'forum') {
-						this.nav.push(ForumListPage);
-					}
-					else if (payload.type === 'torrent') {
-						this.nav.push(TorrentListPage);
-					}
 
-				}
-			);
 
 		});
 
