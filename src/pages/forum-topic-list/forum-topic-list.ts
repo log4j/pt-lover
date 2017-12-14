@@ -37,15 +37,16 @@ export class ForumTopicListPage {
 		this.forum = this.navParams.data.forum;
 
 		this.forum.topics = [];
+		console.log('ionViewDidLoad ForumTopicListPage Con');
 
-		this.forumData.loadForumTopicList(this.forum,{forceClear:true}).then(data => {
-			this.forum = data;
-			this.isLoading = false;
-		});
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ForumTopicListPage');
+		this.forumData.loadForumTopicList(this.forum, { forceClear: true }).then(data => {
+			this.forum = data;
+			this.isLoading = false;
+		});
 	}
 
 	postTopic() {
@@ -59,8 +60,8 @@ export class ForumTopicListPage {
 		modal.onWillDismiss((data: any) => {
 			if (data) {
 				//data is the id of topic just created!!
-				this.forum.topics.forEach(item=>{
-					if(item.id === data){
+				this.forum.topics.forEach(item => {
+					if (item.id === data) {
 						this.content.scrollToTop();
 						this.openTopic(item);
 						return;

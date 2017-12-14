@@ -20,10 +20,16 @@ import { ProfilePage } from '../pages/profile/profile';
 import { RemotePage } from '../pages/remote/remote';
 import { TorrentAlertPage } from '../pages/torrent-alert/torrent-alert';
 import { TorrentFilterPage } from '../pages/torrent-filter/torrent-filter';
+import { TorrentListPage } from '../pages/torrent-list/torrent-list';
+import { ForumListPage } from '../pages/forum-list/forum-list';
+
 import { User } from '../models/user';
 
 import { UserData } from '../providers/user-data';
 import { PushData } from '../providers/push-data';
+
+
+import { ThreeDeeTouch, ThreeDeeTouchQuickAction } from '@ionic-native/three-dee-touch';
 
 
 
@@ -88,7 +94,8 @@ export class MyApp {
 		public storage: Storage,
 		private statusBar: StatusBar,
 		private splashScreen: SplashScreen,
-		private push: Push
+		private push: Push,
+		private threeDeeTouch: ThreeDeeTouch
 	) {
 
 		// Check if the user has already seen the tutorial
@@ -123,6 +130,8 @@ export class MyApp {
 
 			this.enableMenu(true);
 		});
+
+
 
 	}
 
@@ -188,15 +197,14 @@ export class MyApp {
 					// icon: "setting",
 					// icon: 'logo',
 					// iconColor: "blue",
-					clearBadge: true
+					// clearBadge: true
 				},
 				ios: {
 					alert: 'true',
 					badge: true,
 					sound: 'false',
 					clearBadge: true
-				},
-				windows: {}
+				}
 			});
 
 			// alert(push);
@@ -243,6 +251,58 @@ export class MyApp {
 				}
 			}
 
+
+			this.threeDeeTouch.isAvailable().then(isAvailable => console.log('3D Touch available? ' + isAvailable));
+
+			// this.threeDeeTouch.watchForceTouches()
+			// 	.subscribe(
+			// 	(data: ThreeDeeTouchForceTouch) => {
+			// 		console.log('Force touch %' + data.force);
+			// 		console.log('Force touch timestamp: ' + data.timestamp);
+			// 		console.log('Force touch x: ' + data.x);
+			// 		console.log('Force touch y: ' + data.y);
+			// 	}
+			// 	);
+
+
+			let actions: Array<ThreeDeeTouchQuickAction> = [
+				{
+					type: 'torrent',
+					title: '资源列表',
+					iconType: 'Date'
+				},
+				{
+					type: 'forum',
+					title: '论坛',
+					iconType: 'Message'
+				},
+				{
+					type: 'search',
+					title: '搜索资源',
+					iconType: 'Search'
+				}
+			];
+
+			this.threeDeeTouch.configureQuickActions(actions);
+
+			console.log('something 3D');
+			this.threeDeeTouch.onHomeIconPressed().subscribe(
+				(payload) => {
+					// returns an object that is the button you presed
+					console.log('Pressed the ${payload.title} button')
+					console.log(payload.type)
+					if (payload.type === 'search') {
+						this.nav.push(TorrentListPage, { openSearch: true });
+					}
+					else if (payload.type === 'forum') {
+						this.nav.push(ForumListPage);
+					}
+					else if (payload.type === 'torrent') {
+						this.nav.push(TorrentListPage);
+					}
+
+				}
+			);
 
 		});
 

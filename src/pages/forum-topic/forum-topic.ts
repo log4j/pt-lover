@@ -178,7 +178,7 @@ export class ForumTopicPage {
 		popover.onDidDismiss((amount) => {
 			if (amount) {
 				this.isLoading = true;
-				this.forumData.postRewardViaForum(comment, amount).then(data => {
+				this.forumData.postRewardViaForum(comment, amount).then((data: { result: boolean, err?: any }) => {
 					this.isLoading = false;
 					if (data && data.result) {
 						this.toastCtrl.create({

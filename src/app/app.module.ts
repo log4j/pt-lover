@@ -52,6 +52,8 @@ import { TorrentStatusPipe } from '../pipes/torrent-status-pipe';
 import { FileSizePipe } from '../pipes/file-size-pipe';
 
 
+import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -137,6 +139,7 @@ import { FileSizePipe } from '../pipes/file-size-pipe';
     RemoteData,
     ServerHttp,
     PushData,
+    ThreeDeeTouch,
     { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule { }

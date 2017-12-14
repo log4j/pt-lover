@@ -74,8 +74,6 @@ export class TorrentListPage {
 			// console.log(this.torrentFilter);
 
 		});
-
-
 		this.events.subscribe("filters:publish", () => {
 			this.torrents.sortByRules(this.torrentData.enableHot, this.torrentData.enableTop);
 		});
@@ -88,17 +86,29 @@ export class TorrentListPage {
 
 	ionViewDidLoad() {
 		// this.updateTorrentList();
+
+		if (this.navParams.data && this.navParams.data.openSearch) {
+
+			this.ngZone.run(() => {
+				setTimeout(() => {
+					this.showTorrentSearch(true);
+				}, 300)
+			});
+		} else {
+			this.showLoading();
+			this.updateTorrentList(true).then(data => {
+				this.hideLoading();
+				// refresher.complete();
+			})
+		}
+
 	}
 
 
 	ngAfterViewInit() {
 		// this.refresher.
 		// this.refresher._beginRefresh();
-		this.showLoading();
-		this.updateTorrentList(true).then(data => {
-			this.hideLoading();
-			// refresher.complete();
-		})
+
 	}
 
 

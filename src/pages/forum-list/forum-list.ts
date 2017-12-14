@@ -29,12 +29,14 @@ export class ForumListPage {
 	) {
 
 		this.forumSection = new ForumSection();
+
+	}
+	ionViewDidLoad() {
+		console.log('forum list load');
 		this.forumData.loadForumHome().then(data => {
 			this.forumSection = data;
 			this.isLoading = false;
 		});
-	}
-	ionViewDidLoad() {
 	}
 
 	openForum(forum) {
